@@ -474,7 +474,7 @@ function fillUpdateDate() {
     if (realm == null || realm == '') return;
     var prefix = (getLocale() == 'en') ? 'updated' : 'обновлено';
 
-    $.getJSON('/industry/'+realm+'/updateDate.json', function (data) {
+    $.getJSON('/industry/'+realm+'/production_above_average_updateDate.json', function (data) {
         $('#update_date').text(prefix+': ' + data.d);
     });
 }
