@@ -608,7 +608,7 @@ function loadData() {
     var showLabel = (locale === 'en') ? 'Show' : 'Показать';
     var mayoralBonusesLabel = (locale === 'en') ? 'Mayoral bonuses' : 'Бонусы мэрии';
     var domain = getDomain(locale);
-    if (sagTownCaption === null) {
+    if (sagTownCaption === null || oagTowns === null) {
         fillTownCaptions(loadData);
         return false;
     }
