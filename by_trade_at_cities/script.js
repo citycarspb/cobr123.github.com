@@ -690,8 +690,8 @@ function loadData() {
                 output += '<td '+getColStyle('w_idx')+' align="center" id="td_w_idx" data-value="'+ parseFloat(val.wi).toFixed(2) +'">'+parseFloat(val.wi).toFixed(2)+'</td>';
                 output += '<td field_name="mi" '+getColStyle('idx')+' align="center" id="td_idx" data-value="'+ val.mi +'">'+val.mi+'</td>';
                 output += '<td field_name="v" '+getColStyle('volume')+' align="right" id="td_volume" data-value="'+ val.v +'">'+ commaSeparateNumber(val.v)+'</td>';
-                output += '<td '+getColStyle('dem')+' align="right" id="td_dem" data-value="'+ oagTowns[val.ti].d +'">'+ commaSeparateNumber(oagTowns[val.ti].d)+'</td>';
-                output += '<td '+getColStyle('pop')+' align="right" id="td_pop" data-value="'+ oagTowns[val.ti].p +'">'+ commaSeparateNumber(oagTowns[val.ti].p)+'</td>';
+                output += '<td '+getColStyle('dem')+' align="right" id="td_dem" data-value="'+ unknownIfNull(locale, nvl(oagTowns[val.ti], [])['d']) +'">'+ commaSeparateNumber(unknownIfNull(locale, nvl(oagTowns[val.ti], [])['d']))+'</td>';
+                output += '<td '+getColStyle('pop')+' align="right" id="td_pop" data-value="'+ unknownIfNull(locale, nvl(oagTowns[val.ti], [])['p']) +'">'+ commaSeparateNumber(unknownIfNull(locale, nvl(oagTowns[val.ti], [])['p']))+'</td>';
                 output += '<td field_name="lpe" '+getColStyle('local_perc')+' align="right" id="td_local_perc" style="color:black" data-value="'+ parseFloat(val.lpe).toFixed(2) +'">'+parseFloat(val.lpe).toFixed(2)+'</td>';
                 output += '<td field_name="lpr" '+getColStyle('local_price')+' align="right" id="td_local_price" data-value="'+ parseFloat(val.lpr).toFixed(2) +'">'+ commaSeparateNumber(parseFloat(val.lpr).toFixed(2))+'</td>';
                 output += '<td field_name="lq" '+getColStyle('local_quality')+' align="right" id="td_local_quality" data-value="'+ parseFloat(val.lq).toFixed(2) +'">'+parseFloat(val.lq).toFixed(2)+'</td>';
