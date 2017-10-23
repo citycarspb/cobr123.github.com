@@ -681,7 +681,7 @@ function loadData() {
             if(suitable){
                 output += '<tr class="trec hoverable">';
                 output += '<td id="td_city" title="'+sagCountryCaption[val.ci]+' - '+sagRegionCaption[val.ri]+'" data-value="'+ sagTownCaption[val.ti] +'">';
-                output += '<a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing/by_trade_at_cities/'+val.pi+'/'+val.ci+'/'+val.ri+'/'+val.ti+'">'+sagTownCaption[val.ti]+'</a>';
+                output += '<a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing/by_trade_at_cities/'+val.pi+'/'+val.ci+'/'+val.ri+'/'+val.ti+'">'+nvl(sagTownCaption[val.ti], val.tc)+'</a>';
                 if(oagTowns[val.ti] != null && oagTowns[val.ti]['mb'] != null && oagTowns[val.ti]['mb'].indexOf(category_name) >= 0){
                     output += '<a target="_blank" href="https://'+domain+'/'+realm+'/main/geo/city/'+val.ti+'" title="'+ mayoralBonusesLabel +'"><img src="/img/small_logo.gif" width="18"></a>';
                 }
