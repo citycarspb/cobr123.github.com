@@ -265,14 +265,14 @@ function updateTable(unZippedData){
                 openCalcHref = '/industry/#id_product='+mat.pi+'&realm='+realm+'&tech_from='+nvTechTo+'&tech_to='+nvTechTo+'&quality_from='+mat.q;
                 imgSrc = sagMaterialImg[mat.pi].replace('/img/products/','/img/products/16/');
                 unitHref = 'https://'+domain+'/'+realm+'/main/unit/view/'+mat.ui+'/';
-                href = 'https://'+domain+'/'+realm+'/main/globalreport/marketing/by_products/'+mat.pi+'/';
+                href = 'https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+mat.pi+'#by-offers';
                 svMaterialsImg += '<td align="center"><a target="_blank" href="'+href+'"><img src="'+imgSrc+'"></a></td>';
                 //svMaterialsQty += '<td align="center">'+commaSeparateNumber(mat.v)+'&nbsp;</td>';
                 svMaterialsQual += '<td align="center"><a target="_blank" href="'+openCalcHref+'">'+commaSeparateNumber(mat.q)+'</a>&nbsp;</td>';
                 //svPricePerQty += '<td align="center">$'+commaSeparateNumber((mat.price / mat.quality).toFixed(2))+'&nbsp;</td>';
                 svMaterialsPrice += '<td align="center"><a target="_blank" href="'+unitHref+'">$'+commaSeparateNumber(mat.p)+'</a>&nbsp;</td>';
             });
-            href = 'https://'+domain+'/'+realm+'/main/globalreport/marketing/by_products/'+val.pi+'/';
+            href = 'https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+val.pi+'#by-offers';
             output += '<td align="center"><table cellspacing="0" cellpadding="0"><tr class="trec">'+svMaterialsImg+'</tr><tr class="trec">'+svMaterialsQty+'</tr><tr class="trec">'+svMaterialsQual+'</tr><tr class="trec">'+svMaterialsPrice+'</tr></table></td>';
             output += '<td align="center" id="td_quality" data-value="'+val.q+'"><a target="_blank" href="'+href+'">'+commaSeparateNumber(val.q)+'</a></td>';
             output += '<td align="center" id="td_quantity" data-value="'+val.v+'">'+commaSeparateNumber(val.v)+'</td>';
