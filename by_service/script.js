@@ -351,7 +351,7 @@ Suburb              '+ (nvl(parseFloat(val['ar']), 1) / 1000 * 0.44).toFixed(2) 
 Пригород            '+ (nvl(parseFloat(val['ar']), 1) / 1000 * 0.44).toFixed(2) +'';
 				
 				output += '<tr class="trec hoverable">';
-				output += '<td id="td_city" title="'+sagCountryCaption[val.ci]+' - '+sagRegionCaption[val.ri]+'" data-value="'+ sagTownCaption[val.ti] +'"><a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?geo='+val.ci+'/'+val.ri+'/'+val.ti+'&unit_type_id='+serviceID+'#by-service/">'+sagTownCaption[val.ti]+'</a></td>';
+				output += '<td id="td_city" title="'+sagCountryCaption[val.ci]+' - '+sagRegionCaption[val.ri]+'" data-value="'+ sagTownCaption[val.ti] +'"><a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?geo='+val.ci+'/'+val.ri+'/'+val.ti+'&unit_type_id='+serviceID+'#by-service">'+sagTownCaption[val.ti]+'</a></td>';
 				output += '<td '+getColStyle('w_idx')+' align="right" id="td_w_idx" data-value="'+ parseFloat(val.wi).toFixed(2) +'">'+ parseFloat(val.wi).toFixed(2) +'</td>';
 				output += '<td '+getColStyle('as')+' align="right" id="td_as" data-value="'+ parseFloat(agTownAvgSalary[val.ti]).toFixed(2) +'">'+ parseFloat(agTownAvgSalary[val.ti]).toFixed(2) +'</td>';
 				output += '<td '+getColStyle('mdi')+' align="right" id="td_mdi" data-value="'+ parseFloat(val.mdi).toFixed(2) +'">'+parseFloat(val.mdi).toFixed(2)+'</td>';
