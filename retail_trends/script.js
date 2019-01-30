@@ -19,8 +19,8 @@ function updateProdRemainLinks(){
     if (realm == null || realm == '') return;
     var locale = getLocale();
     var domain = getDomain(locale);
-    $('#retail_report_link').attr('href','https://'+domain+'/'+realm+'/main/globalreport/marketing/by_trade_at_cities/'+productID+'/');
-    $('#show_remain_link').attr('href','https://'+domain+'/'+realm+'/main/globalreport/marketing/by_products/'+productID+'/');
+    $('#retail_report_link').attr('href','https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+productID+'#by-trade-at-cities');
+    $('#show_remain_link').attr('href','https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+productID+'#by-offers');
     $('#calc_prod_link').attr('href','/industry/#id_product=' + productID);
 	$('#general_report_link').attr('href','https://'+domain+'/'+realm+'/main/globalreport/product_history/'+productID+'/');
 }
