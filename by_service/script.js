@@ -502,7 +502,7 @@ function updateEquipRawMat(data){
 						  svImgUrl = val.s[i].e.s;
 						  svProductID = val.s[i].e.i;
 						  svProductCaption = val.s[i].e.c;
-						  equipCell += '<a href="https://'+domain+'/'+realm+'/main/globalreport/marketing/by_products/'+ svProductID +'/" target="_blank">';
+						  equipCell += '<a href="https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+ svProductID +'#by-offers" target="_blank">';
 						  equipCell += '<img src="'+ svImgUrl +'" width="16" height="16" id="img'+ svProductID +'" title="'+ svProductCaption +'"">';
 						  equipCell += '</a>';
 						  equipProdCell += '<a href="/industry/#id_product='+ svProductID +'&realm=' + realm + '" target="_blank">';
@@ -514,7 +514,7 @@ function updateEquipRawMat(data){
 								svImgUrl = val.s[i].rm[k].s;
 								svProductID = val.s[i].rm[k].i;
 								svProductCaption = val.s[i].rm[k].c;
-                                rawMatCell += '<a href="https://'+domain+'/'+realm+'/main/globalreport/marketing/by_products/'+svProductID+'/" target="_blank">';
+                                rawMatCell += '<a href="https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+svProductID+'#by-offers" target="_blank">';
                                 rawMatCell += '<img src="'+ svImgUrl+'" width="16" height="16" id="img'+svProductID+'" productID="'+svProductID+'" title="'+svProductCaption+'"">';
                                 rawMatCell += '</a>';
                                 rawMatProdCell += '<a href="/industry/#id_product='+svProductID+'&realm=' + realm + '" target="_blank">';
