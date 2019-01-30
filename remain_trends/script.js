@@ -19,7 +19,7 @@ function updateProdRemainLinks(){
     if (realm == null || realm == '') return;
     var locale = getLocale();
     var domain = getDomain(locale);
-    $('#show_remain_link').attr('href','https://'+domain+'/'+realm+'/main/globalreport/marketing/by_products/'+productID+'/');
+    $('#show_remain_link').attr('href','https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+productID+'#by-offers');
     $('#calc_prod_link').attr('href','/industry/#id_product=' + productID);
 	$('#general_report_link').attr('href','https://'+domain+'/'+realm+'/main/globalreport/product_history/'+productID+'/');
 }
