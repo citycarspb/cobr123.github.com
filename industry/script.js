@@ -231,7 +231,7 @@ function updateTableFromCache(splicedTableCache){
 		openCalcHref = 'http://ovh.belyan.in/factory/'+val.manufactureID+'.html';
 		specHref = 'https://'+domain+'/'+realm+'/main/industry/unit_type/info/'+val.manufactureID;
 		output += '<td align="center"><a target="_blank" href="'+specHref+'">'+val.spec+'</a>&nbsp;<a target="_blank" href="'+openCalcHref+'"><img src="../favicon.ico"></a></td>';
-		output += '<td align="center"><a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing/by_products/'+ val.equipId +'/">'+val.equipQual+'</a></td>';
+		output += '<td align="center"><a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+ val.equipId +'#by-offers">'+val.equipQual+'</a></td>';
 		techHref = 'https://'+domain+'/'+realm+'/main/globalreport/technology/'+val.manufactureID+'/'+val.tech+'/target_market_summary/'+svDate+'/bid';
 		output += '<td align="center" id="td_tech" id="td_quality" data-value="'+val.tech+'"><a target="_blank" href="'+techHref+'">'+val.tech+'</a></td>';
 		svMaterialsImg = '';
@@ -243,14 +243,14 @@ function updateTableFromCache(splicedTableCache){
 			openCalcHref = '/industry/#id_product='+mat.productID+'&realm='+realm+'&tech_from='+nvTechFrom+'&tech_to='+nvTechTo+'&quality_from='+mat.quality;
 			imgSrc = sagMaterialImg[mat.productID].replace('/img/products/','/img/products/16/');
 			unitHref = 'https://'+domain+'/'+realm+'/main/unit/view/'+mat.unitID+'/';
-			href = 'https://'+domain+'/'+realm+'/main/globalreport/marketing/by_products/'+mat.productID+'/';
+			href = 'https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+mat.productID+'#by-offers';
 			svMaterialsImg += '<td align="center"><a target="_blank" href="'+href+'"><img src="'+imgSrc+'"></a></td>';
 			svMaterialsQty += '<td align="center">'+commaSeparateNumber(mat.ingQty)+'&nbsp;</td>';
 			svMaterialsQual += '<td align="center"><a target="_blank" href="'+openCalcHref+'">'+commaSeparateNumber(mat.quality)+'</a>&nbsp;</td>';
 			//svPricePerQty += '<td align="center">$'+commaSeparateNumber((mat.price / mat.quality).toFixed(2))+'&nbsp;</td>';
 			svMaterialsPrice += '<td align="center"><a target="_blank" href="'+unitHref+'">$'+commaSeparateNumber(mat.price)+'</a>&nbsp;</td>';
 		});
-		href = 'https://'+domain+'/'+realm+'/main/globalreport/marketing/by_products/'+val.productID+'/';
+		href = 'https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+val.productID+'#by-offers';
 		output += '<td align="center"><table cellspacing="0" cellpadding="0"><tr class="trec">'+svMaterialsImg+'</tr><tr class="trec">'+svMaterialsQty+'</tr><tr class="trec">'+svMaterialsQual+'</tr><tr class="trec">'+svMaterialsPrice+'</tr></table></td>';
 		output += '<td align="center" id="td_quality" data-value="'+val.quality+'"><a target="_blank" href="'+href+'">'+commaSeparateNumber(val.quality)+'</a></td>';
 		output += '<td align="center" id="td_quantity" data-value="'+val.quantity+'">'+commaSeparateNumber(val.quantity)+'</td>';
@@ -683,7 +683,7 @@ function addVolumeFromForIngredient(productID) {
 	var defVal = getVal('volumeFrom_'+productID) || getVal('volumeFrom') || 1;
 	var fromLabel = (locale == 'en') ? 'from' : 'от';
 	var field = '&nbsp;'+fromLabel+'&nbsp;<input type="number" id="volumeFrom_'+productID+'" size="7" maxlength="32" value="'+defVal+'"> ';
-	var href = 'https://'+domain+'/'+realm+'/main/globalreport/marketing/by_products/'+productID+'/';
+	var href = 'https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+productID+'#by-offers';
 	var svMaterialImg = '<a target="_blank" href="'+href+'"><img src="'+imgSrc+'"></a>';
 	$('#volumeFromByMaterials').append(svMaterialImg + field); 
 	savVolumeFromByMaterials[productID] = 1;
