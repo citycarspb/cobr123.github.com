@@ -103,7 +103,9 @@ function getCityDistrict(name, locale) {
     }
 }
 function getVolume(volume, locale) {
-    if (locale === 'en') {
+    if (/^\d+$/.exec(volume)) {
+        return commaSeparateNumber(volume);
+    } else if (locale === 'en') {
         return volume.replace('менее', 'below').replace('около', 'about').replace('более', 'over');
     } else {
         return volume;
