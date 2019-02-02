@@ -545,7 +545,7 @@ function addHoverHandlers() {
             //on mouse hover, start a timeout
             timer = setTimeout(function() {
                 //Do your stuff here
-                var townID = $('td#td_city', cell.parent()).attr('city_id'));
+                var townID = $('td#td_city', cell.parent()).attr('city_id');
                 var townCaption = $('#td_city > a', cell.parent()).text();
                 var locale = getLocale();
                 var colID = 'th' + cell.attr('id').substr(2);
