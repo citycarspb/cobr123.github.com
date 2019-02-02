@@ -545,7 +545,7 @@ function addHoverHandlers() {
             //on mouse hover, start a timeout
             timer = setTimeout(function() {
                 //Do your stuff here
-                var townID = getLast($('td#td_city > a', cell.parent()).attr('href'));
+                var townID = $('td#td_city', cell.parent()).attr('city_id'));
                 var townCaption = $('#td_city > a', cell.parent()).text();
                 var locale = getLocale();
                 var colID = 'th' + cell.attr('id').substr(2);
@@ -682,7 +682,7 @@ function loadData() {
 
             if(suitable){
                 output += '<tr class="trec hoverable">';
-                output += '<td id="td_city" title="'+sagCountryCaption[val.ci]+' - '+sagRegionCaption[val.ri]+'" data-value="'+ sagTownCaption[val.ti] +'">';
+                output += '<td id="td_city" city_id="'+val.ti+'" title="'+sagCountryCaption[val.ci]+' - '+sagRegionCaption[val.ri]+'" data-value="'+ sagTownCaption[val.ti] +'">';
                 output += '<a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?geo='+val.ci+'/'+val.ri+'/'+val.ti+'&product_id='+val.pi+'#by-trade-at-cities">'+sagTownCaption[val.ti]+'</a>';
                 if(oagTowns[val.ti] != null && oagTowns[val.ti]['mb'] != null && oagTowns[val.ti]['mb'].indexOf(category_name) >= 0){
                     output += '<a target="_blank" href="https://'+domain+'/'+realm+'/main/geo/city/'+val.ti+'" title="'+ mayoralBonusesLabel +'"><img src="/img/small_logo.gif" width="18"></a>';
