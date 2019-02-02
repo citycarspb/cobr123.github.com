@@ -660,18 +660,21 @@ function loadRegions(callback) {
 function changeRealm(productCategoriesCallback, countryCallback) {
 	fillTownCaptions();
 	loadServices(productCategoriesCallback);
-	var id_country = getVal('id_country');
     if(typeof(countryCallback) !== 'function') {
-        if(id_country != null && id_country != '') {
-            var regionCallback = function() {
-                $('#id_region').val(getVal('id_region'));
-                loadData();
-            };
-            countryCallback = function() {
-                $('#id_country').val(id_country);
-                loadRegions(regionCallback);
-            };
-  		}
+        var id_country = getVal('id_country');
+        var id_region = getVal('id_region');
+        var regionCallback = function() {
+            if(id_region != null && id_region != '') {
+                $('#id_region').val(getVal('id_region')).trigger("chosen:updated");
+            }
+            loadData();
+        };
+        countryCallback = function() {
+            if(id_country != null && id_country != '') {
+                $('#id_country').val(id_country).trigger("chosen:updated");
+            }
+            loadRegions(regionCallback);
+        };
     }
 	loadCountries(countryCallback);
 	setVal('realm', getRealm());
