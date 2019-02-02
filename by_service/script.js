@@ -667,7 +667,7 @@ function changeRealm(productCategoriesCallback, countryCallback) {
                 $('#id_region').val(getVal('id_region'));
                 loadData();
             };
-            var countryCallback = function() {
+            countryCallback = function() {
                 $('#id_country').val(id_country);
                 loadRegions(regionCallback);
             };
