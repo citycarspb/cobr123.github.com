@@ -442,7 +442,7 @@ function loadServices(callback) {
 			services += '&nbsp;<img src="'+ val.iu+'"';
             if(selected != null && selected == val.i){
                 services += ' border="1"';
-                for (i in val.s) {
+                for (var i in val.s) {
                     serviceSpecs += '<option value="'+i+'">'+val.s[i].c+'</option>';
                 }
             }
@@ -467,7 +467,7 @@ function loadServices(callback) {
 }
 function updateEquipRawMat(data){
     var selected = $('#id_service').val();
-    id_service_spec = $('#id_service_spec').val();
+    var id_service_spec = $('#id_service_spec').val();
 	var locale = getLocale();
 	var domain = getDomain(locale);
 	var realm = getRealm();
@@ -491,7 +491,7 @@ function updateEquipRawMat(data){
 				var svProductID = '';
 				var svProductCaption = '';
 
-                for (i in val.s) {
+                for (var i in val.s) {
                     if(i === id_service_spec){
 						nvDynColCnt += 4;
 						svDynColHeaders += '<th '+getColStyle('cbs_lpr')+' id="th_cbs_lpr">'+localPrice+'(sum)&nbsp;<b id="sort_by_cbs_lpr"></b></th>';
@@ -510,7 +510,7 @@ function updateEquipRawMat(data){
 						  equipProdCell += '</a>';
                         }
                         if(val.s[i].rm != null){
-                            for (k in val.s[i].rm) {
+                            for (var k in val.s[i].rm) {
 								svImgUrl = val.s[i].rm[k].s;
 								svProductID = val.s[i].rm[k].i;
 								svProductCaption = val.s[i].rm[k].c;
@@ -839,7 +839,7 @@ $(document).ready(function () {
 		var tableHeaderId = tableHeader.getAttribute('id').substr(3);
 		if (tableHeaderId != null && tableHeaderId != '') {
 			//console.log(tableHeaderId);
-			ascDesc = tableHeader.getAttribute('data-order');
+			var ascDesc = tableHeader.getAttribute('data-order');
 			isAscending = ascDesc=='asc';
 			order = isAscending?'desc':'asc';
 			tableHeader.setAttribute('data-order',order);
