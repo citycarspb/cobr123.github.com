@@ -693,7 +693,6 @@ function changeCountry(callback) {
 //	console.log('changeCountry, typeof(callback) =  '+ typeof(callback));
     if (typeof(callback) !== 'function'){
         callback = function() {
-            $('#id_region').val(getVal('id_region'));
             loadTowns(loadData);
         };
     }
