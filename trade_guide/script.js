@@ -142,15 +142,7 @@ function loadDataAfter(data) {
     const oavCategoryProducts = oagProducts.filter(function(o){ return o.pci === categoryID; });
 
     output_th += '<th id="th_city">' + ((locale === 'en') ? 'City' : 'Город') + '&nbsp;<b id="sort_by_city"></b></th>';
-    $.each(oavCategoryProducts, function (cpKey, cpVal) {
-        output_th += '<th>';
-        output_th += '<table border="0" width="100%" cellspacing="0" cellpadding="5">';
-        output_th += '<tr class="trec2"><td align="right">'+ ((locale === 'en') ? 'Quantity' : 'Количество') +'</td><td align="right">'+ ((locale === 'en') ? 'Quality' : 'Качество')  +'</td></tr>';
-        output_th += '<tr class="trec2"><td align="right">'+ ((locale === 'en') ? 'Purchase price' : 'Закупочная цена') +'</td><td align="right">'+ ((locale === 'en') ? 'Selling price' : 'Цена продажи') +'</td></tr>';
-        output_th += '<tr class="trec2"><td align="right"><img src="'+ oagProducts[cpVal.i].s +'" width="16" height="16"><td align="right">'+ ((locale === 'en') ? 'Profit' : 'Прибыль') +'</td></tr>';
-        output_th += '</table>';
-        output_th += '</th>';
-    });
+    output_th += '<th id="th_products">' + ((locale === 'en') ? 'Products' : 'Товары') + '</th>';
     output_th += '<th id="th_profit">' + ((locale === 'en') ? 'Profit' : 'Прибыль') + '&nbsp;<b id="sort_by_profit"></b></th>';
 
     $.each(data, function (key, val) {
@@ -172,27 +164,37 @@ function loadDataAfter(data) {
             output += '<a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?geo='+val.ci+'/'+val.ri+'/'+val.ti+'&product_id='+val.tgp[0].pi+'#by-trade-at-cities">'+sagTownCaption[val.ti]+'</a>';
             output += '</td>';
             let profit = 0;
+            let volumeRow = '';
+            let qualityRow = '';
+            let buyPriceRow = '';
+            let sellPriceRow = '';
+            let profitRow = '';
             $.each(oavCategoryProducts, function (cpKey, cpVal) {
                 const tgpVal = val.tgp.filter(function(o) { return o.pi === cpVal.i;})[0];
                 if(tgpVal != null) {
                     profit += parseFloat(tgpVal.iat);
-                    output += '<td>';
-                    output += '<table border="0" width="100%" cellspacing="0" cellpadding="5">';
-                    output += '<tr class="trec2"><td align="right">' + commaSeparateNumber(tgpVal.v) + '</td><td align="right">' + tgpVal.q + '</td></tr>';
-                    output += '<tr class="trec2"><td align="right">$' + commaSeparateNumber(parseFloat(tgpVal.bp).toFixed(2)) + '</td><td align="right">$' + commaSeparateNumber(parseFloat(tgpVal.sp).toFixed(2)) + '</td></tr>';
-                    output += '<tr class="trec2"><td align="right" colspan="2">$' + commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2)) + '</td></tr>';
-                    output += '</table>';
-                    output += '</td>';
+                    volumeRow += '<td align="right">' + commaSeparateNumber(tgpVal.v) + '</td>';
+                    qualityRow += '<td align="right">' + tgpVal.q + '</td>';
+                    buyPriceRow += '<td align="right">$' + commaSeparateNumber(parseFloat(tgpVal.bp).toFixed(2)) + '</td>';
+                    sellPriceRow += '<td align="right">$' + commaSeparateNumber(parseFloat(tgpVal.sp).toFixed(2)) + '</td>';
+                    profitRow += '<td align="right" colspan="2">$' + commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2)) + '</td>';
                 } else {
-                    output += '<td>';
-                    output += '<table border="0" width="100%" cellspacing="0" cellpadding="5">';
-                    output += '<tr class="trec2"><td align="right">0</td><td align="right">0</td></tr>';
-                    output += '<tr class="trec2"><td align="right">$0</td><td align="right">$0</td></tr>';
-                    output += '<tr class="trec2"><td align="right" colspan="2">$0</td></tr>';
-                    output += '</table>';
-                    output += '</td>';
+                    volumeRow += '<td align="right">0</td>';
+                    qualityRow += '<td align="right">0</td>';
+                    buyPriceRow += '<td align="right">$0</td>';
+                    sellPriceRow += '<td align="right">$0</td>';
+                    profitRow += '<td align="right" colspan="2">$0</td>';
                 }
             });
+            output += '<td id="th_products">';
+            output += '<table border="0" cellspacing="1" cellpadding="1">';
+            output += '<tr class="trec1">' + volumeRow + '</tr>';
+            output += '<tr class="trec1">' + qualityRow + '</tr>';
+            output += '<tr class="trec1">' + buyPriceRow + '</tr>';
+            output += '<tr class="trec1">' + sellPriceRow + '</tr>';
+            output += '<tr class="trec1">' + profitRow + '</tr>';
+            output += '</table>';
+            output += '</td>';
             output += '<td align="right" id="td_profit" data-value="'+ profit.toFixed(2) +'">'+ commaSeparateNumber(profit.toFixed(2)) +'</td>';
             output += '</tr>';
         }
