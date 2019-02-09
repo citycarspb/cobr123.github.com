@@ -188,11 +188,11 @@ function loadDataAfter(data) {
             });
             output += '<td id="th_products">';
             output += '<table border="0" cellspacing="1" cellpadding="1">';
-            output += '<tr class="trec1">' + volumeRow + '</tr>';
-            output += '<tr class="trec1">' + qualityRow + '</tr>';
-            output += '<tr class="trec1">' + buyPriceRow + '</tr>';
-            output += '<tr class="trec1">' + sellPriceRow + '</tr>';
-            output += '<tr class="trec1">' + profitRow + '</tr>';
+            output += '<tr class="trec2">' + volumeRow + '</tr>';
+            output += '<tr class="trec2">' + qualityRow + '</tr>';
+            output += '<tr class="trec2">' + buyPriceRow + '</tr>';
+            output += '<tr class="trec2">' + sellPriceRow + '</tr>';
+            output += '<tr class="trec2">' + profitRow + '</tr>';
             output += '</table>';
             output += '</td>';
             output += '<td align="right" id="td_profit" data-value="'+ profit.toFixed(2) +'">'+ commaSeparateNumber(profit.toFixed(2)) +'</td>';
