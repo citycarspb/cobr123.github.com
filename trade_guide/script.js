@@ -329,13 +329,6 @@ function loadPrediction(predRow) {
     });
     return false;
 }
-function hideAllPredictions(){
-    var locale = getLocale();
-    var showLabel = (locale === 'en') ? 'Show' : 'Показать';
-
-    $('tr[id^=prediction_]').remove();
-    $('td[id^=toggle_prediction_] > a').text(showLabel);
-}
 function togglePrediction(npPredNum){
     var link = $('#toggle_prediction_' + npPredNum + ' > a');
     var locale = getLocale();
@@ -379,11 +372,11 @@ function loadSavedFlt(urlParams){
         fillFormFromUrl(urlParams);
     }
 
-    var sort_col_id = urlParams['sort_col_id'] || getVal('sort_col_id_btac') || 'local_perc';
+    var sort_col_id = urlParams['sort_col_id'] || getVal('sort_col_id_btg') || 'local_perc';
     if (sort_col_id != null || sort_col_id != '') {
         $('#sort_col_id').val(sort_col_id);
     }
-    var sort_dir = urlParams['sort_dir'] || getVal('sort_dir_btac') || 'desc';
+    var sort_dir = urlParams['sort_dir'] || getVal('sort_dir_btg') || 'desc';
     if (sort_dir != null || sort_dir != '') {
         $('#sort_dir').val(sort_dir);
     }
@@ -738,8 +731,8 @@ function loadData() {
             );
             $('#sort_col_id').val(svColId);
             $('#sort_dir').val(svOrder);
-            setVal('sort_col_id_btac', $('#sort_col_id').val());
-            setVal('sort_dir_btac', $('#sort_dir').val());
+            setVal('sort_col_id_btg', $('#sort_col_id').val());
+            setVal('sort_dir_btg', $('#sort_dir').val());
 
             addHoverHandlers();
         }
@@ -1018,14 +1011,14 @@ function showAllCol(){
         showCol(value);
     });
     sagInvisibibleColumns = [];
-    setVal('invisibible_columns_btac', sagInvisibibleColumns);
+    setVal('invisibible_columns_btg', sagInvisibibleColumns);
 }
 function hideAllCol(){
     $('select#show_hide_col_ru > option').each(function() {
         var value = $(this).attr('value');
         hideCol(value);
     });
-    setVal('invisibible_columns_btac', sagInvisibibleColumns);
+    setVal('invisibible_columns_btg', sagInvisibibleColumns);
 }
 function onlyUnique(value, index, self) { 
     return self.indexOf(value) === index;
@@ -1041,7 +1034,7 @@ function initShowHideColSelect() {
             } else {
                 hideCol(ui.value);
             }
-            setVal('invisibible_columns_btac', sagInvisibibleColumns.filter(onlyUnique));
+            setVal('invisibible_columns_btg', sagInvisibibleColumns.filter(onlyUnique));
         },
         checkAll: function(){
             showAllCol();
@@ -1051,7 +1044,7 @@ function initShowHideColSelect() {
         }
     });
 
-    sagInvisibibleColumns = getVal('invisibible_columns_btac');
+    sagInvisibibleColumns = getVal('invisibible_columns_btg');
     if (sagInvisibibleColumns == null) {
         sagInvisibibleColumns = ['smvs','smvst','lmvs','lmvst','itp','itr','dem','pop'];
     } else {
@@ -1079,7 +1072,7 @@ $(document).ready(function () {
             urlParams[p[0]] = decodeURIComponent(p[1]);
         }
     }
-    initShowHideColSelect();
+    //initShowHideColSelect();
 
     $('#id_country').chosen({
         inherit_select_classes: true
@@ -1112,7 +1105,6 @@ $(document).ready(function () {
         while (tableHeader.nodeName!=='TH') {
             tableHeader = tableHeader.parentNode;
         }
-        hideAllPredictions();
 
         var tableHeaderId = tableHeader.getAttribute('id').substr(3);
         if (tableHeaderId != null && tableHeaderId != '') {
@@ -1124,8 +1116,8 @@ $(document).ready(function () {
             $('#sort_by_'+$('#sort_col_id').val()).html('');
             $('#sort_col_id').val(tableHeaderId);
             $('#sort_dir').val(order);
-            setVal('sort_col_id_btac', $('#sort_col_id').val());
-            setVal('sort_dir_btac', $('#sort_dir').val());
+            setVal('sort_col_id_btg', $('#sort_col_id').val());
+            setVal('sort_dir_btg', $('#sort_dir').val());
             var orderArrow = isAscending?'&#9660;':'&#9650;';
             $('#sort_by_'+tableHeaderId).html(orderArrow);
             tinysort(

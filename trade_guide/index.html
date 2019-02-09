@@ -56,8 +56,7 @@
 </select>
 <span id="update_date"></span>
 <br>
-<select id="id_category" onchange="changeCategory();"></select>&nbsp;<div id="products"></div>
-<input type="hidden" id="id_product" name="id_product" value="">
+<select id="id_category" onchange="changeCategory();"></select>
 <br>
 <select id="id_country" onchange="changeCountry();">
 <option value="" selected="">Все страны</option>	
@@ -66,106 +65,10 @@
 </select>&nbsp;<select id="id_town" onchange="changeTown();"><option value="" selected="">Все города</option>
 </select>
 <br>
-<u><b><span lang="en" style="display:none">Wealth level</span><span lang="ru">Индекс богатства</span> </b></u> <span lang="en" style="display:none">from</span><span lang="ru">от</span>
-	<input type="number" id="wealthIndexFrom" size="5" maxlength="8" value="0">
-	<span lang="en" style="display:none">to</span><span lang="ru">до</span>
-	<input type="number" id="wealthIndexTo" size="8" maxlength="8" value="100000000"><br>
-<u><b><span lang="en" style="display:none">Volume</span><span lang="ru">Объём</span> </b></u>
-	<span lang="en" style="display:none">from</span><span lang="ru">от</span>
-	<input type="number" id="volumeFrom" size="5" maxlength="30" value="0">
-	<span lang="en" style="display:none">to</span><span lang="ru">до</span>
-	<input type="number" id="volumeTo" size="8" maxlength="30" value="100000000000"><br>
-<u><b><span lang="en" style="display:none">Local suppliers, %</span><span lang="ru">Местные, %</span></b></u>
-	<span lang="en" style="display:none">from</span><span lang="ru">от</span>
-	<input type="number" step="0.01" id="localPercentFrom" size="5" maxlength="6" value="0.00">
-	<span lang="en" style="display:none">to</span><span lang="ru">до</span>
-	<input type="number" step="0.01" id="localPercentTo" size="5" maxlength="6" value="100.00"><br>
-<u><b><span lang="en" style="display:none">Local suppliers: price</span><span lang="ru">Местные: цена</span></b></u>
-	<span lang="en" style="display:none">from</span><span lang="ru">от</span>
-	<input type="number" step="0.01" id="localPriceFrom" size="12" maxlength="30" value="0.00">
-	<span lang="en" style="display:none">to</span><span lang="ru">до</span>
-	<input type="number" step="0.01" id="localPriceTo" size="12" maxlength="30" value="1000000000000.00">,
-<u><b><span lang="en" style="display:none">quality</span><span lang="ru">качество</span></b></u>
-	<span lang="en" style="display:none">from</span><span lang="ru">от</span>
-	<input type="number" step="0.01" id="localQualityFrom" size="7" maxlength="7" value="1.00">
-	<span lang="en" style="display:none">to</span><span lang="ru">до</span>
-	<input type="number" step="0.01" id="localQualityTo" size="7" maxlength="7" value="1000.00"><br>
-<u><b><span lang="en" style="display:none">Stores: price</span><span lang="ru">Магазины, цена</span></b></u>
-	<span lang="en" style="display:none">from</span><span lang="ru">от</span>
-	<input type="number" step="0.01" id="shopPriceFrom" size="12" maxlength="30" value="0.00">
-	<span lang="en" style="display:none">to</span><span lang="ru">до</span>
-	<input type="number" step="0.01" id="shopPriceTo" size="12" maxlength="30" value="1000000000000.00">,
-<u><b><span lang="en" style="display:none">quality</span><span lang="ru">качество</span></b></u>
-	<span lang="en" style="display:none">from</span><span lang="ru">от</span>
-	<input type="number" step="0.01" id="shopQualityFrom" size="7" maxlength="7" value="1.00">
-	<span lang="en" style="display:none">to</span><span lang="ru">до</span>
-	<input type="number" step="0.01" id="shopQualityTo" size="7" maxlength="7" value="1000.00"><br>,
-<u><b><span lang="en" style="display:none">brand</span><span lang="ru">бренд</span></b></u>
-	<span lang="en" style="display:none">from</span><span lang="ru">от</span>
-	<input type="number" step="0.01" id="shopBrandFrom" size="7" maxlength="7" value="0.00">
-	<span lang="en" style="display:none">to</span><span lang="ru">до</span>
-	<input type="number" step="0.01" id="shopBrandTo" size="7" maxlength="7" value="1000.00"><br>
 <input type="submit" id="btnSubmit" value="Сформировать">
-<span lang="en" style="display:none">
-<select id="show_hide_col_en" multiple="multiple">
-	<option value="graph" selected="selected">Graph</option>
-	<option value="w_idx" selected="selected">Wealth level</option>
-	<option value="idx" selected="selected">Index</option>
-	<option value="volume" selected="selected">Volume</option>
-	<option value="dem" selected="selected">Demography</option>
-	<option value="pop" selected="selected">Population</option>
-	<option value="local_perc" selected="selected">Local suppliers, %</option>
-	<option value="local_price" selected="selected">Local suppliers, price</option>
-	<option value="local_quality" selected="selected">Local suppliers, quality</option>
-	<option value="local_quality" selected="selected">Local suppliers, quality</option>
-	<option value="lmvs" selected="selected">Local market volume, $</option>
-	<option value="lmvst" selected="selected">Local market volume total, $</option>
-	<option value="shop_price" selected="selected">Stores price</option>
-	<option value="shop_quality" selected="selected">Stores quality</option>
-	<option value="shop_brand" selected="selected">Stores brand</option>
-	<option value="shop_brand" selected="selected">Stores brand</option>
-	<option value="smvs" selected="selected">Shop market volume, $</option>
-	<option value="smvst" selected="selected">Shop market volume total, $</option>
-	<option value="pmvs" selected="selected">Market volume, %</option>
-	<option value="pmvst" selected="selected">Market volume total, %</option>
-	<option value="sc" selected="selected">Number of merchants</option>
-	<option value="cc" selected="selected">Number of companies</option>
-	<option value="itr" selected="selected">Rate of profit tax</option>
-	<option value="itp" selected="selected">Import duty</option>
-	<option value="pred" selected="selected">Prediction</option>
-</select>
-</span>
-<span lang="ru">
-<select id="show_hide_col_ru" multiple="multiple">
-	<option value="graph" selected="selected">График</option>
-	<option value="w_idx" selected="selected">Индекс богатства</option>
-	<option value="idx" selected="selected">Индекс</option>
-	<option value="volume" selected="selected">Объём</option>
-	<option value="dem" selected="selected">Демография</option>
-	<option value="pop" selected="selected">Население</option>
-	<option value="local_perc" selected="selected">Местные, %</option>
-	<option value="local_price" selected="selected">Местные, цена</option>
-	<option value="local_quality" selected="selected">Местные, качество</option>
-	<option value="lmvs" selected="selected">Емкость рынка, $</option>
-	<option value="lmvst" selected="selected">Емкость рынка всего, $</option>
-	<option value="shop_price" selected="selected">Магазины, цена</option>
-	<option value="shop_quality" selected="selected">Магазины, качество</option>
-	<option value="shop_brand" selected="selected">Магазины, бренд</option>
-	<option value="smvs" selected="selected">Емкость игроков, $</option>
-	<option value="smvst" selected="selected">Емкость игроков всего, $</option>
-	<option value="pmvs" selected="selected">Емкость, %</option>
-	<option value="pmvst" selected="selected">Емкость всего, %</option>
-	<option value="sc" selected="selected">Количество продавцов</option>
-	<option value="cc" selected="selected">Количество компаний</option>
-	<option value="itr" selected="selected">Ставка налога на прибыль</option>
-	<option value="itp" selected="selected">Пошлина на импорт</option>
-	<option value="pred" selected="selected">Прогноз</option>
-</select>
-</span>
 </td></tr>
 </tbody></table>
 </td></tr>
-<tr class="trec" align="right"><td><a id="calc_prod_link" href="/industry/#id_product=370080" target="_blank"><span lang="en" style="display:none">Calculate production</span><span lang="ru">Посчитать производство</span></a>&nbsp;|&nbsp;<a id="show_remain_link" href="https://virtonomica.ru/olga/main/globalreport/marketing/by_products/370080/" target="_blank"><span lang="en" style="display:none">Show remains in warehouses</span><span lang="ru">Показать запасы на складах</span></a></td></tr>
 <tr><td>
 <input type="hidden" id="sort_col_id" name="sort_col_id" value="local_perc">
 <input type="hidden" id="sort_dir" name="sort_dir" value="desc">
