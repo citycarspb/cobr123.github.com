@@ -124,6 +124,8 @@ function getServiceLevel(serviceLevel, locale) {
     }
 }
 function loadDataAfter(data) {
+    var realm = getRealm();
+    if (realm == null || realm === '') return;
     const locale = getLocale();
     const domain = getDomain(locale);
     const categoryID = getCategoryID();
