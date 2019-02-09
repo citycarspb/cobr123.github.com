@@ -189,7 +189,7 @@ function loadDataAfter(data) {
                 }
             });
             output += '<td id="th_products">';
-            output += '<table border="0" cellspacing="1" cellpadding="1">';
+            output += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
             output += '<tr class="trec2">' + imgRow + '</tr>';
             output += '<tr class="trec2">' + volumeRow + '</tr>';
             output += '<tr class="trec2">' + qualityRow + '</tr>';
