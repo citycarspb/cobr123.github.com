@@ -124,7 +124,7 @@ function getServiceLevel(serviceLevel, locale) {
     }
 }
 function loadDataAfter(data) {
-    var realm = getRealm();
+    const realm = getRealm();
     if (realm == null || realm === '') return;
     const locale = getLocale();
     const domain = getDomain(locale);
@@ -348,10 +348,10 @@ var sagTownCaption = null;
 var sagCountryCaption = null;
 var sagRegionCaption = null;
 function fillTownCaptions(callback) {
-    var realm = getRealm();
+    const realm = getRealm();
     if (realm == null || realm == '') return;
-    var locale = getLocale();
-    var suffix = (locale === 'en') ? '_en' : '';
+    const locale = getLocale();
+    const suffix = (locale === 'en') ? '_en' : '';
     if(sagTownCaption === null) {
         sagTownCaption = [];
     }
@@ -525,9 +525,10 @@ function loadProductCategories(callback) {
     return false;
 }
 function loadCountries(callback) {
-    var realm = getRealm();
+    const realm = getRealm();
     if (realm == null || realm == '') return;
-    var suffix = (getLocale() == 'en') ? '_en' : '';
+    const locale = getLocale();
+    const suffix = (locale === 'en') ? '_en' : '';
     if(sagCountryCaption === null) {
         sagCountryCaption = [];
     }
@@ -541,9 +542,9 @@ function loadCountries(callback) {
         });
     });
     $.getJSON('/by_trade_at_cities/'+realm+'/countries'+suffix+'.json', function (data) {
-        var allCountries = (getLocale() == 'en') ? 'All countries' : 'Все страны';
-        var allRegions = (getLocale() == 'en') ? 'All regions' : 'Все регионы';
-        var output = '<option value="" selected="">'+allCountries+'</option>';
+        const allCountries = (locale === 'en') ? 'All countries' : 'Все страны';
+        const allRegions = (locale === 'en') ? 'All regions' : 'Все регионы';
+        let output = '<option value="" selected="">'+allCountries+'</option>';
 
         $.each(data, function (key, val) {
             output += '<option value="'+val.i+'">'+val.c+'</option>';
