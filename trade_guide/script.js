@@ -141,9 +141,6 @@ function loadDataAfter(data) {
     let output = '';
 
     output_th += '<th id="th_city">' + ((locale === 'en') ? 'City' : 'Город') + '&nbsp;<b id="sort_by_city"></b></th>';
-    if(isColVisible('graph')) {
-        output_th += '<th id="th_graph">&nbsp;</th>';
-    }
     output_th += '<th id="th_profit">' + ((locale === 'en') ? 'Profit' : 'Прибыль') + '&nbsp;<b id="sort_by_profit"></b></th>';
 
     $.each(data, function (key, val) {
@@ -164,9 +161,6 @@ function loadDataAfter(data) {
             output += '<td id="td_city" city_id="'+val.ti+'" title="'+sagCountryCaption[val.ci]+' - '+sagRegionCaption[val.ri]+'" data-value="'+ sagTownCaption[val.ti] +'">';
             output += '<a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?geo='+val.ci+'/'+val.ri+'/'+val.ti+'#by-trade-at-cities">'+sagTownCaption[val.ti]+'</a>';
             output += '</td>';
-            if(isColVisible('graph')) {
-                output += '<td align="right" id="td_graph"><a href="#" onclick="view_graph(' + val.pi + ',' + val.ti + '); return false;"><img src="/img/graph.png" width="18"></a></td>';
-            }
             let profit = 0;
             $.each(val.tgp, function (tgpKey, tgpVal) {
                 profit += parseFloat(tgpVal.iat);
