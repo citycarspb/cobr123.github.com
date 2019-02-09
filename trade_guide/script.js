@@ -139,8 +139,18 @@ function loadDataAfter(data) {
 
     let output_th = '';
     let output = '';
+    const oavCategoryProducts = oagProducts.filter(function(o){ return o.pci === categoryID; });
 
     output_th += '<th id="th_city">' + ((locale === 'en') ? 'City' : 'Город') + '&nbsp;<b id="sort_by_city"></b></th>';
+    $.each(oavCategoryProducts, function (cpKey, cpVal) {
+        output_th += '<th>';
+        output_th += '<table border="0" cellspacing="0" cellpadding="0">';
+        output_th += '<tr class="trec2 hoverable"><td align="right">'+ ((locale === 'en') ? 'Quantity' : 'Количество') +'</td><td align="right">'+ ((locale === 'en') ? 'Quality' : 'Качество')  +'</td></tr>';
+        output_th += '<tr class="trec2 hoverable"><td align="right">'+ ((locale === 'en') ? 'Purchase price' : 'Закупочная цена') +'</td><td align="right">'+ ((locale === 'en') ? 'Selling price' : 'Цена продажи') +'</td></tr>';
+        output_th += '<tr class="trec2 hoverable"><td align="right"><img src="\'+ oagProducts[cpVal.pi].s +\'" width="16" height="16"><td align="right">'+ ((locale === 'en') ? 'Profit' : 'Прибыль') +'</td></tr>';
+        output_th += '</table>';
+        output_th += '</th>';
+    });
     output_th += '<th id="th_profit">' + ((locale === 'en') ? 'Profit' : 'Прибыль') + '&nbsp;<b id="sort_by_profit"></b></th>';
 
     $.each(data, function (key, val) {
@@ -162,18 +172,26 @@ function loadDataAfter(data) {
             output += '<a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?geo='+val.ci+'/'+val.ri+'/'+val.ti+'&product_id='+val.tgp[0].pi+'#by-trade-at-cities">'+sagTownCaption[val.ti]+'</a>';
             output += '</td>';
             let profit = 0;
-            $.each(val.tgp, function (tgpKey, tgpVal) {
-                profit += parseFloat(tgpVal.iat);
-                output += '<td>';
-                output += '<table border="0" cellspacing="0" cellpadding="0">';
-                output += '<tr class="trec2 hoverable"><td align="right"><img src="'+ oagProducts[tgpVal.pi].s +'" width="16" height="16"></td></tr>';
-                output += '<tr class="trec2 hoverable"><td align="right">'+ commaSeparateNumber(tgpVal.v) +'</td></tr>';
-                output += '<tr class="trec2 hoverable"><td align="right">'+ tgpVal.q +'</td></tr>';
-                output += '<tr class="trec2 hoverable"><td align="right">'+ commaSeparateNumber(parseFloat(tgpVal.bp).toFixed(2)) +'</td></tr>';
-                output += '<tr class="trec2 hoverable"><td align="right">'+ commaSeparateNumber(parseFloat(tgpVal.sp).toFixed(2)) +'</td></tr>';
-                output += '<tr class="trec2 hoverable"><td align="right">'+ commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2)) +'</td></tr>';
-                output += '</table>';
-                output += '</td>';
+            $.each(oavCategoryProducts, function (cpKey, cpVal) {
+                if(val.tgp[cpVal.i] != null) {
+                    const tgpVal = val.tgp[cpVal.i];
+                    profit += parseFloat(tgpVal.iat);
+                    output += '<td>';
+                    output += '<table border="0" cellspacing="0" cellpadding="0">';
+                    output += '<tr class="trec2"><td align="right">' + commaSeparateNumber(tgpVal.v) + '</td><td align="right">' + tgpVal.q + '</td></tr>';
+                    output += '<tr class="trec2"><td align="right">$' + commaSeparateNumber(parseFloat(tgpVal.bp).toFixed(2)) + '</td><td align="right">$' + commaSeparateNumber(parseFloat(tgpVal.sp).toFixed(2)) + '</td></tr>';
+                    output += '<tr class="trec2"><td align="right" colspan="2">$' + commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2)) + '</td></tr>';
+                    output += '</table>';
+                    output += '</td>';
+                } else {
+                    output += '<td>';
+                    output += '<table border="0" cellspacing="0" cellpadding="0">';
+                    output += '<tr class="trec2"><td align="right">0</td><td align="right">0</td></tr>';
+                    output += '<tr class="trec2"><td align="right">$0</td><td align="right">$0</td></tr>';
+                    output += '<tr class="trec2"><td align="right" colspan="2">$0</td></tr>';
+                    output += '</table>';
+                    output += '</td>';
+                }
             });
             output += '<td align="right" id="td_profit" data-value="'+ profit.toFixed(2) +'">'+ commaSeparateNumber(profit.toFixed(2)) +'</td>';
             output += '</tr>';
