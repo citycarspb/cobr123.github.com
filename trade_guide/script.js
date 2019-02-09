@@ -303,9 +303,7 @@ function loadSavedFlt(urlParams){
     if (realm != null || realm !== '') {
         $('#realm').val(realm);
         const productCategoriesCallback = function() {
-            if (id_product != null && id_product !== '') {
-                selectCategoryByProduct(id_product);
-            } else {
+            if (id_category != null && id_category !== '') {
                 //console.log("$('#id_category').childNodes.length = " + document.getElementById('id_category').childNodes.length);
                 $('#id_category').val(id_category);
                 id_category = $('#id_category').val();
@@ -314,6 +312,8 @@ function loadSavedFlt(urlParams){
                     $('#id_category').val(id_category);
                 }
                 loadData();
+            } else {
+                selectCategoryByProduct(id_product);
             }
         };
         const changeRegionCallback = function() {
