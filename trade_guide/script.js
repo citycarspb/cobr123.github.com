@@ -123,6 +123,7 @@ function getServiceLevel(serviceLevel, locale) {
         return serviceLevel;
     }
 }
+let oagProducts = null;
 function loadDataAfter(data) {
     const realm = getRealm();
     if (realm == null || realm === '') return;
@@ -161,11 +162,16 @@ function loadDataAfter(data) {
         if(suitable){
             output += '<tr class="trec hoverable">';
             output += '<td id="td_city" city_id="'+val.ti+'" title="'+sagCountryCaption[val.ci]+' - '+sagRegionCaption[val.ri]+'" data-value="'+ sagTownCaption[val.ti] +'">';
-            output += '<a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?geo='+val.ci+'/'+val.ri+'/'+val.ti+'&product_id='+val.pi+'#by-trade-at-cities">'+sagTownCaption[val.ti]+'</a>';
+            output += '<a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?geo='+val.ci+'/'+val.ri+'/'+val.ti+'#by-trade-at-cities">'+sagTownCaption[val.ti]+'</a>';
             output += '</td>';
             if(isColVisible('graph')) {
                 output += '<td align="right" id="td_graph"><a href="#" onclick="view_graph(' + val.pi + ',' + val.ti + '); return false;"><img src="/img/graph.png" width="18"></a></td>';
             }
+            let profit = 0;
+            $.each(val.tgp, function (tgpKey, tgpVal) {
+                profit += parseFloat(tgpVal.iat);
+            });
+            output += '<td align="right" id="td_profit" data-value="'+ profit.toFixed(2) +'">'+ commaSeparateNumber(profit.toFixed(2)) +'</td>';
             output += '</tr>';
         }
     });
@@ -204,6 +210,10 @@ function loadData() {
     if (categoryID == null || categoryID === '') return;
     if (sagTownCaption === null || oagTowns === null) {
         fillTownCaptions(loadData);
+        return false;
+    }
+    if (oagProducts === null) {
+        loadProducts(loadData);
         return false;
     }
 
@@ -633,6 +643,23 @@ function changeRealm(productCategoriesCallback, countryCallback) {
 function changeCategory(callback) {
     setVal('id_category', $('#id_category').val());
     loadData();
+}
+function loadProducts(callback) {
+    const realm = getRealm();
+    if (realm == null || realm === '') return;
+
+    const locale = getLocale();
+    const suffix = (locale === 'en') ? '_en' : '';
+
+    oagProducts = [];
+
+    $.getJSON('/by_trade_at_cities/'+realm+'/products'+suffix+'.json', function (data) {
+        $.each(data, function (key, val) {
+            oagProducts[val.i] = val;
+        });
+        if(typeof(callback) === 'function') callback();
+    });
+    return false;
 }
 function changeCountry(callback) {
 //    console.log('changeCountry, caller is '+ arguments.callee.caller.toString());
