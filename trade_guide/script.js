@@ -63,11 +63,11 @@ function applyLocale() {
     var locale = getLocale();
 
     if (locale === 'en') {
-        document.title = "Retail sales";
+        document.title = "Retail guide";
         $('#btnSubmit').val('Generate');
         $('#locale_flag').attr('src','/img/us.gif');
     } else {
-        document.title = "Розничная торговля в городах";
+        document.title = "Розничный гид";
         $('#btnSubmit').val('Сформировать');
         $('#locale_flag').attr('src','/img/ru.png');
     }
