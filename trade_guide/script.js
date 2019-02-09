@@ -164,6 +164,7 @@ function loadDataAfter(data) {
             output += '<a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?geo='+val.ci+'/'+val.ri+'/'+val.ti+'&product_id='+val.tgp[0].pi+'#by-trade-at-cities">'+sagTownCaption[val.ti]+'</a>';
             output += '</td>';
             let profit = 0;
+            let imgRow = '';
             let volumeRow = '';
             let qualityRow = '';
             let buyPriceRow = '';
@@ -171,6 +172,7 @@ function loadDataAfter(data) {
             let profitRow = '';
             $.each(oavCategoryProducts, function (cpKey, cpVal) {
                 const tgpVal = val.tgp.filter(function(o) { return o.pi === cpVal.i;})[0];
+                imgRow += '<td align="right"><img src="'+ oagProducts[cpVal.i].s +'" width="16" height="16"></td>';
                 if(tgpVal != null) {
                     profit += parseFloat(tgpVal.iat);
                     volumeRow += '<td align="right">' + commaSeparateNumber(tgpVal.v) + '</td>';
@@ -188,6 +190,7 @@ function loadDataAfter(data) {
             });
             output += '<td id="th_products">';
             output += '<table border="0" cellspacing="1" cellpadding="1">';
+            output += '<tr class="trec2">' + imgRow + '</tr>';
             output += '<tr class="trec2">' + volumeRow + '</tr>';
             output += '<tr class="trec2">' + qualityRow + '</tr>';
             output += '<tr class="trec2">' + buyPriceRow + '</tr>';
