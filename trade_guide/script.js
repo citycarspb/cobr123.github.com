@@ -145,9 +145,9 @@ function loadDataAfter(data) {
     $.each(oavCategoryProducts, function (cpKey, cpVal) {
         output_th += '<th>';
         output_th += '<table border="0" width="100%" cellspacing="0" cellpadding="0">';
-        output_th += '<tr class="trec2 hoverable"><td align="right">'+ ((locale === 'en') ? 'Quantity' : 'Количество') +'</td><td align="right">'+ ((locale === 'en') ? 'Quality' : 'Качество')  +'</td></tr>';
-        output_th += '<tr class="trec2 hoverable"><td align="right">'+ ((locale === 'en') ? 'Purchase price' : 'Закупочная цена') +'</td><td align="right">'+ ((locale === 'en') ? 'Selling price' : 'Цена продажи') +'</td></tr>';
-        output_th += '<tr class="trec2 hoverable"><td align="right"><img src="'+ oagProducts[cpVal.i].s +'" width="16" height="16"><td align="right">'+ ((locale === 'en') ? 'Profit' : 'Прибыль') +'</td></tr>';
+        output_th += '<tr class="trec2"><td align="right">'+ ((locale === 'en') ? 'Quantity' : 'Количество') +'</td><td align="right">'+ ((locale === 'en') ? 'Quality' : 'Качество')  +'</td></tr>';
+        output_th += '<tr class="trec2"><td align="right">'+ ((locale === 'en') ? 'Purchase price' : 'Закупочная цена') +'</td><td align="right">'+ ((locale === 'en') ? 'Selling price' : 'Цена продажи') +'</td></tr>';
+        output_th += '<tr class="trec2"><td align="right"><img src="'+ oagProducts[cpVal.i].s +'" width="16" height="16"><td align="right">'+ ((locale === 'en') ? 'Profit' : 'Прибыль') +'</td></tr>';
         output_th += '</table>';
         output_th += '</th>';
     });
