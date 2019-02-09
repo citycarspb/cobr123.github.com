@@ -177,13 +177,13 @@ function loadDataAfter(data) {
                     qualityRow += '<td align="right">' + tgpVal.q + '</td>';
                     buyPriceRow += '<td align="right">$' + commaSeparateNumber(parseFloat(tgpVal.bp).toFixed(2)) + '</td>';
                     sellPriceRow += '<td align="right">$' + commaSeparateNumber(parseFloat(tgpVal.sp).toFixed(2)) + '</td>';
-                    profitRow += '<td align="right" colspan="2">$' + commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2)) + '</td>';
+                    profitRow += '<td align="right">$' + commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2)) + '</td>';
                 } else {
                     volumeRow += '<td align="right">0</td>';
                     qualityRow += '<td align="right">0</td>';
                     buyPriceRow += '<td align="right">$0</td>';
                     sellPriceRow += '<td align="right">$0</td>';
-                    profitRow += '<td align="right" colspan="2">$0</td>';
+                    profitRow += '<td align="right">$0</td>';
                 }
             });
             output += '<td id="th_products">';
