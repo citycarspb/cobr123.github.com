@@ -173,8 +173,8 @@ function loadDataAfter(data) {
             output += '</td>';
             let profit = 0;
             $.each(oavCategoryProducts, function (cpKey, cpVal) {
-                if(val.tgp[cpVal.i] != null) {
-                    const tgpVal = val.tgp.filter(function(o) { return o.pi === cpVal.i;})[0];
+                const tgpVal = val.tgp.filter(function(o) { return o.pi === cpVal.i;})[0];
+                if(tgpVal != null) {
                     profit += parseFloat(tgpVal.iat);
                     output += '<td>';
                     output += '<table border="0" width="100%" cellspacing="0" cellpadding="0">';
