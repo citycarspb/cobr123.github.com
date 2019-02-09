@@ -216,7 +216,7 @@ function loadDataAfter(data) {
         $('#sort_by_'+svColId).html(orderArrow);
 
         const table = document.getElementById('xtable');
-        const tableBody = table.querySelector('tbody');
+        const tableBody = table.querySelector('#xtabletbody');
         tinysort(
             tableBody.querySelectorAll('tr')
             ,{
