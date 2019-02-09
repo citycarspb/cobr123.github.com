@@ -125,9 +125,14 @@ function getServiceLevel(serviceLevel, locale) {
 }
 function loadDataAfter(data) {
     const locale = getLocale();
+    const domain = getDomain(locale);
     const categoryID = getCategoryID();
     if (categoryID == null || categoryID === '') return;
     updateUrl();
+
+    const id_country = $('#id_country').val();
+    const id_region = $('#id_region').val();
+    const id_town = $('#id_town').val();
 
     let output_th = '';
     let output = '';
@@ -137,6 +142,16 @@ function loadDataAfter(data) {
 
     $.each(data, function (key, val) {
         let suitable = true;
+
+        if(id_town == null || id_town === ''){
+            if(id_region == null || id_region === ''){
+                suitable = suitable && val.ci === nvl(id_country, val.ci);
+            } else {
+                suitable = suitable && val.ri === id_region;
+            }
+        } else {
+            suitable = suitable && val.ti === id_town;
+        }
 
         if(suitable){
             output += '<tr class="trec hoverable">';
