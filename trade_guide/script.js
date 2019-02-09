@@ -460,7 +460,7 @@ function fillTownCaptions(callback) {
         oagTowns = [];
     }
 
-    $.getJSON('./'+realm+'/cities'+suffix+'.json', function (data) {
+    $.getJSON('/by_trade_at_cities/'+realm+'/cities'+suffix+'.json', function (data) {
         $.each(data, function (key, val) {
             sagTownCaption[val.i] = val.c;
             oagTowns[val.i] = val;
@@ -512,7 +512,7 @@ function updateOthers(townID, attr){
         var cell = $(this);
         var productID = cell.attr('img_sub_product_id');
         cell.attr('town_id', townID);
-        $.getJSON('./'+realm+'/tradeAtCity_'+productID+'.json', function (data) {
+        $.getJSON('/by_trade_at_cities/'+realm+'/tradeAtCity_'+productID+'.json', function (data) {
             $.each(data, function (key, val) {
                 if(townID === val.ti){
                     text = val[attr] + '';
@@ -631,7 +631,7 @@ function loadData() {
 
     updateUrl();
 
-    $.getJSON('./'+realm+'/tradeAtCity_'+productID+'.json', function (data) {
+    $.getJSON('/by_trade_at_cities/'+realm+'/tradeAtCity_'+productID+'.json', function (data) {
         var output = '';
         var nvPredIdx = 1;
 
@@ -751,7 +751,7 @@ function loadProductCategories(callback) {
     if (realm == null || realm == '') return;
     var suffix = (getLocale() == 'en') ? '_en' : '';
 
-    $.getJSON('./'+realm+'/product_categories'+suffix+'.json', function (data) {
+    $.getJSON('/by_trade_at_cities/'+realm+'/product_categories'+suffix+'.json', function (data) {
         var output = '';
 
         $.each(data, function (key, val) {
@@ -778,7 +778,7 @@ function loadProducts(callback) {
     var locale = getLocale();
     var suffix = (locale == 'en') ? '_en' : '';
 
-    $.getJSON('./'+realm+'/products'+suffix+'.json', function (data) {
+    $.getJSON('/by_trade_at_cities/'+realm+'/products'+suffix+'.json', function (data) {
         var output = '';
         var selected = $('#id_product').attr('value');
 
@@ -811,12 +811,12 @@ function loadCountries(callback) {
         sagRegionCaption = [];
     }
 
-    $.getJSON('./'+realm+'/regions'+suffix+'.json', function (data) {
+    $.getJSON('/by_trade_at_cities/'+realm+'/regions'+suffix+'.json', function (data) {
         $.each(data, function (key, val) {
             sagRegionCaption[val.i] = val.c;
         });
     });
-    $.getJSON('./'+realm+'/countries'+suffix+'.json', function (data) {
+    $.getJSON('/by_trade_at_cities/'+realm+'/countries'+suffix+'.json', function (data) {
         var allCountries = (getLocale() == 'en') ? 'All countries' : 'Все страны';
         var allRegions = (getLocale() == 'en') ? 'All regions' : 'Все регионы';
         var output = '<option value="" selected="">'+allCountries+'</option>';
@@ -953,7 +953,7 @@ function selectCategoryByProduct(productId, callback) {
     if (realm == null || realm == '') return;
     var suffix = (getLocale() == 'en') ? '_en' : '';
 
-    $.getJSON('./'+realm+'/products'+suffix+'.json', function (data) {
+    $.getJSON('/by_trade_at_cities/'+realm+'/products'+suffix+'.json', function (data) {
         $.each(data, function (key, val) {
             if(productId === val.i){
                 $('select#id_category').val(val.pc);
