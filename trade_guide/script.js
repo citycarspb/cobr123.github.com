@@ -137,22 +137,19 @@ function loadDataAfter(data) {
     const id_region = $('#id_region').val();
     const id_town = $('#id_town').val();
 
+    const hintQuantity = ((locale === 'en') ? 'Quantity' : 'Количество');
+    const hintQuality = ((locale === 'en') ? 'Quality' : 'Качество');
+    const hintPurchasePrice = ((locale === 'en') ? 'Purchase price' : 'Закупочная цена');
+    const hintSellingPrice = ((locale === 'en') ? 'Selling price' : 'Цена продажи');
+    const hintProfit = ((locale === 'en') ? 'Profit' : 'Прибыль');
+
     let output_th = '';
     let output = '';
     const oavCategoryProducts = oagProducts.filter(function(o){ return o.pci === categoryID; });
 
     output_th += '<th id="th_city">' + ((locale === 'en') ? 'City' : 'Город') + '&nbsp;<b id="sort_by_city"></b></th>';
     $.each(oavCategoryProducts, function (cpKey, cpVal) {
-        output_th += '<th id="th_product_'+ cpVal.sym +'">';
-        output_th += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
-        output_th += '<tr class="trec2"><th align="right">'+ ((locale === 'en') ? 'Quantity' : 'Количество') +'</th></tr>';
-        output_th += '<tr class="trec2"><th align="right">'+ ((locale === 'en') ? 'Quality' : 'Качество')  +'</th></tr>';
-        output_th += '<tr class="trec2"><th align="right">'+ ((locale === 'en') ? 'Purchase price' : 'Закупочная цена') +'</th></tr>';
-        output_th += '<tr class="trec2"><th align="right">'+ ((locale === 'en') ? 'Selling price' : 'Цена продажи') +'</th></tr>';
-        output_th += '<tr class="trec2"><th align="right">'+ ((locale === 'en') ? 'Profit' : 'Прибыль') +'</th></tr>';
-        output_th += '<tr class="trec2"><th align="right"><img src="'+ oagProducts[cpVal.i].s +'" width="16" height="16"></th></tr>';
-        output_th += '</table>';
-        output_th += '</th>';
+        output_th += '<th id="th_product_'+ cpVal.sym +'"><img src="'+ oagProducts[cpVal.i].s +'" width="16" height="16"></th>';
     });
     output_th += '<th id="th_profit">' + ((locale === 'en') ? 'Profit' : 'Прибыль') + '&nbsp;<b id="sort_by_profit"></b></th>';
 
@@ -181,21 +178,21 @@ function loadDataAfter(data) {
                     profit += parseFloat(tgpVal.iat);
                     output += '<td id="td_product_'+ cpVal.sym +'" align="right">';
                     output += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
-                    output += '<tr class="trec2"><td align="right" id="td_product_'+ cpVal.sym +'_v">' + commaSeparateNumber(tgpVal.v) + '</td></tr>';
-                    output += '<tr class="trec2"><td align="right" id="td_product_'+ cpVal.sym +'_q">' + tgpVal.q + '</td></tr>';
-                    output += '<tr class="trec2"><td align="right" id="td_product_'+ cpVal.sym +'_bp">$' + commaSeparateNumber(parseFloat(tgpVal.bp).toFixed(2)) + '</td></tr>';
-                    output += '<tr class="trec2"><td align="right" id="td_product_'+ cpVal.sym +'_sp">$' + commaSeparateNumber(parseFloat(tgpVal.sp).toFixed(2)) + '</td></tr>';
-                    output += '<tr class="trec2"><td align="right" id="td_product_'+ cpVal.sym +'_iat">$' + commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2)) + '</td></tr>';
+                    output += '<tr class="trec2"><td align="right" title="'+hintQuantity+'" id="td_product_'+ cpVal.sym +'_v">' + commaSeparateNumber(tgpVal.v) + '</td></tr>';
+                    output += '<tr class="trec2"><td align="right" title="'+hintQuality+'" id="td_product_'+ cpVal.sym +'_q">' + tgpVal.q + '</td></tr>';
+                    output += '<tr class="trec2"><td align="right" title="'+hintPurchasePrice+'" id="td_product_'+ cpVal.sym +'_bp">$' + commaSeparateNumber(parseFloat(tgpVal.bp).toFixed(2)) + '</td></tr>';
+                    output += '<tr class="trec2"><td align="right" title="'+hintSellingPrice+'" id="td_product_'+ cpVal.sym +'_sp">$' + commaSeparateNumber(parseFloat(tgpVal.sp).toFixed(2)) + '</td></tr>';
+                    output += '<tr class="trec2"><td align="right" title="'+hintProfit+'" id="td_product_'+ cpVal.sym +'_iat">$' + commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2)) + '</td></tr>';
                     output += '</table>';
                     output += '</td>';
                 } else {
                     output += '<td id="td_product_'+ cpVal.sym +'" align="right">';
                     output += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
-                    output += '<tr class="trec2"><td align="right" id="td_product_'+ cpVal.sym +'_v">0</td></tr>';
-                    output += '<tr class="trec2"><td align="right" id="td_product_'+ cpVal.sym +'_q">0</td></tr>';
-                    output += '<tr class="trec2"><td align="right" id="td_product_'+ cpVal.sym +'_bp">$0</td></tr>';
-                    output += '<tr class="trec2"><td align="right" id="td_product_'+ cpVal.sym +'_sp">$0</td></tr>';
-                    output += '<tr class="trec2"><td align="right" id="td_product_'+ cpVal.sym +'_iat">$0</td></tr>';
+                    output += '<tr class="trec2"><td align="right" title="'+hintQuantity+'" id="td_product_'+ cpVal.sym +'_v">0</td></tr>';
+                    output += '<tr class="trec2"><td align="right" title="'+hintQuality+'" id="td_product_'+ cpVal.sym +'_q">0</td></tr>';
+                    output += '<tr class="trec2"><td align="right" title="'+hintPurchasePrice+'" id="td_product_'+ cpVal.sym +'_bp">$0</td></tr>';
+                    output += '<tr class="trec2"><td align="right" title="'+hintSellingPrice+'" id="td_product_'+ cpVal.sym +'_sp">$0</td></tr>';
+                    output += '<tr class="trec2"><td align="right" title="'+hintProfit+'" id="td_product_'+ cpVal.sym +'_iat">$0</td></tr>';
                     output += '</table>';
                     output += '</td>';
                 }
