@@ -144,7 +144,7 @@ function loadDataAfter(data) {
     output_th += '<th id="th_city">' + ((locale === 'en') ? 'City' : 'Город') + '&nbsp;<b id="sort_by_city"></b></th>';
     $.each(oavCategoryProducts, function (cpKey, cpVal) {
         output_th += '<th>';
-        output_th += '<table border="0" cellspacing="0" cellpadding="0">';
+        output_th += '<table border="0" width="100%" cellspacing="0" cellpadding="0">';
         output_th += '<tr class="trec2 hoverable"><td align="right">'+ ((locale === 'en') ? 'Quantity' : 'Количество') +'</td><td align="right">'+ ((locale === 'en') ? 'Quality' : 'Качество')  +'</td></tr>';
         output_th += '<tr class="trec2 hoverable"><td align="right">'+ ((locale === 'en') ? 'Purchase price' : 'Закупочная цена') +'</td><td align="right">'+ ((locale === 'en') ? 'Selling price' : 'Цена продажи') +'</td></tr>';
         output_th += '<tr class="trec2 hoverable"><td align="right"><img src="'+ oagProducts[cpVal.i].s +'" width="16" height="16"><td align="right">'+ ((locale === 'en') ? 'Profit' : 'Прибыль') +'</td></tr>';
@@ -174,10 +174,10 @@ function loadDataAfter(data) {
             let profit = 0;
             $.each(oavCategoryProducts, function (cpKey, cpVal) {
                 if(val.tgp[cpVal.i] != null) {
-                    const tgpVal = val.tgp[cpVal.i];
+                    const tgpVal = val.tgp.filter(function(o) { return o.pi === cpVal.i;})[0];
                     profit += parseFloat(tgpVal.iat);
                     output += '<td>';
-                    output += '<table border="0" cellspacing="0" cellpadding="0">';
+                    output += '<table border="0" width="100%" cellspacing="0" cellpadding="0">';
                     output += '<tr class="trec2"><td align="right">' + commaSeparateNumber(tgpVal.v) + '</td><td align="right">' + tgpVal.q + '</td></tr>';
                     output += '<tr class="trec2"><td align="right">$' + commaSeparateNumber(parseFloat(tgpVal.bp).toFixed(2)) + '</td><td align="right">$' + commaSeparateNumber(parseFloat(tgpVal.sp).toFixed(2)) + '</td></tr>';
                     output += '<tr class="trec2"><td align="right" colspan="2">$' + commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2)) + '</td></tr>';
@@ -185,7 +185,7 @@ function loadDataAfter(data) {
                     output += '</td>';
                 } else {
                     output += '<td>';
-                    output += '<table border="0" cellspacing="0" cellpadding="0">';
+                    output += '<table border="0" width="100%" cellspacing="0" cellpadding="0">';
                     output += '<tr class="trec2"><td align="right">0</td><td align="right">0</td></tr>';
                     output += '<tr class="trec2"><td align="right">$0</td><td align="right">$0</td></tr>';
                     output += '<tr class="trec2"><td align="right" colspan="2">$0</td></tr>';
