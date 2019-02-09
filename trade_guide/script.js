@@ -255,21 +255,27 @@ function togglePrediction(npPredNum){
 }
 //резделитель разрядов
 function commaSeparateNumber(val, sep){
-    var separator = sep || ',';
+    const separator = sep || ',';
     while (/(\d+)(\d{3})/.test(val.toString())){
         val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1"+separator);
     }
     return val;
 }
 function loadSavedFlt(urlParams){
-    var realm       = getVal('realm') || 'olga';
-    var id_country  = getVal('id_country');
-    var id_region   = getVal('id_region');
-    var id_town     = getVal('id_town');
-    var id_category = getVal('id_category');
-    var id_product  = getVal('id_product');
+    let realm      = getVal('realm') || 'olga';
+    let id_country = getVal('id_country');
+    let id_region  = getVal('id_region');
+    let id_town    = getVal('id_town');
+    let id_category  = getVal('id_category');
+    let id_product   = null;
+    try {
+        id_product = getVal('id_product');
+    } catch (err) {
+        id_product = null;
+        console.error(err);
+    }
 
-    if (Object.keys(urlParams).length > 1 && urlParams['realm'] != '' && urlParams['id_category'] != '') {
+    if (Object.keys(urlParams).length > 1 && urlParams['realm'] !== '' && urlParams['id_category'] !== '') {
         realm       = urlParams['realm'];
         id_country  = urlParams['id_country'];
         id_region   = urlParams['id_region'];
@@ -278,46 +284,44 @@ function loadSavedFlt(urlParams){
         fillFormFromUrl(urlParams);
     }
 
-    var sort_col_id = urlParams['sort_col_id'] || getVal('sort_col_id_btg') || 'local_perc';
-    if (sort_col_id != null || sort_col_id != '') {
+    const sort_col_id = urlParams['sort_col_id'] || getVal('sort_col_id_btg') || 'local_perc';
+    if (sort_col_id != null || sort_col_id !== '') {
         $('#sort_col_id').val(sort_col_id);
     }
-    var sort_dir = urlParams['sort_dir'] || getVal('sort_dir_btg') || 'desc';
-    if (sort_dir != null || sort_dir != '') {
+    const sort_dir = urlParams['sort_dir'] || getVal('sort_dir_btg') || 'desc';
+    if (sort_dir != null || sort_dir !== '') {
         $('#sort_dir').val(sort_dir);
     }
     if ((getVal('locale') === null || getVal('locale') === '') && (document.referrer.substring(0, 'https://virtonomics.com/'.length) === 'https://virtonomics.com/' || document.referrer.substring(0, 'https://virtonomics-free.blogspot.'.length) === 'https://virtonomics-free.blogspot.')) {
         setVal('locale', 'en');
     }
 
-    if (realm != null || realm != '') {
+    if (realm != null || realm !== '') {
         $('#realm').val(realm);
-        var productCategoriesCallback = function() {
-            if (id_product != null && id_product != '') {
+        const productCategoriesCallback = function() {
+            if (id_product != null && id_product !== '') {
                 selectCategoryByProduct(id_product);
             } else {
                 //console.log("$('#id_category').childNodes.length = " + document.getElementById('id_category').childNodes.length);
-                id_category = id_category || $('#id_category > option').eq(0).val();
-                if (id_category == null || id_category == '') return;
                 $('#id_category').val(id_category);
                 id_category = $('#id_category').val();
-                if (id_category == null || id_category == '') {
+                if (id_category == null || id_category === '') {
                     id_category = $('#id_category > option').eq(0).val();
                     $('#id_category').val(id_category);
                 }
                 loadData();
             }
         };
-        var changeRegionCallback = function() {
+        const changeRegionCallback = function() {
             $('#id_town').val(id_town).trigger("chosen:updated");
             changeTown();
         };
-        var changeCountryCallback = function() {
+        const changeCountryCallback = function() {
             $('#id_region').val(id_region).trigger("chosen:updated");
             //console.log("$('#id_region').childNodes.length = " + document.getElementById('id_region').childNodes.length);
             changeRegion(changeRegionCallback);
         };
-        var countryCallback = function() {
+        const countryCallback = function() {
             $('#id_country').val(id_country).trigger("chosen:updated");
             //console.log("$('#id_country').childNodes.length = " + document.getElementById('id_country').childNodes.length);
             changeCountry(changeCountryCallback);
@@ -841,7 +845,7 @@ $(document).ready(function () {
     });
     loadSavedFlt(urlParams);
 
-    if (getLocale() != 'ru') {
+    if (getLocale() !== 'ru') {
         $('#locale').val(getLocale());
         applyLocale();
     }
