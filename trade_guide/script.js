@@ -164,6 +164,16 @@ function loadDataAfter(data) {
             let profit = 0;
             $.each(val.tgp, function (tgpKey, tgpVal) {
                 profit += parseFloat(tgpVal.iat);
+                output += '<td>';
+                output += '<table border="0" cellspacing="0" cellpadding="0">';
+                output += '<tr><td align="right"><img src="'+ oagProducts[tgpVal.pi].s +'" width="16" height="16"></td></tr>';
+                output += '<tr><td align="right">'+ commaSeparateNumber(tgpVal.v) +'</td></tr>';
+                output += '<tr><td align="right">'+ tgpVal.q +'</td></tr>';
+                output += '<tr><td align="right">'+ commaSeparateNumber(parseFloat(tgpVal.bp).toFixed(2)) +'</td></tr>';
+                output += '<tr><td align="right">'+ commaSeparateNumber(parseFloat(tgpVal.sp).toFixed(2)) +'</td></tr>';
+                output += '<tr><td align="right">'+ commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2)) +'</td></tr>';
+                output += '</table>';
+                output += '</td>';
             });
             output += '<td align="right" id="td_profit" data-value="'+ profit.toFixed(2) +'">'+ commaSeparateNumber(profit.toFixed(2)) +'</td>';
             output += '</tr>';
