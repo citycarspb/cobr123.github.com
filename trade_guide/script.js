@@ -138,7 +138,10 @@ function loadDataAfter(data) {
     let output = '';
 
     output_th += '<th id="th_city">' + ((locale === 'en') ? 'City' : 'Город') + '&nbsp;<b id="sort_by_city"></b></th>';
-    output_th += '<th id="th_graph">&nbsp;</th>';
+    if(isColVisible('graph')) {
+        output_th += '<th id="th_graph">&nbsp;</th>';
+    }
+    output_th += '<th id="th_profit">' + ((locale === 'en') ? 'Profit' : 'Прибыль') + '&nbsp;<b id="sort_by_profit"></b></th>';
 
     $.each(data, function (key, val) {
         let suitable = true;
@@ -157,11 +160,10 @@ function loadDataAfter(data) {
             output += '<tr class="trec hoverable">';
             output += '<td id="td_city" city_id="'+val.ti+'" title="'+sagCountryCaption[val.ci]+' - '+sagRegionCaption[val.ri]+'" data-value="'+ sagTownCaption[val.ti] +'">';
             output += '<a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?geo='+val.ci+'/'+val.ri+'/'+val.ti+'&product_id='+val.pi+'#by-trade-at-cities">'+sagTownCaption[val.ti]+'</a>';
-            if(oagTowns[val.ti] != null && oagTowns[val.ti]['mb'] != null && oagTowns[val.ti]['mb'].indexOf(category_name) >= 0){
-                output += '<a target="_blank" href="https://'+domain+'/'+realm+'/main/geo/city/'+val.ti+'" title="'+ mayoralBonusesLabel +'"><img src="/img/small_logo.gif" width="18"></a>';
-            }
             output += '</td>';
-            output += '<td '+getColStyle('graph')+' align="right" id="td_graph"><a href="#" onclick="view_graph('+val.pi+','+val.ti+'); return false;"><img src="/img/graph.png" width="18"></a></td>';
+            if(isColVisible('graph')) {
+                output += '<td align="right" id="td_graph"><a href="#" onclick="view_graph(' + val.pi + ',' + val.ti + '); return false;"><img src="/img/graph.png" width="18"></a></td>';
+            }
             output += '</tr>';
         }
     });
@@ -170,14 +172,14 @@ function loadDataAfter(data) {
     $('#xtabletbody').html(output);
 
     if(output !== ''){
-        var svOrder = $('#sort_dir').val();
-        var svColId = $('#sort_col_id').val();
-        var isAscending = svOrder=='asc';
-        var orderArrow = isAscending?'&#9650;':'&#9660;';
+        const svOrder = $('#sort_dir').val();
+        const svColId = $('#sort_col_id').val();
+        const isAscending = svOrder==='asc';
+        const orderArrow = isAscending?'&#9650;':'&#9660;';
         $('#sort_by_'+svColId).html(orderArrow);
 
-        var table = document.getElementById('xtable');
-        var tableBody = table.querySelector('tbody');
+        const table = document.getElementById('xtable');
+        const tableBody = table.querySelector('tbody');
         tinysort(
             tableBody.querySelectorAll('tr')
             ,{
@@ -188,8 +190,8 @@ function loadDataAfter(data) {
         );
         $('#sort_col_id').val(svColId);
         $('#sort_dir').val(svOrder);
-        setVal('sort_col_id_btg', $('#sort_col_id').val());
-        setVal('sort_dir_btg', $('#sort_dir').val());
+        setVal('sort_col_id_btg', svColId);
+        setVal('sort_dir_btg', svOrder);
 
     }
     return false;
@@ -197,7 +199,7 @@ function loadDataAfter(data) {
 function loadData() {
     var realm = getRealm();
     var categoryID = getCategoryID();
-    if (categoryID == null || categoryID == '') return;
+    if (categoryID == null || categoryID === '') return;
     if (sagTownCaption === null || oagTowns === null) {
         fillTownCaptions(loadData);
         return false;
@@ -371,6 +373,9 @@ function getColStyle(spColID){
     } else {
         return '';
     }
+}
+function isColVisible(spColID){
+    return $.inArray(spColID, sagInvisibibleColumns) < 0;
 }
 
 function getLast(str){
