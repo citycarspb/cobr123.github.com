@@ -166,12 +166,12 @@ function loadDataAfter(data) {
                 profit += parseFloat(tgpVal.iat);
                 output += '<td>';
                 output += '<table border="0" cellspacing="0" cellpadding="0">';
-                output += '<tr class="trec hoverable"><td align="right"><img src="'+ oagProducts[tgpVal.pi].s +'" width="16" height="16"></td></tr>';
-                output += '<tr class="trec hoverable"><td align="right">'+ commaSeparateNumber(tgpVal.v) +'</td></tr>';
-                output += '<tr class="trec hoverable"><td align="right">'+ tgpVal.q +'</td></tr>';
-                output += '<tr class="trec hoverable"><td align="right">'+ commaSeparateNumber(parseFloat(tgpVal.bp).toFixed(2)) +'</td></tr>';
-                output += '<tr class="trec hoverable"><td align="right">'+ commaSeparateNumber(parseFloat(tgpVal.sp).toFixed(2)) +'</td></tr>';
-                output += '<tr class="trec hoverable"><td align="right">'+ commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2)) +'</td></tr>';
+                output += '<tr class="trec2 hoverable"><td align="right"><img src="'+ oagProducts[tgpVal.pi].s +'" width="16" height="16"></td></tr>';
+                output += '<tr class="trec2 hoverable"><td align="right">'+ commaSeparateNumber(tgpVal.v) +'</td></tr>';
+                output += '<tr class="trec2 hoverable"><td align="right">'+ tgpVal.q +'</td></tr>';
+                output += '<tr class="trec2 hoverable"><td align="right">'+ commaSeparateNumber(parseFloat(tgpVal.bp).toFixed(2)) +'</td></tr>';
+                output += '<tr class="trec2 hoverable"><td align="right">'+ commaSeparateNumber(parseFloat(tgpVal.sp).toFixed(2)) +'</td></tr>';
+                output += '<tr class="trec2 hoverable"><td align="right">'+ commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2)) +'</td></tr>';
                 output += '</table>';
                 output += '</td>';
             });
