@@ -172,32 +172,34 @@ function loadDataAfter(data) {
             output += '<a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?geo='+val.ci+'/'+val.ri+'/'+val.ti+'&product_id='+val.tgp[0].pi+'#by-trade-at-cities">'+sagTownCaption[val.ti]+'</a>';
             output += '</td>';
             let profit = 0;
+            let products = '';
             $.each(oavCategoryProducts, function (cpKey, cpVal) {
                 const tgpVal = val.tgp.filter(function(o) { return o.pi === cpVal.i;})[0];
                 if(tgpVal != null && parseFloat(tgpVal.iat) > 0) {
                     profit += parseFloat(tgpVal.iat);
-                    output += '<td id="td_product_'+ cpVal.sym +'" align="right">';
-                    output += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
-                    output += '<tr class="trec2"><td align="right" title="'+hintQuantity+'" id="td_product_'+ cpVal.sym +'_v">' + commaSeparateNumber(tgpVal.v) + '</td></tr>';
-                    output += '<tr class="trec2"><td align="right" title="'+hintQuality+'" id="td_product_'+ cpVal.sym +'_q">' + tgpVal.q + '</td></tr>';
-                    output += '<tr class="trec2"><td align="right" title="'+hintPurchasePrice+'" id="td_product_'+ cpVal.sym +'_bp">$' + commaSeparateNumber(parseFloat(tgpVal.bp).toFixed(2)) + '</td></tr>';
-                    output += '<tr class="trec2"><td align="right" title="'+hintSellingPrice+'" id="td_product_'+ cpVal.sym +'_sp">$' + commaSeparateNumber(parseFloat(tgpVal.sp).toFixed(2)) + '</td></tr>';
-                    output += '<tr class="trec2"><td align="right" title="'+hintProfit+': '+ commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2))+'" id="td_product_'+ cpVal.sym +'_iat">$' +shortenNumber(tgpVal.iat) + '</td></tr>';
-                    output += '</table>';
-                    output += '</td>';
+                    products += '<td id="td_product_'+ cpVal.sym +'" align="right">';
+                    products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
+                    products += '<tr class="trec2"><td align="right" title="'+hintQuantity+'" id="td_product_'+ cpVal.sym +'_v">' + commaSeparateNumber(tgpVal.v) + '</td></tr>';
+                    products += '<tr class="trec2"><td align="right" title="'+hintQuality+'" id="td_product_'+ cpVal.sym +'_q">' + tgpVal.q + '</td></tr>';
+                    products += '<tr class="trec2"><td align="right" title="'+hintPurchasePrice+'" id="td_product_'+ cpVal.sym +'_bp">$' + commaSeparateNumber(parseFloat(tgpVal.bp).toFixed(2)) + '</td></tr>';
+                    products += '<tr class="trec2"><td align="right" title="'+hintSellingPrice+'" id="td_product_'+ cpVal.sym +'_sp">$' + commaSeparateNumber(parseFloat(tgpVal.sp).toFixed(2)) + '</td></tr>';
+                    products += '<tr class="trec2"><td align="right" title="'+hintProfit+': '+ commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2))+'" id="td_product_'+ cpVal.sym +'_iat">$' +shortenNumber(tgpVal.iat) + '</td></tr>';
+                    products += '</table>';
+                    products += '</td>';
                 } else {
-                    output += '<td id="td_product_'+ cpVal.sym +'" align="right">';
-                    output += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
-                    output += '<tr class="trec2"><td align="right" title="'+hintQuantity+'" id="td_product_'+ cpVal.sym +'_v">0</td></tr>';
-                    output += '<tr class="trec2"><td align="right" title="'+hintQuality+'" id="td_product_'+ cpVal.sym +'_q">0</td></tr>';
-                    output += '<tr class="trec2"><td align="right" title="'+hintPurchasePrice+'" id="td_product_'+ cpVal.sym +'_bp">$0</td></tr>';
-                    output += '<tr class="trec2"><td align="right" title="'+hintSellingPrice+'" id="td_product_'+ cpVal.sym +'_sp">$0</td></tr>';
-                    output += '<tr class="trec2"><td align="right" title="'+hintProfit+'" id="td_product_'+ cpVal.sym +'_iat">$0</td></tr>';
-                    output += '</table>';
-                    output += '</td>';
+                    products += '<td id="td_product_'+ cpVal.sym +'" align="right">';
+                    products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
+                    products += '<tr class="trec2"><td align="right" title="'+hintQuantity+'" id="td_product_'+ cpVal.sym +'_v">0</td></tr>';
+                    products += '<tr class="trec2"><td align="right" title="'+hintQuality+'" id="td_product_'+ cpVal.sym +'_q">0</td></tr>';
+                    products += '<tr class="trec2"><td align="right" title="'+hintPurchasePrice+'" id="td_product_'+ cpVal.sym +'_bp">$0</td></tr>';
+                    products += '<tr class="trec2"><td align="right" title="'+hintSellingPrice+'" id="td_product_'+ cpVal.sym +'_sp">$0</td></tr>';
+                    products += '<tr class="trec2"><td align="right" title="'+hintProfit+'" id="td_product_'+ cpVal.sym +'_iat">$0</td></tr>';
+                    products += '</table>';
+                    products += '</td>';
                 }
             });
             output += '<td align="right" id="td_profit" data-value="'+ profit.toFixed(2) +'">'+ commaSeparateNumber(profit.toFixed(2)) +'</td>';
+            output += products;
             output += '</tr>';
         }
     });
