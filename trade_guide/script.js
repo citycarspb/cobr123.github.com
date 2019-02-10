@@ -182,7 +182,7 @@ function loadDataAfter(data) {
                     output += '<tr class="trec2"><td align="right" title="'+hintQuality+'" id="td_product_'+ cpVal.sym +'_q">' + tgpVal.q + '</td></tr>';
                     output += '<tr class="trec2"><td align="right" title="'+hintPurchasePrice+'" id="td_product_'+ cpVal.sym +'_bp">$' + commaSeparateNumber(parseFloat(tgpVal.bp).toFixed(2)) + '</td></tr>';
                     output += '<tr class="trec2"><td align="right" title="'+hintSellingPrice+'" id="td_product_'+ cpVal.sym +'_sp">$' + commaSeparateNumber(parseFloat(tgpVal.sp).toFixed(2)) + '</td></tr>';
-                    output += '<tr class="trec2"><td align="right" title="'+hintProfit+'" id="td_product_'+ cpVal.sym +'_iat">$' + commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2)) + '</td></tr>';
+                    output += '<tr class="trec2"><td align="right" title="'+hintProfit+': '+ commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2))+'" id="td_product_'+ cpVal.sym +'_iat">$' +shortenNumber(tgpVal.iat) + '</td></tr>';
                     output += '</table>';
                     output += '</td>';
                 } else {
