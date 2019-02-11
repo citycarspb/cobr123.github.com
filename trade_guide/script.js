@@ -225,13 +225,15 @@ function loadDataAfter(data) {
 
     output += '<tr class="trec hoverable">';
     output += '<td><b>'+ hintTotal +'</b></td>';
+    let nvSumProfit = 0;
     $.each(oavCategoryProducts, function (cpKey, cpVal) {
-        const nvSumVolume = oavTotalSum.reduce(function(o1, o2){return o1.v + o2.v});
-        const nvMinQuality = Math.min.apply(null, oavTotalSum.reduce(function(o){ return o.q; }));
-        const nvMaxQuality = Math.max.apply(null, oavTotalSum.reduce(function(o){ return o.q; }));
-        const nvSumBp = oavTotalSum.reduce(function(o1, o2){return o1.bp + o2.bp});
-        const nvSumSp = oavTotalSum.reduce(function(o1, o2){return o1.sp + o2.sp});
-        const nvSumIat = oavTotalSum.reduce(function(o1, o2){return o1.iat + o2.iat});
+        const nvSumVolume = oavTotalSum[cpVal.i].reduce(function(o1, o2){return o1.v + o2.v});
+        const nvMinQuality = Math.min.apply(null, oavTotalSum[cpVal.i].reduce(function(o){ return o.q; }));
+        const nvMaxQuality = Math.max.apply(null, oavTotalSum[cpVal.i].reduce(function(o){ return o.q; }));
+        const nvSumBp = oavTotalSum[cpVal.i].reduce(function(o1, o2){return o1.bp + o2.bp});
+        const nvSumSp = oavTotalSum[cpVal.i].reduce(function(o1, o2){return o1.sp + o2.sp});
+        const nvSumIat = oavTotalSum[cpVal.i].reduce(function(o1, o2){return o1.iat + o2.iat});
+        nvSumProfit += nvSumIat;
         output += '<td id="td_product_'+ cpVal.sym +'" align="right">';
         output += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
         output += '<tr class="trec2"><td align="right" title="'+hintQuantity+': '+commaSeparateNumber(nvSumVolume)+'" id="td_product_'+ cpVal.sym +'_v">'+ shortenNumber(nvSumVolume) +'</td></tr>';
@@ -242,7 +244,6 @@ function loadDataAfter(data) {
         output += '</table>';
         output += '</td>';
     });
-    const nvSumProfit = oavTotalSum.reduce(function(o1, o2){return o1.profit + o2.profit});
     output += '<td align="right" id="td_profit" data-value="0" title="'+hintProfit+': '+commaSeparateNumber(nvSumProfit)+'">'+ commaSeparateNumber(nvSumProfit) +'</td>';
     output += '</tr>';
 
