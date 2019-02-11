@@ -662,6 +662,7 @@ function loadRegions(callback) {
     return false;
 }
 function changeRealm(productCategoriesCallback, countryCallback) {
+    oagProducts = null;
     fillTownCaptions();
     loadProductCategories(productCategoriesCallback);
     loadCountries(countryCallback);
