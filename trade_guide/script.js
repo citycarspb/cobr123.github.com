@@ -228,24 +228,12 @@ function loadDataAfter(data) {
         output += '<td><b>' + hintTotal + '</b></td>';
         let nvSumProfit = 0;
         $.each(oavCategoryProducts, function (cpKey, cpVal) {
-            const nvSumVolume = oavTotalSum[cpVal.i].reduce(function (o1, o2) {
-                return o1.v + o2.v;
-            });
-            const nvMinQuality = Math.min.apply(null, oavTotalSum[cpVal.i].map(function (o) {
-                return o.q;
-            }));
-            const nvMaxQuality = Math.max.apply(null, oavTotalSum[cpVal.i].map(function (o) {
-                return o.q;
-            }));
-            const nvSumBp = oavTotalSum[cpVal.i].reduce(function (o1, o2) {
-                return o1.bp + o2.bp;
-            });
-            const nvSumSp = oavTotalSum[cpVal.i].reduce(function (o1, o2) {
-                return o1.sp + o2.sp;
-            });
-            const nvSumIat = oavTotalSum[cpVal.i].reduce(function (o1, o2) {
-                return o1.iat + o2.iat;
-            });
+            const nvSumVolume = oavTotalSum[cpVal.i].map(function(o){ return o.v; }).reduce(function (o1, o2) { return o1 + o2; });
+            const nvMinQuality = Math.min.apply(null, oavTotalSum[cpVal.i].map(function (o) { return o.q; }));
+            const nvMaxQuality = Math.max.apply(null, oavTotalSum[cpVal.i].map(function (o) { return o.q; }));
+            const nvSumBp = oavTotalSum[cpVal.i].map(function(o){ return o.bp; }).reduce(function (o1, o2) { return o1 + o2; });
+            const nvSumSp = oavTotalSum[cpVal.i].map(function(o){ return o.sp; }).reduce(function (o1, o2) { return o1 + o2; });
+            const nvSumIat = oavTotalSum[cpVal.i].map(function(o){ return o.iat; }).reduce(function (o1, o2) { return o1 + o2; });
             nvSumProfit += nvSumIat;
             output += '<td id="td_product_' + cpVal.sym + '" align="right">';
             output += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
