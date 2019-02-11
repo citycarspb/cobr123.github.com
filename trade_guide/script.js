@@ -228,8 +228,8 @@ function loadDataAfter(data) {
     let nvSumProfit = 0;
     $.each(oavCategoryProducts, function (cpKey, cpVal) {
         const nvSumVolume = oavTotalSum[cpVal.i].reduce(function(o1, o2){return o1.v + o2.v});
-        const nvMinQuality = 0;//Math.min.apply(null, oavTotalSum[cpVal.i].reduce(function(o){ return o.q; }));
-        const nvMaxQuality = 0;//Math.max.apply(null, oavTotalSum[cpVal.i].reduce(function(o){ return o.q; }));
+        const nvMinQuality = Math.min.apply(null, oavTotalSum[cpVal.i].map(function(o){ return o.q; }));
+        const nvMaxQuality = Math.max.apply(null, oavTotalSum[cpVal.i].map(function(o){ return o.q; }));
         const nvSumBp = oavTotalSum[cpVal.i].reduce(function(o1, o2){return o1.bp + o2.bp});
         const nvSumSp = oavTotalSum[cpVal.i].reduce(function(o1, o2){return o1.sp + o2.sp});
         const nvSumIat = oavTotalSum[cpVal.i].reduce(function(o1, o2){return o1.iat + o2.iat});
