@@ -222,28 +222,28 @@ function loadDataAfter(data) {
         }
     });
 
-    if(output !== '') {
-        output += '<tr class="trec hoverable">';
-        output += '<td><b>' + hintTotal + '</b></td>';
-        let nvSumProfit = 0;
-        let products = '';
-        $.each(oavCategoryProducts, function (cpKey, cpVal) {
-            let ovTotalSum  = oavTotalSum[cpVal.i];
-            nvSumProfit = nvSumProfit + ovTotalSum.iat;
-            products += '<td id="td_product_' + cpVal.sym + '" align="right">';
-            products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
-            products += '<tr class="trec2"><td align="right" title="' + hintQuantity + ': ' + commaSeparateNumber(ovTotalSum.v) + '" id="td_product_' + cpVal.sym + '_v">' + shortenNumber(ovTotalSum.v) + '</td></tr>';
-            products += '<tr class="trec2"><td align="right" title="' + hintQuality + '" id="td_product_' + cpVal.sym + '_q">' + ovTotalSum.qmin + ' - ' + ovTotalSum.qmax + '</td></tr>';
-            products += '<tr class="trec2"><td align="right" title="' + hintPurchasePrice + ': ' + commaSeparateNumber(ovTotalSum.bp) + '" id="td_product_' + cpVal.sym + '_bp">$' + shortenNumber(ovTotalSum.bp) + '</td></tr>';
-            products += '<tr class="trec2"><td align="right" title="' + hintSellingPrice + ': ' + commaSeparateNumber(ovTotalSum.sp) + '" id="td_product_' + cpVal.sym + '_sp">$' + shortenNumber(ovTotalSum.sp) + '</td></tr>';
-            products += '<tr class="trec2"><td align="right" title="' + hintProfit + ': ' + commaSeparateNumber(ovTotalSum.iat) + '" id="td_product_' + cpVal.sym + '_iat">$' + shortenNumber(ovTotalSum.iat) + '</td></tr>';
-            products += '</table>';
-            products += '</td>';
-        });
-        output += '<td align="right" id="td_profit" data-value="0" title="' + hintProfit + ': ' + commaSeparateNumber(nvSumProfit) + '">' + shortenNumber(nvSumProfit) + '</td>';
-        output += products;
-        output += '</tr>';
-    }
+    // if(output !== '') {
+    //     output += '<tr class="trec hoverable">';
+    //     output += '<td><b>' + hintTotal + '</b></td>';
+    //     let nvSumProfit = 0;
+    //     let products = '';
+    //     $.each(oavCategoryProducts, function (cpKey, cpVal) {
+    //         let ovTotalSum  = oavTotalSum[cpVal.i];
+    //         nvSumProfit = nvSumProfit + ovTotalSum.iat;
+    //         products += '<td id="td_product_' + cpVal.sym + '" align="right">';
+    //         products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
+    //         products += '<tr class="trec2"><td align="right" title="' + hintQuantity + ': ' + commaSeparateNumber(ovTotalSum.v) + '" id="td_product_' + cpVal.sym + '_v">' + shortenNumber(ovTotalSum.v) + '</td></tr>';
+    //         products += '<tr class="trec2"><td align="right" title="' + hintQuality + '" id="td_product_' + cpVal.sym + '_q">' + ovTotalSum.qmin + ' - ' + ovTotalSum.qmax + '</td></tr>';
+    //         products += '<tr class="trec2"><td align="right" title="' + hintPurchasePrice + ': ' + commaSeparateNumber(ovTotalSum.bp) + '" id="td_product_' + cpVal.sym + '_bp">$' + shortenNumber(ovTotalSum.bp) + '</td></tr>';
+    //         products += '<tr class="trec2"><td align="right" title="' + hintSellingPrice + ': ' + commaSeparateNumber(ovTotalSum.sp) + '" id="td_product_' + cpVal.sym + '_sp">$' + shortenNumber(ovTotalSum.sp) + '</td></tr>';
+    //         products += '<tr class="trec2"><td align="right" title="' + hintProfit + ': ' + commaSeparateNumber(ovTotalSum.iat) + '" id="td_product_' + cpVal.sym + '_iat">$' + shortenNumber(ovTotalSum.iat) + '</td></tr>';
+    //         products += '</table>';
+    //         products += '</td>';
+    //     });
+    //     output += '<td align="right" id="td_profit" data-value="0" title="' + hintProfit + ': ' + commaSeparateNumber(nvSumProfit) + '">' + shortenNumber(nvSumProfit) + '</td>';
+    //     output += products;
+    //     output += '</tr>';
+    // }
 
     $('#xtablethead').html('<tr class="theader">' + output_th + '</tr>');
     $('#xtabletbody').html(output);
