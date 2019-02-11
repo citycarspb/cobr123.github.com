@@ -154,14 +154,7 @@ function loadDataAfter(data) {
     $.each(oavCategoryProducts, function (cpKey, cpVal) {
         output_th += '<th id="th_product_'+ cpVal.sym +'"><a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+ cpVal.i +'#by-offers"><img src="'+ oagProducts[cpVal.i].s +'" width="16" height="16"></a></th>';
 
-        oavTotalSum[cpVal.i] = [{
-            v:  0,
-            q:  0,
-            bp: 0,
-            sp: 0,
-            iat:0,
-            profit: 0
-        }];
+        oavTotalSum[cpVal.i] = [];
     });
 
     $.each(data, function (key, val) {
@@ -215,6 +208,14 @@ function loadDataAfter(data) {
                     products += '<tr class="trec2"><td align="right" title="'+hintProfit+'" id="td_product_'+ cpVal.sym +'_iat">$0</td></tr>';
                     products += '</table>';
                     products += '</td>';
+                    oavTotalSum[cpVal.i].push({
+                        v:  0,
+                        q:  0,
+                        bp: 0,
+                        sp: 0,
+                        iat:0,
+                        profit: 0
+                    });
                 }
             });
             output += '<td align="right" id="td_profit" data-value="'+ profit.toFixed(2) +'">'+ commaSeparateNumber(profit.toFixed(2)) +'</td>';
@@ -230,8 +231,8 @@ function loadDataAfter(data) {
         let products = '';
         $.each(oavCategoryProducts, function (cpKey, cpVal) {
             const nvSumVolume = oavTotalSum[cpVal.i].map(function(o){ return o.v; }).reduce(function (o1, o2) { return o1 + o2; });
-            const nvMinQuality = Math.min.apply(null, oavTotalSum[cpVal.i].filter(x => x > 0).map(function (o) { return o.q; }));
-            const nvMaxQuality = Math.max.apply(null, oavTotalSum[cpVal.i].filter(x => x > 0).map(function (o) { return o.q; }));
+            const nvMinQuality = Math.min.apply(null, oavTotalSum[cpVal.i].map(function (o) { return o.q; }));
+            const nvMaxQuality = Math.max.apply(null, oavTotalSum[cpVal.i].map(function (o) { return o.q; }));
             const nvSumBp = oavTotalSum[cpVal.i].map(function(o){ return o.bp; }).reduce(function (o1, o2) { return o1 + o2; });
             const nvSumSp = oavTotalSum[cpVal.i].map(function(o){ return o.sp; }).reduce(function (o1, o2) { return o1 + o2; });
             const nvSumIat = oavTotalSum[cpVal.i].map(function(o){ return o.iat; }).reduce(function (o1, o2) { return o1 + o2; });
