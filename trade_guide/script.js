@@ -257,7 +257,7 @@ function loadDataAfter(data) {
             output += '</table>';
             output += '</td>';
         });
-        output += '<td align="right" id="td_profit" data-value="0" title="' + hintProfit + ': ' + commaSeparateNumber(nvSumProfit) + '">' + commaSeparateNumber(nvSumProfit) + '</td>';
+        output += '<td align="right" id="td_profit" data-value="0" title="' + hintProfit + ': ' + commaSeparateNumber(nvSumProfit) + '">' + shortenNumber(nvSumProfit) + '</td>';
         output += '</tr>';
     }
 
