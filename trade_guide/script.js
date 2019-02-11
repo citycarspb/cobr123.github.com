@@ -154,7 +154,14 @@ function loadDataAfter(data) {
     $.each(oavCategoryProducts, function (cpKey, cpVal) {
         output_th += '<th id="th_product_'+ cpVal.sym +'"><a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+ cpVal.i +'#by-offers"><img src="'+ oagProducts[cpVal.i].s +'" width="16" height="16"></a></th>';
 
-        oavTotalSum[cpVal.i] = [];
+        oavTotalSum[cpVal.i] = {
+            vmin:  0,
+            vmax:  0,
+            q:  0,
+            bp: 0,
+            sp: 0,
+            iat:0
+        };
     });
 
     $.each(data, function (key, val) {
@@ -190,13 +197,13 @@ function loadDataAfter(data) {
                     products += '<tr class="trec2"><td align="right" title="'+hintProfit+': '+ commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2))+'" id="td_product_'+ cpVal.sym +'_iat">$' +shortenNumber(tgpVal.iat) + '</td></tr>';
                     products += '</table>';
                     products += '</td>';
-                    oavTotalSum[cpVal.i].push({
-                        v:  parseFloat(tgpVal.v).toFixed(2),
-                        q:  parseFloat(tgpVal.q).toFixed(2),
-                        bp:  parseFloat(tgpVal.bp).toFixed(2),
-                        sp:  parseFloat(tgpVal.sp).toFixed(2),
-                        iat: parseFloat(tgpVal.iat).toFixed(2)
-                    });
+                    let ovTotalSum  = oavTotalSum[cpVal.i];
+                    ovTotalSum.vmin = Math.min(ovTotalSum.vmin, parseFloat(tgpVal.v).toFixed(2));
+                    ovTotalSum.vmax = Math.max(ovTotalSum.vmax, parseFloat(tgpVal.v).toFixed(2));
+                    ovTotalSum.q   += parseFloat(tgpVal.q).toFixed(2);
+                    ovTotalSum.bp  += parseFloat(tgpVal.bp).toFixed(2);
+                    ovTotalSum.sp  += parseFloat(tgpVal.sp).toFixed(2);
+                    ovTotalSum.iat += parseFloat(tgpVal.iat).toFixed(2);
                 } else {
                     products += '<td id="td_product_'+ cpVal.sym +'" align="right">';
                     products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
@@ -207,13 +214,6 @@ function loadDataAfter(data) {
                     products += '<tr class="trec2"><td align="right" title="'+hintProfit+'" id="td_product_'+ cpVal.sym +'_iat">$0</td></tr>';
                     products += '</table>';
                     products += '</td>';
-                    oavTotalSum[cpVal.i].push({
-                        v:  0,
-                        q:  0,
-                        bp: 0,
-                        sp: 0,
-                        iat:0
-                    });
                 }
             });
             output += '<td align="right" id="td_profit" data-value="'+ profit.toFixed(2) +'">'+ commaSeparateNumber(profit.toFixed(2)) +'</td>';
@@ -228,20 +228,21 @@ function loadDataAfter(data) {
         let nvSumProfit = 0;
         let products = '';
         $.each(oavCategoryProducts, function (cpKey, cpVal) {
-            const nvMinQuality = Math.min.apply(null, oavTotalSum[cpVal.i].map((o) => o.q));
-            const nvMaxQuality = Math.max.apply(null, oavTotalSum[cpVal.i].map((o) => o.q));
-            const nvSumVolume = oavTotalSum[cpVal.i].map((o) => o.v).reduce((a, b) => a + b);
-            const nvSumBp = oavTotalSum[cpVal.i].map((o) => o.bp).reduce((a, b) => a + b);
-            const nvSumSp = oavTotalSum[cpVal.i].map((o) => o.sp).reduce((a, b) => a + b);
-            const nvSumIat = oavTotalSum[cpVal.i].map((o) => o.iat).reduce((a, b) => a + b);
-            nvSumProfit = nvSumProfit + nvSumIat;
+            let ovTotalSum  = oavTotalSum[cpVal.i];
+            ovTotalSum.vmin = Math.min(ovTotalSum.vmin, parseFloat(tgpVal.v).toFixed(2));
+            ovTotalSum.vmax = Math.max(ovTotalSum.vmax, parseFloat(tgpVal.v).toFixed(2));
+            ovTotalSum.q   += parseFloat(tgpVal.q).toFixed(2);
+            ovTotalSum.bp  += parseFloat(tgpVal.bp).toFixed(2);
+            ovTotalSum.sp  += parseFloat(tgpVal.sp).toFixed(2);
+            ovTotalSum.iat += parseFloat(tgpVal.iat).toFixed(2);
+            nvSumProfit = nvSumProfit + ovTotalSum.iat;
             products += '<td id="td_product_' + cpVal.sym + '" align="right">';
             products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
-            products += '<tr class="trec2"><td align="right" title="' + hintQuantity + ': ' + commaSeparateNumber(nvSumVolume) + '" id="td_product_' + cpVal.sym + '_v">' + shortenNumber(nvSumVolume) + '</td></tr>';
-            products += '<tr class="trec2"><td align="right" title="' + hintQuality + '" id="td_product_' + cpVal.sym + '_q">' + nvMinQuality + ' - ' + nvMaxQuality + '</td></tr>';
-            products += '<tr class="trec2"><td align="right" title="' + hintPurchasePrice + ': ' + commaSeparateNumber(nvSumBp) + '" id="td_product_' + cpVal.sym + '_bp">$' + shortenNumber(nvSumBp) + '</td></tr>';
-            products += '<tr class="trec2"><td align="right" title="' + hintSellingPrice + ': ' + commaSeparateNumber(nvSumSp) + '" id="td_product_' + cpVal.sym + '_sp">$' + shortenNumber(nvSumSp) + '</td></tr>';
-            products += '<tr class="trec2"><td align="right" title="' + hintProfit + ': ' + commaSeparateNumber(nvSumIat) + '" id="td_product_' + cpVal.sym + '_iat">$' + shortenNumber(nvSumIat) + '</td></tr>';
+            products += '<tr class="trec2"><td align="right" title="' + hintQuantity + ': ' + commaSeparateNumber(ovTotalSum.v) + '" id="td_product_' + cpVal.sym + '_v">' + shortenNumber(ovTotalSum.v) + '</td></tr>';
+            products += '<tr class="trec2"><td align="right" title="' + hintQuality + '" id="td_product_' + cpVal.sym + '_q">' + ovTotalSum.vmin + ' - ' + ovTotalSum.vmax + '</td></tr>';
+            products += '<tr class="trec2"><td align="right" title="' + hintPurchasePrice + ': ' + commaSeparateNumber(ovTotalSum.bp) + '" id="td_product_' + cpVal.sym + '_bp">$' + shortenNumber(ovTotalSum.bp) + '</td></tr>';
+            products += '<tr class="trec2"><td align="right" title="' + hintSellingPrice + ': ' + commaSeparateNumber(ovTotalSum.sp) + '" id="td_product_' + cpVal.sym + '_sp">$' + shortenNumber(ovTotalSum.sp) + '</td></tr>';
+            products += '<tr class="trec2"><td align="right" title="' + hintProfit + ': ' + commaSeparateNumber(ovTotalSum.iat) + '" id="td_product_' + cpVal.sym + '_iat">$' + shortenNumber(ovTotalSum.iat) + '</td></tr>';
             products += '</table>';
             products += '</td>';
         });
