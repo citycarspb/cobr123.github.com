@@ -156,7 +156,7 @@ function loadDataAfter(data) {
 
         oavTotalSum[cpVal.i] = [{
             v:  0,
-            q:  1000,
+            q:  0,
             bp: 0,
             sp: 0,
             iat:0,
