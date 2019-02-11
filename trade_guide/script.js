@@ -224,7 +224,7 @@ function loadDataAfter(data) {
         }
     });
     function getSum(total, num) {
-        return parseFloat(total).toFixed(2) + parseFloat(num).toFixed(2);
+        return total + num;
     }
     if(output !== '') {
         output += '<tr class="trec hoverable">';
@@ -232,12 +232,12 @@ function loadDataAfter(data) {
         let nvSumProfit = 0;
         let products = '';
         $.each(oavCategoryProducts, function (cpKey, cpVal) {
-            const nvSumVolume = oavTotalSum[cpVal.i].map(function(o){ return o.v; }).reduce(getSum);
+            const nvSumVolume = oavTotalSum[cpVal.i].map(function(o){ return parseFloat(o.v).toFixed(2); }).reduce(getSum);
             const nvMinQuality = Math.min.apply(null, oavTotalSum[cpVal.i].map(function (o) { return o.q; }));
             const nvMaxQuality = Math.max.apply(null, oavTotalSum[cpVal.i].map(function (o) { return o.q; }));
-            const nvSumBp = oavTotalSum[cpVal.i].map(function(o){ return o.bp; }).reduce(getSum);
-            const nvSumSp = oavTotalSum[cpVal.i].map(function(o){ return o.sp; }).reduce(getSum);
-            const nvSumIat = oavTotalSum[cpVal.i].map(function(o){ return o.iat; }).reduce(getSum);
+            const nvSumBp = oavTotalSum[cpVal.i].map(function(o){ return parseFloat(o.bp).toFixed(2); }).reduce(getSum);
+            const nvSumSp = oavTotalSum[cpVal.i].map(function(o){ return parseFloat(o.sp).toFixed(2); }).reduce(getSum);
+            const nvSumIat = oavTotalSum[cpVal.i].map(function(o){ return parseFloat(o.iat).toFixed(2); }).reduce(getSum);
             nvSumProfit = nvSumProfit + nvSumIat;
             products += '<td id="td_product_' + cpVal.sym + '" align="right">';
             products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
