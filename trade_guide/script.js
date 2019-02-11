@@ -195,8 +195,7 @@ function loadDataAfter(data) {
                         q:  parseFloat(tgpVal.q).toFixed(2),
                         bp:  parseFloat(tgpVal.bp).toFixed(2),
                         sp:  parseFloat(tgpVal.sp).toFixed(2),
-                        iat: parseFloat(tgpVal.iat).toFixed(2),
-                        profit: parseFloat(tgpVal.iat)
+                        iat: parseFloat(tgpVal.iat).toFixed(2)
                     });
                 } else {
                     products += '<td id="td_product_'+ cpVal.sym +'" align="right">';
@@ -213,8 +212,7 @@ function loadDataAfter(data) {
                         q:  0,
                         bp: 0,
                         sp: 0,
-                        iat:0,
-                        profit: 0
+                        iat:0
                     });
                 }
             });
