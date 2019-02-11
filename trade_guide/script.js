@@ -236,7 +236,7 @@ function loadDataAfter(data) {
             const nvSumBp = oavTotalSum[cpVal.i].map(function(o){ return parseFloat(o.bp).toFixed(2); }).reduce(getSum);
             const nvSumSp = oavTotalSum[cpVal.i].map(function(o){ return parseFloat(o.sp).toFixed(2); }).reduce(getSum);
             const nvSumIat = oavTotalSum[cpVal.i].map(function(o){ return parseFloat(o.iat).toFixed(2); }).reduce(getSum);
-            nvSumProfit = nvSumProfit + nvSumIat;
+            nvSumProfit = nvSumProfit + parseFloat(nvSumIat).toFixed(2);
             products += '<td id="td_product_' + cpVal.sym + '" align="right">';
             products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
             products += '<tr class="trec2"><td align="right" title="' + hintQuantity + ': ' + commaSeparateNumber(nvSumVolume) + '" id="td_product_' + cpVal.sym + '_v">' + shortenNumber(nvSumVolume) + '</td></tr>';
