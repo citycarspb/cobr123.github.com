@@ -230,8 +230,8 @@ function loadDataAfter(data) {
         let products = '';
         $.each(oavCategoryProducts, function (cpKey, cpVal) {
             const nvSumVolume = oavTotalSum[cpVal.i].map(function(o){ return o.v; }).reduce(function (o1, o2) { return o1 + o2; });
-            const nvMinQuality = Math.min.apply(null, oavTotalSum[cpVal.i].map(function (o) { return o.q; }));
-            const nvMaxQuality = Math.max.apply(null, oavTotalSum[cpVal.i].map(function (o) { return o.q; }));
+            const nvMinQuality = Math.min.apply(null, oavTotalSum[cpVal.i].filter(x => x > 0).map(function (o) { return o.q; }));
+            const nvMaxQuality = Math.max.apply(null, oavTotalSum[cpVal.i].filter(x => x > 0).map(function (o) { return o.q; }));
             const nvSumBp = oavTotalSum[cpVal.i].map(function(o){ return o.bp; }).reduce(function (o1, o2) { return o1 + o2; });
             const nvSumSp = oavTotalSum[cpVal.i].map(function(o){ return o.sp; }).reduce(function (o1, o2) { return o1 + o2; });
             const nvSumIat = oavTotalSum[cpVal.i].map(function(o){ return o.iat; }).reduce(function (o1, o2) { return o1 + o2; });
