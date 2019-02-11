@@ -874,7 +874,7 @@ $(document).ready(function () {
         }
 
         var tableHeaderId = tableHeader.getAttribute('id').substr(3);
-        if (tableHeaderId != null && tableHeaderId != '') {
+        if (tableHeaderId === 'city' || tableHeaderId === 'profit') {
             //console.log(tableHeaderId);
             var ascDesc = tableHeader.getAttribute('data-order');
             isAscending = ascDesc=='asc';
