@@ -221,21 +221,19 @@ function loadDataAfter(data) {
             output += '</tr>';
         }
     });
-    function getSum(total, num) {
-        return parseFloat(total).toFixed(2) + parseFloat(num).toFixed(2);
-    }
+
     if(output !== '') {
         output += '<tr class="trec hoverable">';
         output += '<td><b>' + hintTotal + '</b></td>';
         let nvSumProfit = 0;
         let products = '';
         $.each(oavCategoryProducts, function (cpKey, cpVal) {
-            const nvSumVolume = oavTotalSum[cpVal.i].map(function(o){ return parseFloat(o.v).toFixed(2); }).reduce(getSum);
+            const nvSumVolume = oavTotalSum[cpVal.i].map(function(o){ return parseFloat(o.v).toFixed(2); }).reduce((a, b) => a + b);
             const nvMinQuality = Math.min.apply(null, oavTotalSum[cpVal.i].map(function (o) { return o.q; }));
             const nvMaxQuality = Math.max.apply(null, oavTotalSum[cpVal.i].map(function (o) { return o.q; }));
-            const nvSumBp = oavTotalSum[cpVal.i].map(function(o){ return parseFloat(o.bp).toFixed(2); }).reduce(getSum);
-            const nvSumSp = oavTotalSum[cpVal.i].map(function(o){ return parseFloat(o.sp).toFixed(2); }).reduce(getSum);
-            const nvSumIat = oavTotalSum[cpVal.i].map(function(o){ return parseFloat(o.iat).toFixed(2); }).reduce(getSum);
+            const nvSumBp = oavTotalSum[cpVal.i].map(function(o){ return parseFloat(o.bp).toFixed(2); }).reduce((a, b) => a + b);
+            const nvSumSp = oavTotalSum[cpVal.i].map(function(o){ return parseFloat(o.sp).toFixed(2); }).reduce((a, b) => a + b);
+            const nvSumIat = oavTotalSum[cpVal.i].map(function(o){ return parseFloat(o.iat).toFixed(2); }).reduce((a, b) => a + b);
             nvSumProfit = nvSumProfit + parseFloat(nvSumIat).toFixed(2);
             products += '<td id="td_product_' + cpVal.sym + '" align="right">';
             products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
@@ -342,11 +340,10 @@ function togglePrediction(npPredNum){
 //резделитель разрядов
 function commaSeparateNumber(val, sep){
     const separator = sep || ',';
-    let res = val;
-    while (/(\d+)(\d{3})/.test(res.toString())){
-        res = res.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1"+separator);
+    while (/(\d+)(\d{3})/.test(val.toString())){
+        val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1"+separator);
     }
-    return res;
+    return val;
 }
 function loadSavedFlt(urlParams){
     let realm      = getVal('realm') || 'olga';
