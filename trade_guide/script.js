@@ -344,10 +344,11 @@ function togglePrediction(npPredNum){
 //резделитель разрядов
 function commaSeparateNumber(val, sep){
     const separator = sep || ',';
-    while (/(\d+)(\d{3})/.test(val.toString())){
-        val = val.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1"+separator);
+    let res = val;
+    while (/(\d+)(\d{3})/.test(res.toString())){
+        res = res.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1"+separator);
     }
-    return val;
+    return res;
 }
 function loadSavedFlt(urlParams){
     let realm      = getVal('realm') || 'olga';
