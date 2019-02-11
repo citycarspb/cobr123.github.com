@@ -220,6 +220,7 @@ function loadDataAfter(data) {
         output += '<tr class="trec hoverable">';
         output += '<td><b>' + hintTotal + '</b></td>';
         let nvSumProfit = 0;
+        let products = '';
         $.each(oavCategoryProducts, function (cpKey, cpVal) {
             const nvSumVolume = oavTotalSum[cpVal.i].map(function(o){ return o.v; }).reduce(function (o1, o2) { return o1 + o2; });
             const nvMinQuality = Math.min.apply(null, oavTotalSum[cpVal.i].map(function (o) { return o.q; }));
@@ -228,17 +229,18 @@ function loadDataAfter(data) {
             const nvSumSp = oavTotalSum[cpVal.i].map(function(o){ return o.sp; }).reduce(function (o1, o2) { return o1 + o2; });
             const nvSumIat = oavTotalSum[cpVal.i].map(function(o){ return o.iat; }).reduce(function (o1, o2) { return o1 + o2; });
             nvSumProfit += nvSumIat;
-            output += '<td id="td_product_' + cpVal.sym + '" align="right">';
-            output += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
-            output += '<tr class="trec2"><td align="right" title="' + hintQuantity + ': ' + commaSeparateNumber(nvSumVolume) + '" id="td_product_' + cpVal.sym + '_v">' + shortenNumber(nvSumVolume) + '</td></tr>';
-            output += '<tr class="trec2"><td align="right" title="' + hintQuality + '" id="td_product_' + cpVal.sym + '_q">' + nvMinQuality + ' - ' + nvMaxQuality + '</td></tr>';
-            output += '<tr class="trec2"><td align="right" title="' + hintPurchasePrice + ': ' + commaSeparateNumber(nvSumBp) + '" id="td_product_' + cpVal.sym + '_bp">$' + shortenNumber(nvSumBp) + '</td></tr>';
-            output += '<tr class="trec2"><td align="right" title="' + hintSellingPrice + ': ' + commaSeparateNumber(nvSumSp) + '" id="td_product_' + cpVal.sym + '_sp">$' + shortenNumber(nvSumSp) + '</td></tr>';
-            output += '<tr class="trec2"><td align="right" title="' + hintProfit + ': ' + commaSeparateNumber(nvSumIat) + '" id="td_product_' + cpVal.sym + '_iat">$' + shortenNumber(nvSumIat) + '</td></tr>';
-            output += '</table>';
-            output += '</td>';
+            products += '<td id="td_product_' + cpVal.sym + '" align="right">';
+            products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
+            products += '<tr class="trec2"><td align="right" title="' + hintQuantity + ': ' + commaSeparateNumber(nvSumVolume) + '" id="td_product_' + cpVal.sym + '_v">' + shortenNumber(nvSumVolume) + '</td></tr>';
+            products += '<tr class="trec2"><td align="right" title="' + hintQuality + '" id="td_product_' + cpVal.sym + '_q">' + nvMinQuality + ' - ' + nvMaxQuality + '</td></tr>';
+            products += '<tr class="trec2"><td align="right" title="' + hintPurchasePrice + ': ' + commaSeparateNumber(nvSumBp) + '" id="td_product_' + cpVal.sym + '_bp">$' + shortenNumber(nvSumBp) + '</td></tr>';
+            products += '<tr class="trec2"><td align="right" title="' + hintSellingPrice + ': ' + commaSeparateNumber(nvSumSp) + '" id="td_product_' + cpVal.sym + '_sp">$' + shortenNumber(nvSumSp) + '</td></tr>';
+            products += '<tr class="trec2"><td align="right" title="' + hintProfit + ': ' + commaSeparateNumber(nvSumIat) + '" id="td_product_' + cpVal.sym + '_iat">$' + shortenNumber(nvSumIat) + '</td></tr>';
+            products += '</table>';
+            products += '</td>';
         });
         output += '<td align="right" id="td_profit" data-value="0" title="' + hintProfit + ': ' + commaSeparateNumber(nvSumProfit) + '">' + shortenNumber(nvSumProfit) + '</td>';
+        output += products;
         output += '</tr>';
     }
 
