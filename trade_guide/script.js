@@ -154,7 +154,14 @@ function loadDataAfter(data) {
     $.each(oavCategoryProducts, function (cpKey, cpVal) {
         output_th += '<th id="th_product_'+ cpVal.sym +'"><a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+ cpVal.i +'#by-offers"><img src="'+ oagProducts[cpVal.i].s +'" width="16" height="16"></a></th>';
 
-        oavTotalSum[cpVal.i] = [];
+        oavTotalSum[cpVal.i] = [{
+            v:  0,
+            q:  1000,
+            bp: 0,
+            sp: 0,
+            iat:0,
+            profit: 0
+        }];
     });
 
     $.each(data, function (key, val) {
