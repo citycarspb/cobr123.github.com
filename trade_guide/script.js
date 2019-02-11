@@ -229,12 +229,6 @@ function loadDataAfter(data) {
         let products = '';
         $.each(oavCategoryProducts, function (cpKey, cpVal) {
             let ovTotalSum  = oavTotalSum[cpVal.i];
-            ovTotalSum.vmin = Math.min(ovTotalSum.vmin, parseFloat(tgpVal.v).toFixed(2));
-            ovTotalSum.vmax = Math.max(ovTotalSum.vmax, parseFloat(tgpVal.v).toFixed(2));
-            ovTotalSum.q   += parseFloat(tgpVal.q).toFixed(2);
-            ovTotalSum.bp  += parseFloat(tgpVal.bp).toFixed(2);
-            ovTotalSum.sp  += parseFloat(tgpVal.sp).toFixed(2);
-            ovTotalSum.iat += parseFloat(tgpVal.iat).toFixed(2);
             nvSumProfit = nvSumProfit + ovTotalSum.iat;
             products += '<td id="td_product_' + cpVal.sym + '" align="right">';
             products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
