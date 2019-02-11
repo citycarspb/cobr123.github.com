@@ -222,7 +222,7 @@ function loadDataAfter(data) {
         }
     });
     function getSum(total, num) {
-        return total + num;
+        return parseFloat(total).toFixed(2) + parseFloat(num).toFixed(2);
     }
     if(output !== '') {
         output += '<tr class="trec hoverable">';
