@@ -238,14 +238,14 @@ function loadDataAfter(data) {
             const nvSumSp = sumArray($(output, 'td[id="td_product_' + cpVal.sym + '_sp"]').map((k,v) => parseFloat(v.getAttribute('data-value'))));
             const nvSumIat = sumArray($(output, 'td[id="td_product_' + cpVal.sym + '_iat"]').map((k,v) => parseFloat(v.getAttribute('data-value'))));
 
-            $(output, 'td_product_total_' + cpVal.sym + '_v').attr('title', hintQuantity + ': ' + commaSeparateNumber(nvSumV)).text(shortenNumber(nvSumV));
-            $(output, 'td_product_total_' + cpVal.sym + '_q').attr('title', hintQuality).text(nvMinQ + ' - ' + nvMaxQ);
-            $(output, 'td_product_total_' + cpVal.sym + '_bp').attr('title', hintPurchasePrice + ': ' + commaSeparateNumber(nvSumBp)).text(shortenNumber(nvSumBp));
-            $(output, 'td_product_total_' + cpVal.sym + '_sp').attr('title', hintSellingPrice + ': ' + commaSeparateNumber(nvSumSp)).text(shortenNumber(nvSumSp));
-            $(output, 'td_product_total_' + cpVal.sym + '_iat').attr('title', hintProfit + ': ' + commaSeparateNumber(nvSumIat)).text(shortenNumber(nvSumIat));
+            output = $(output, 'td_product_total_' + cpVal.sym + '_v').attr('title', hintQuantity + ': ' + commaSeparateNumber(nvSumV)).text(shortenNumber(nvSumV));
+            output = $(output, 'td_product_total_' + cpVal.sym + '_q').attr('title', hintQuality).text(nvMinQ + ' - ' + nvMaxQ);
+            output = $(output, 'td_product_total_' + cpVal.sym + '_bp').attr('title', hintPurchasePrice + ': ' + commaSeparateNumber(nvSumBp)).text(shortenNumber(nvSumBp));
+            output = $(output, 'td_product_total_' + cpVal.sym + '_sp').attr('title', hintSellingPrice + ': ' + commaSeparateNumber(nvSumSp)).text(shortenNumber(nvSumSp));
+            output = $(output, 'td_product_total_' + cpVal.sym + '_iat').attr('title', hintProfit + ': ' + commaSeparateNumber(nvSumIat)).text(shortenNumber(nvSumIat));
         });
         const nvSumProfit = sumArray($(output, 'td[id="td_profit"]').map((k,v) => parseFloat(v.getAttribute('data-value'))));
-        $(output, 'td_profit_total').attr('title', hintTotal + ': ' + commaSeparateNumber(nvSumProfit)).text(shortenNumber(nvSumProfit));
+        output = $(output, 'td_profit_total').attr('title', hintTotal + ': ' + commaSeparateNumber(nvSumProfit)).text(shortenNumber(nvSumProfit));
     }
 
     $('#xtablethead').html('<tr class="theader">' + output_th + '</tr>');
