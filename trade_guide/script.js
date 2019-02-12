@@ -202,31 +202,32 @@ function loadDataAfter(data) {
             output += '<td align="right" id="td_profit" data-value="'+ profit.toFixed(2) +'">'+ commaSeparateNumber(profit.toFixed(2)) +'</td>';
             output += products;
             output += '</tr>';
-            
-            output += '<tr class="trec hoverable">';
-            output += '<td><b>' + hintTotal + '</b></td>';
-            products = '';
-            $.each(oavCategoryProducts, function (cpKey, cpVal) {
-                products += '<td id="td_product_' + cpVal.sym + '" align="right">';
-                products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
-                products += '<tr class="trec2"><td align="right"><a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+ cpVal.i +'#by-offers"><img src="'+ oagProducts[cpVal.i].s +'" width="16" height="16"></a></td></tr>';
-                products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_v">0</td></tr>';
-                products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_q">0</td></tr>';
-                products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_bp">$0</td></tr>';
-                products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_sp">$0</td></tr>';
-                products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_iat">$0</td></tr>';
-                products += '</table>';
-                products += '</td>';
-            });
-            output += '<td align="right" id="td_profit_total" data-value="0">0</td>';
-            output += products;
-            output += '</tr>';
         }
     });
     function sumArray(arr){
         let sum = 0;
         for (let i = 0; i < arr.length; ++i) sum += arr[i];
         return sum;
+    }
+    if(output !== '') {
+        output += '<tr class="trec hoverable">';
+        output += '<td><b>' + hintTotal + '</b></td>';
+        let products = '';
+        $.each(oavCategoryProducts, function (cpKey, cpVal) {
+            products += '<td id="td_product_' + cpVal.sym + '" align="right">';
+            products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
+            products += '<tr class="trec2"><td align="right"><a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+ cpVal.i +'#by-offers"><img src="'+ oagProducts[cpVal.i].s +'" width="16" height="16"></a></td></tr>';
+            products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_v">0</td></tr>';
+            products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_q">0</td></tr>';
+            products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_bp">$0</td></tr>';
+            products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_sp">$0</td></tr>';
+            products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_iat">$0</td></tr>';
+            products += '</table>';
+            products += '</td>';
+        });
+        output += '<td align="right" id="td_profit_total" data-value="0">0</td>';
+        output += products;
+        output += '</tr>';
     }
 
     $('#xtablethead').html('<tr class="theader">' + output_th + '</tr>');
