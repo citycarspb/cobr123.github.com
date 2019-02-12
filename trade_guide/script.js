@@ -588,18 +588,18 @@ function updateUrl() {
 //////////////////////////////////////////////////////
 function unknownIfNull(locale, opValue) {
     if (opValue == null || opValue === '' || isNaN(opValue)){
-        return (locale == 'en') ? 'unknown' : 'не изв.';
+        return (locale === 'en') ? 'unknown' : 'не изв.';
     } else {
         return opValue;
     }
 }
 function loadProductCategories(callback) {
-    var realm = getRealm();
-    if (realm == null || realm == '') return;
-    var suffix = (getLocale() == 'en') ? '_en' : '';
+    const realm = getRealm();
+    if (realm == null || realm === '') return;
+    const suffix = (getLocale() === 'en') ? '_en' : '';
 
     $.getJSON('/by_trade_at_cities/'+realm+'/product_categories'+suffix+'.json', function (data) {
-        var output = '';
+        let output = '';
 
         $.each(data, function (key, val) {
             output += '<option value="'+val.i+'">'+val.c+'</option>';
@@ -616,7 +616,7 @@ function loadProductCategories(callback) {
 }
 function loadCountries(callback) {
     const realm = getRealm();
-    if (realm == null || realm == '') return;
+    if (realm == null || realm === '') return;
     const locale = getLocale();
     const suffix = (locale === 'en') ? '_en' : '';
     if(sagCountryCaption === null) {
@@ -712,6 +712,20 @@ function loadRegions(callback) {
 function changeRealm(productCategoriesCallback, countryCallback) {
     oagProducts = null;
     fillTownCaptions();
+    if (typeof(callback) !== 'function') {
+        let id_category  = getVal('id_category');
+        if (id_category != null && id_category !== '') {
+            productCategoriesCallback = function () {
+                $('#id_category').val(id_category);
+                id_category = $('#id_category').val();
+                if (id_category == null || id_category === '') {
+                    id_category = $('#id_category > option').eq(0).val();
+                    $('#id_category').val(id_category);
+                }
+                loadData();
+            };
+        }
+    }
     loadProductCategories(productCategoriesCallback);
     loadCountries(countryCallback);
     setVal('realm', getRealm());
