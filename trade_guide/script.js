@@ -180,21 +180,21 @@ function loadDataAfter(data) {
                     profit += parseFloat(tgpVal.iat);
                     products += '<td id="td_product_'+ cpVal.sym +'" align="right">';
                     products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
-                    products += '<tr class="trec2"><td align="right" title="'+hintQuantity+'" id="td_product_'+ cpVal.sym +'_v">' + commaSeparateNumber(tgpVal.v) + '</td></tr>';
-                    products += '<tr class="trec2"><td align="right" title="'+hintQuality+'" id="td_product_'+ cpVal.sym +'_q">' + tgpVal.q + '</td></tr>';
-                    products += '<tr class="trec2"><td align="right" title="'+hintPurchasePrice+'" id="td_product_'+ cpVal.sym +'_bp">$' + commaSeparateNumber(parseFloat(tgpVal.bp).toFixed(2)) + '</td></tr>';
-                    products += '<tr class="trec2"><td align="right" title="'+hintSellingPrice+'" id="td_product_'+ cpVal.sym +'_sp">$' + commaSeparateNumber(parseFloat(tgpVal.sp).toFixed(2)) + '</td></tr>';
-                    products += '<tr class="trec2"><td align="right" title="'+hintProfit+': '+ commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2))+'" id="td_product_'+ cpVal.sym +'_iat">$' +shortenNumber(tgpVal.iat) + '</td></tr>';
+                    products += '<tr class="trec2"><td align="right" data-value="'+ parseFloat(tgpVal.v).toFixed(2) +'" title="'+hintQuantity+'" id="td_product_'+ cpVal.sym +'_v">' + commaSeparateNumber(tgpVal.v) + '</td></tr>';
+                    products += '<tr class="trec2"><td align="right" data-value="'+ parseFloat(tgpVal.q).toFixed(2) +'" title="'+hintQuality+'" id="td_product_'+ cpVal.sym +'_q">' + tgpVal.q + '</td></tr>';
+                    products += '<tr class="trec2"><td align="right" data-value="'+ parseFloat(tgpVal.bp).toFixed(2) +'" title="'+hintPurchasePrice+'" id="td_product_'+ cpVal.sym +'_bp">$' + commaSeparateNumber(parseFloat(tgpVal.bp).toFixed(2)) + '</td></tr>';
+                    products += '<tr class="trec2"><td align="right" data-value="'+ parseFloat(tgpVal.sp).toFixed(2) +'" title="'+hintSellingPrice+'" id="td_product_'+ cpVal.sym +'_sp">$' + commaSeparateNumber(parseFloat(tgpVal.sp).toFixed(2)) + '</td></tr>';
+                    products += '<tr class="trec2"><td align="right" data-value="'+ parseFloat(tgpVal.iat).toFixed(2) +'" title="'+hintProfit+': '+ commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2))+'" id="td_product_'+ cpVal.sym +'_iat">$' +shortenNumber(tgpVal.iat) + '</td></tr>';
                     products += '</table>';
                     products += '</td>';
                 } else {
                     products += '<td id="td_product_'+ cpVal.sym +'" align="right">';
                     products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
-                    products += '<tr class="trec2"><td align="right" title="'+hintQuantity+'" id="td_product_'+ cpVal.sym +'_v">0</td></tr>';
-                    products += '<tr class="trec2"><td align="right" title="'+hintQuality+'" id="td_product_'+ cpVal.sym +'_q">0</td></tr>';
-                    products += '<tr class="trec2"><td align="right" title="'+hintPurchasePrice+'" id="td_product_'+ cpVal.sym +'_bp">$0</td></tr>';
-                    products += '<tr class="trec2"><td align="right" title="'+hintSellingPrice+'" id="td_product_'+ cpVal.sym +'_sp">$0</td></tr>';
-                    products += '<tr class="trec2"><td align="right" title="'+hintProfit+'" id="td_product_'+ cpVal.sym +'_iat">$0</td></tr>';
+                    products += '<tr class="trec2"><td align="right" data-value="0" title="'+hintQuantity+'" id="td_product_'+ cpVal.sym +'_v">0</td></tr>';
+                    products += '<tr class="trec2"><td align="right" data-value="0" title="'+hintQuality+'" id="td_product_'+ cpVal.sym +'_q">0</td></tr>';
+                    products += '<tr class="trec2"><td align="right" data-value="0" title="'+hintPurchasePrice+'" id="td_product_'+ cpVal.sym +'_bp">$0</td></tr>';
+                    products += '<tr class="trec2"><td align="right" data-value="0" title="'+hintSellingPrice+'" id="td_product_'+ cpVal.sym +'_sp">$0</td></tr>';
+                    products += '<tr class="trec2"><td align="right" data-value="0" title="'+hintProfit+'" id="td_product_'+ cpVal.sym +'_iat">$0</td></tr>';
                     products += '</table>';
                     products += '</td>';
                 }
