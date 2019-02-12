@@ -944,6 +944,7 @@ $(document).ready(function () {
                     ,data: 'value'
                 }
             );
+            updateUrl();
         }
     });
     loadSavedFlt(urlParams);
