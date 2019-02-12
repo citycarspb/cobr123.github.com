@@ -228,7 +228,12 @@ function loadDataAfter(data) {
         output += '<td align="right" id="td_profit_total" data-value="0">0</td>';
         output += products;
         output += '</tr>';
+    }
 
+    $('#xtablethead').html('<tr class="theader">' + output_th + '</tr>');
+    $('#xtabletbody').html(output);
+
+    if(output !== '') {
         $.each(oavCategoryProducts, function (cpKey, cpVal) {
             const navQ = $(output, 'td[id="td_product_' + cpVal.sym + '_q"]').map((k,v) => parseFloat(v.getAttribute('data-value')));
             const nvMinQ = Math.min.apply(null, navQ);
@@ -238,18 +243,15 @@ function loadDataAfter(data) {
             const nvSumSp = sumArray($(output, 'td[id="td_product_' + cpVal.sym + '_sp"]').map((k,v) => parseFloat(v.getAttribute('data-value'))));
             const nvSumIat = sumArray($(output, 'td[id="td_product_' + cpVal.sym + '_iat"]').map((k,v) => parseFloat(v.getAttribute('data-value'))));
 
-            $(output, 'td_product_total_' + cpVal.sym + '_v').attr('title', hintQuantity + ': ' + commaSeparateNumber(nvSumV)).text(shortenNumber(nvSumV));
-            $(output, 'td_product_total_' + cpVal.sym + '_q').attr('title', hintQuality).text(nvMinQ + ' - ' + nvMaxQ);
-            $(output, 'td_product_total_' + cpVal.sym + '_bp').attr('title', hintPurchasePrice + ': ' + commaSeparateNumber(nvSumBp)).text(shortenNumber(nvSumBp));
-            $(output, 'td_product_total_' + cpVal.sym + '_sp').attr('title', hintSellingPrice + ': ' + commaSeparateNumber(nvSumSp)).text(shortenNumber(nvSumSp));
-            $(output, 'td_product_total_' + cpVal.sym + '_iat').attr('title', hintProfit + ': ' + commaSeparateNumber(nvSumIat)).text(shortenNumber(nvSumIat));
+            $('td_product_total_' + cpVal.sym + '_v').attr('title', hintQuantity + ': ' + commaSeparateNumber(nvSumV)).text(shortenNumber(nvSumV));
+            $('td_product_total_' + cpVal.sym + '_q').attr('title', hintQuality).text(nvMinQ + ' - ' + nvMaxQ);
+            $('td_product_total_' + cpVal.sym + '_bp').attr('title', hintPurchasePrice + ': ' + commaSeparateNumber(nvSumBp)).text(shortenNumber(nvSumBp));
+            $('td_product_total_' + cpVal.sym + '_sp').attr('title', hintSellingPrice + ': ' + commaSeparateNumber(nvSumSp)).text(shortenNumber(nvSumSp));
+            $('td_product_total_' + cpVal.sym + '_iat').attr('title', hintProfit + ': ' + commaSeparateNumber(nvSumIat)).text(shortenNumber(nvSumIat));
         });
         const nvSumProfit = sumArray($(output, 'td[id="td_profit"]').map((k,v) => parseFloat(v.getAttribute('data-value'))));
-        $(output, 'td_profit_total').attr('title', hintTotal + ': ' + commaSeparateNumber(nvSumProfit)).text(shortenNumber(nvSumProfit));
+        $('td_profit_total').attr('title', hintTotal + ': ' + commaSeparateNumber(nvSumProfit)).text(shortenNumber(nvSumProfit));
     }
-
-    $('#xtablethead').html('<tr class="theader">' + output_th + '</tr>');
-    $('#xtabletbody').html(output);
 
     if(output !== ''){
         const svOrder = $('#sort_dir').val();
