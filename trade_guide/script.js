@@ -144,7 +144,6 @@ function loadDataAfter(data) {
     const hintProfit = ((locale === 'en') ? 'Profit' : 'Прибыль');
     const hintTotal = ((locale === 'en') ? 'Total' : 'Итого');
 
-    let oavTotalSum = [];
     let output_th = '';
     let output = '';
     const oavCategoryProducts = oagProducts.filter(function(o){ return o.pci === categoryID; });
@@ -153,15 +152,6 @@ function loadDataAfter(data) {
     output_th += '<th id="th_profit">' + ((locale === 'en') ? 'Profit' : 'Прибыль') + '&nbsp;<b id="sort_by_profit"></b></th>';
     $.each(oavCategoryProducts, function (cpKey, cpVal) {
         output_th += '<th id="th_product_'+ cpVal.sym +'"><a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+ cpVal.i +'#by-offers"><img src="'+ oagProducts[cpVal.i].s +'" width="16" height="16"></a></th>';
-
-        oavTotalSum[cpVal.i] = {
-            qmin:  0,
-            qmax:  0,
-            v:  0,
-            bp: 0,
-            sp: 0,
-            iat:0
-        };
     });
 
     $.each(data, function (key, val) {
@@ -197,13 +187,6 @@ function loadDataAfter(data) {
                     products += '<tr class="trec2"><td align="right" title="'+hintProfit+': '+ commaSeparateNumber(parseFloat(tgpVal.iat).toFixed(2))+'" id="td_product_'+ cpVal.sym +'_iat">$' +shortenNumber(tgpVal.iat) + '</td></tr>';
                     products += '</table>';
                     products += '</td>';
-                    let ovTotalSum  = oavTotalSum[cpVal.i];
-                    ovTotalSum.qmin = Math.min(ovTotalSum.qmin, parseFloat(tgpVal.q).toFixed(2));
-                    ovTotalSum.qmax = Math.max(ovTotalSum.qmax, parseFloat(tgpVal.q).toFixed(2));
-                    ovTotalSum.v   += parseFloat(tgpVal.v).toFixed(2);
-                    ovTotalSum.bp  += parseFloat(tgpVal.bp).toFixed(2);
-                    ovTotalSum.sp  += parseFloat(tgpVal.sp).toFixed(2);
-                    ovTotalSum.iat += parseFloat(tgpVal.iat).toFixed(2);
                 } else {
                     products += '<td id="td_product_'+ cpVal.sym +'" align="right">';
                     products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
@@ -221,32 +204,54 @@ function loadDataAfter(data) {
             output += '</tr>';
         }
     });
+    function sumArray(arr){
+        let sum = 0;
+        for (let i = 0; i < arr.length; ++i) sum += arr[i];
+        return sum;
+    }
 
-    // if(output !== '') {
-    //     output += '<tr class="trec hoverable">';
-    //     output += '<td><b>' + hintTotal + '</b></td>';
-    //     let nvSumProfit = 0;
-    //     let products = '';
-    //     $.each(oavCategoryProducts, function (cpKey, cpVal) {
-    //         let ovTotalSum  = oavTotalSum[cpVal.i];
-    //         nvSumProfit = nvSumProfit + ovTotalSum.iat;
-    //         products += '<td id="td_product_' + cpVal.sym + '" align="right">';
-    //         products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
-    //         products += '<tr class="trec2"><td align="right" title="' + hintQuantity + ': ' + commaSeparateNumber(ovTotalSum.v) + '" id="td_product_' + cpVal.sym + '_v">' + shortenNumber(ovTotalSum.v) + '</td></tr>';
-    //         products += '<tr class="trec2"><td align="right" title="' + hintQuality + '" id="td_product_' + cpVal.sym + '_q">' + ovTotalSum.qmin + ' - ' + ovTotalSum.qmax + '</td></tr>';
-    //         products += '<tr class="trec2"><td align="right" title="' + hintPurchasePrice + ': ' + commaSeparateNumber(ovTotalSum.bp) + '" id="td_product_' + cpVal.sym + '_bp">$' + shortenNumber(ovTotalSum.bp) + '</td></tr>';
-    //         products += '<tr class="trec2"><td align="right" title="' + hintSellingPrice + ': ' + commaSeparateNumber(ovTotalSum.sp) + '" id="td_product_' + cpVal.sym + '_sp">$' + shortenNumber(ovTotalSum.sp) + '</td></tr>';
-    //         products += '<tr class="trec2"><td align="right" title="' + hintProfit + ': ' + commaSeparateNumber(ovTotalSum.iat) + '" id="td_product_' + cpVal.sym + '_iat">$' + shortenNumber(ovTotalSum.iat) + '</td></tr>';
-    //         products += '</table>';
-    //         products += '</td>';
-    //     });
-    //     output += '<td align="right" id="td_profit" data-value="0" title="' + hintProfit + ': ' + commaSeparateNumber(nvSumProfit) + '">' + shortenNumber(nvSumProfit) + '</td>';
-    //     output += products;
-    //     output += '</tr>';
-    // }
+    if(output !== '') {
+        output += '<tr class="trec hoverable">';
+        output += '<td><b>' + hintTotal + '</b></td>';
+        let products = '';
+        $.each(oavCategoryProducts, function (cpKey, cpVal) {
+            products += '<td id="td_product_' + cpVal.sym + '" align="right">';
+            products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
+            products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_v">0</td></tr>';
+            products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_q">0</td></tr>';
+            products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_bp">$0</td></tr>';
+            products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_sp">$0</td></tr>';
+            products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_iat">$0</td></tr>';
+            products += '</table>';
+            products += '</td>';
+        });
+        output += '<td align="right" id="td_profit_total" data-value="0">0</td>';
+        output += products;
+        output += '</tr>';
+    }
 
     $('#xtablethead').html('<tr class="theader">' + output_th + '</tr>');
     $('#xtabletbody').html(output);
+
+    if(output !== '') {
+        $.each(oavCategoryProducts, function (cpKey, cpVal) {
+            const navQ = $('td[id="td_product_' + cpVal.sym + '_q"]').map((k,v) => parseFloat(v.getAttribute('data-value')));
+            const nvMinQ = Math.min.apply(null, navQ);
+            const nvMaxQ = Math.max.apply(null, navQ);
+            const nvSumV = sumArray($('td[id="td_product_' + cpVal.sym + '_v"]').map((k,v) => parseFloat(v.getAttribute('data-value'))));
+            const nvSumBp = sumArray($('td[id="td_product_' + cpVal.sym + '_bp"]').map((k,v) => parseFloat(v.getAttribute('data-value'))));
+            const nvSumSp = sumArray($('td[id="td_product_' + cpVal.sym + '_sp"]').map((k,v) => parseFloat(v.getAttribute('data-value'))));
+            const nvSumIat = sumArray($('td[id="td_product_' + cpVal.sym + '_iat"]').map((k,v) => parseFloat(v.getAttribute('data-value'))));
+
+            $('td_product_total_' + cpVal.sym + '_v').attr('title', hintQuantity + ': ' + commaSeparateNumber(nvSumV)).text(shortenNumber(nvSumV));
+            $('td_product_total_' + cpVal.sym + '_q').attr('title', hintQuantity).text(nvMinQ + ' - ' + nvMaxQ);
+            $('td_product_total_' + cpVal.sym + '_bp').attr('title', hintPurchasePrice + ': ' + commaSeparateNumber(nvSumBp)).text(shortenNumber(nvSumBp));
+            $('td_product_total_' + cpVal.sym + '_sp').attr('title', hintSellingPrice + ': ' + commaSeparateNumber(nvSumSp)).text(shortenNumber(nvSumSp));
+            $('td_product_total_' + cpVal.sym + '_iat').attr('title', hintProfit + ': ' + commaSeparateNumber(nvSumIat)).text(shortenNumber(nvSumIat));
+        });
+        const nvSumProfit = sumArray($('td[id="td_profit"]').map((k,v) => parseFloat(v.getAttribute('data-value'))));
+        $('td_profit_total').attr('title', hintTotal + ': ' + commaSeparateNumber(nvSumProfit)).text(shortenNumber(nvSumProfit));
+    }
 
     if(output !== ''){
         const svOrder = $('#sort_dir').val();
