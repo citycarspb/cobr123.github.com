@@ -712,7 +712,7 @@ function loadRegions(callback) {
 function changeRealm(productCategoriesCallback, countryCallback) {
     oagProducts = null;
     fillTownCaptions();
-    if (typeof(callback) !== 'function') {
+    if (typeof(productCategoriesCallback) !== 'function') {
         let id_category  = getVal('id_category');
         if (id_category != null && id_category !== '') {
             productCategoriesCallback = function () {
