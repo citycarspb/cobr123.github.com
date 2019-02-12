@@ -140,7 +140,9 @@ function loadDataAfter(data) {
     const hintQuantity = ((locale === 'en') ? 'Quantity' : 'Количество');
     const hintQuality = ((locale === 'en') ? 'Quality' : 'Качество');
     const hintPurchasePrice = ((locale === 'en') ? 'Purchase price' : 'Закупочная цена');
+    const hintSumPurchasePrice = ((locale === 'en') ? 'Purchase sum' : 'Сумма закупки');
     const hintSellingPrice = ((locale === 'en') ? 'Selling price' : 'Цена продажи');
+    const hintSumSellingPrice = ((locale === 'en') ? 'Selling sum' : 'Сумма продажи');
     const hintProfit = ((locale === 'en') ? 'Profit' : 'Прибыль');
     const hintTotal = ((locale === 'en') ? 'Total' : 'Итого');
 
@@ -245,8 +247,8 @@ function loadDataAfter(data) {
 
             $('#td_product_total_' + cpVal.sym + '_v').attr('title', hintQuantity + ': ' + commaSeparateNumber(nvSumV)).text(shortenNumber(nvSumV));
             $('#td_product_total_' + cpVal.sym + '_q').attr('title', hintQuality).text(nvMinQ + ' - ' + nvMaxQ);
-            $('#td_product_total_' + cpVal.sym + '_bp').attr('title', hintPurchasePrice + ': ' + commaSeparateNumber(nvSumBp)).text(shortenNumber(nvSumBp));
-            $('#td_product_total_' + cpVal.sym + '_sp').attr('title', hintSellingPrice + ': ' + commaSeparateNumber(nvSumSp)).text(shortenNumber(nvSumSp));
+            $('#td_product_total_' + cpVal.sym + '_bp').attr('title', hintSumPurchasePrice + ': ' + commaSeparateNumber(nvSumBp)).text(shortenNumber(nvSumBp));
+            $('#td_product_total_' + cpVal.sym + '_sp').attr('title', hintSumSellingPrice + ': ' + commaSeparateNumber(nvSumSp)).text(shortenNumber(nvSumSp));
             $('#td_product_total_' + cpVal.sym + '_iat').attr('title', hintProfit + ': ' + commaSeparateNumber(nvSumIat)).text(shortenNumber(nvSumIat));
         });
         const nvSumProfit = sumArray($('td[id="td_profit"]').map((k,v) => parseFloat(v.getAttribute('data-value'))));
