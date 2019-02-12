@@ -247,12 +247,12 @@ function loadDataAfter(data) {
 
             $('#td_product_total_' + cpVal.sym + '_v').attr('title', hintQuantity + ': ' + commaSeparateNumber(nvSumV)).text(shortenNumber(nvSumV));
             $('#td_product_total_' + cpVal.sym + '_q').attr('title', hintQuality).text(nvMinQ + ' - ' + nvMaxQ);
-            $('#td_product_total_' + cpVal.sym + '_bp').attr('title', hintSumPurchasePrice + ': ' + commaSeparateNumber(nvSumBp)).text(shortenNumber(nvSumBp));
-            $('#td_product_total_' + cpVal.sym + '_sp').attr('title', hintSumSellingPrice + ': ' + commaSeparateNumber(nvSumSp)).text(shortenNumber(nvSumSp));
-            $('#td_product_total_' + cpVal.sym + '_iat').attr('title', hintProfit + ': ' + commaSeparateNumber(nvSumIat)).text(shortenNumber(nvSumIat));
+            $('#td_product_total_' + cpVal.sym + '_bp').attr('title', hintSumPurchasePrice + ': ' + commaSeparateNumber(nvSumBp.toFixed(2))).text(shortenNumber(nvSumBp));
+            $('#td_product_total_' + cpVal.sym + '_sp').attr('title', hintSumSellingPrice + ': ' + commaSeparateNumber(nvSumSp.toFixed(2))).text(shortenNumber(nvSumSp));
+            $('#td_product_total_' + cpVal.sym + '_iat').attr('title', hintProfit + ': ' + commaSeparateNumber(nvSumIat.toFixed(2))).text(shortenNumber(nvSumIat));
         });
         const nvSumProfit = sumArray($('td[id="td_profit"]').map((k,v) => parseFloat(v.getAttribute('data-value'))));
-        $('#td_profit_total').attr('title', hintTotal + ': ' + commaSeparateNumber(nvSumProfit)).text(shortenNumber(nvSumProfit));
+        $('#td_profit_total').attr('title', hintTotal + ': ' + commaSeparateNumber(nvSumProfit.toFixed(2))).text(shortenNumber(nvSumProfit));
     }
 
     if(output !== ''){
