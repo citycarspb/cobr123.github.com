@@ -237,9 +237,13 @@ function loadDataAfter(data) {
 
     if(output !== '') {
         $.each(oavCategoryProducts, function (cpKey, cpVal) {
-            const navQ = $('td[id="td_product_' + cpVal.sym + '_q"]').map((k,v) => parseFloat(v.getAttribute('data-value')));
-            const nvMinQ = Math.min.apply(null, navQ);
-            const nvMaxQ = Math.max.apply(null, navQ);
+            const navQ = $('td[id="td_product_' + cpVal.sym + '_q"]').map((k,v) => parseFloat(v.getAttribute('data-value'))).filter((k, v) => v > 0);
+            let nvMinQ = 0;
+            let nvMaxQ = 0;
+            if (navQ.length > 0) {
+                nvMinQ = Math.min.apply(null, navQ);
+                nvMaxQ = Math.max.apply(null, navQ);
+            }
             let svMinMaxQ = nvMinQ + ' - ' + nvMaxQ;
             if (nvMinQ === 0 || nvMinQ === nvMaxQ){
                 svMinMaxQ = nvMaxQ;
