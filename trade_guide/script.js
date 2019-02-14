@@ -240,13 +240,17 @@ function loadDataAfter(data) {
             const navQ = $('td[id="td_product_' + cpVal.sym + '_q"]').map((k,v) => parseFloat(v.getAttribute('data-value')));
             const nvMinQ = Math.min.apply(null, navQ);
             const nvMaxQ = Math.max.apply(null, navQ);
+            let svMinMaxQ = nvMinQ + ' - ' + nvMaxQ;
+            if (nvMinQ === 0 || nvMinQ === nvMaxQ){
+                svMinMaxQ = nvMaxQ;
+            }
             const nvSumV = sumArray($('td[id="td_product_' + cpVal.sym + '_v"]').map((k,v) => parseFloat(v.getAttribute('data-value'))));
             const nvSumBp = sumArray($('td[id="td_product_' + cpVal.sym + '_bp"]').map((k,v) => parseFloat(v.getAttribute('data-value'))));
             const nvSumSp = sumArray($('td[id="td_product_' + cpVal.sym + '_sp"]').map((k,v) => parseFloat(v.getAttribute('data-value'))));
             const nvSumIat = sumArray($('td[id="td_product_' + cpVal.sym + '_iat"]').map((k,v) => parseFloat(v.getAttribute('data-value'))));
 
             $('#td_product_total_' + cpVal.sym + '_v').attr('title', hintQuantity + ': ' + commaSeparateNumber(nvSumV)).text(shortenNumber(nvSumV));
-            $('#td_product_total_' + cpVal.sym + '_q').attr('title', hintQuality).text(nvMinQ + ' - ' + nvMaxQ);
+            $('#td_product_total_' + cpVal.sym + '_q').attr('title', hintQuality).text(svMinMaxQ);
             $('#td_product_total_' + cpVal.sym + '_bp').attr('title', hintSumPurchasePrice + ': ' + commaSeparateNumber(nvSumBp.toFixed(2))).text(shortenNumber(nvSumBp));
             $('#td_product_total_' + cpVal.sym + '_sp').attr('title', hintSumSellingPrice + ': ' + commaSeparateNumber(nvSumSp.toFixed(2))).text(shortenNumber(nvSumSp));
             $('#td_product_total_' + cpVal.sym + '_iat').attr('title', hintProfit + ': ' + commaSeparateNumber(nvSumIat.toFixed(2))).text(shortenNumber(nvSumIat));
