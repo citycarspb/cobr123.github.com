@@ -172,7 +172,7 @@ function loadDataAfter(data) {
         if(suitable && val.sgp != null && val.sgp.length > 0){
             output += '<tr class="trec hoverable">';
             output += '<td id="td_city" city_id="'+val.ti+'" title="'+sagCountryCaption[val.ci]+' - '+sagRegionCaption[val.ri]+'" data-value="'+ sagTownCaption[val.ti] +'">';
-            output += '<a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?geo='+val.ci+'/'+val.ri+'/'+val.ti+'&product_id='+val.sgp[0].pi+'#by-trade-at-cities">'+sagTownCaption[val.ti]+'</a>';
+            output += '<a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?geo='+val.ci+'/'+val.ri+'/'+val.ti+'&unit_type_id='+serviceID+'#by-service">'+sagTownCaption[val.ti]+'</a>';
             output += '</td>';
             let profit = 0;
             let products = '';
