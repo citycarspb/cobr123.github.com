@@ -225,7 +225,6 @@ function loadDataAfter(data) {
             products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_q">0</td></tr>';
             products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_bp">$0</td></tr>';
             products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_sp">$0</td></tr>';
-            products += '<tr class="trec2"><td align="right" id="td_product_total_' + cpVal.sym + '_iat">$0</td></tr>';
             products += '</table>';
             products += '</td>';
         });
