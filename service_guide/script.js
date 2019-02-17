@@ -148,7 +148,7 @@ function loadDataAfter(data) {
 
     let output_th = '';
     let output = '';
-    const oavSpecProducts = oagProducts.filter((b) => oagRawMaterials[serviceSpecId].findIndex((a) => a.i === b.i) > 0 );
+    const oavSpecProducts = oagProducts.filter((b) => oagRawMaterials[serviceSpecId].findIndex((a) => a.i === b.i) >= 0 );
 
     output_th += '<th id="th_city">' + ((locale === 'en') ? 'City' : 'Город') + '&nbsp;<b id="sort_by_city"></b></th>';
     output_th += '<th id="th_sell_cnt">' + hintSellCnt + '&nbsp;<b id="sort_by_sell_cnt"></b></th>';
