@@ -202,7 +202,7 @@ function loadDataAfter(data) {
                 }
             });
             output += '<td align="right" id="td_sell_cnt" data-value="'+ parseFloat(val.sc) +'">'+ commaSeparateNumber(parseFloat(val.sc)) +'</td>';
-            output += '<td align="right" id="td_sell_price" data-value="'+ parseFloat(val.sps) +'">'+ commaSeparateNumber(parseFloat(val.sps)) +'</td>';
+            output += '<td align="right" id="td_sell_price" data-value="'+ parseFloat(val.sps).toFixed(2) +'">'+ commaSeparateNumber(parseFloat(val.sps).toFixed(2)) +'</td>';
             output += '<td align="right" id="td_profit" data-value="'+ parseFloat(val.iats).toFixed(2) +'">'+ commaSeparateNumber(parseFloat(val.iats).toFixed(2)) +'</td>';
             output += products;
             output += '</tr>';
