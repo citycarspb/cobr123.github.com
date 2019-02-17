@@ -804,6 +804,7 @@ function changeRealm(productCategoriesCallback, countryCallback) {
     loadCountries(countryCallback);
     setVal('realm', getRealm());
     fillUpdateDate();
+    updateReferenceLink();
 }
 function changeCategory(callback) {
     setVal('id_category', $('#id_category').val());
