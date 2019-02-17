@@ -148,11 +148,11 @@ function loadDataAfter(data) {
 
     let output_th = '';
     let output = '';
-    const oavCategoryProducts = oagProducts.filter(function(o){ return o.pci === categoryID; });
+    const oavSpecProducts = oagProducts.filter(function(o){ return oagRawMaterials.findIndex((a)=> a.i === o.i); });
 
     output_th += '<th id="th_city">' + ((locale === 'en') ? 'City' : 'Город') + '&nbsp;<b id="sort_by_city"></b></th>';
     output_th += '<th id="th_profit">' + ((locale === 'en') ? 'Profit' : 'Прибыль') + '&nbsp;<b id="sort_by_profit"></b></th>';
-    $.each(oavCategoryProducts, function (cpKey, cpVal) {
+    $.each(oavSpecProducts, function (cpKey, cpVal) {
         output_th += '<th id="th_product_'+ cpVal.sym +'"><a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+ cpVal.i +'#by-offers"><img src="'+ oagProducts[cpVal.i].s +'" width="16" height="16"></a></th>';
     });
 
@@ -176,7 +176,7 @@ function loadDataAfter(data) {
             output += '</td>';
             let profit = 0;
             let products = '';
-            $.each(oavCategoryProducts, function (cpKey, cpVal) {
+            $.each(oavSpecProducts, function (cpKey, cpVal) {
                 const tgpVal = val.tgp.filter(function(o) { return o.pi === cpVal.i;})[0];
                 if(tgpVal != null && parseFloat(tgpVal.iat) > 0) {
                     profit += parseFloat(tgpVal.iat);
@@ -216,7 +216,7 @@ function loadDataAfter(data) {
         output += '<tr class="trec hoverable">';
         output += '<td><b>' + hintTotal + '</b></td>';
         let products = '';
-        $.each(oavCategoryProducts, function (cpKey, cpVal) {
+        $.each(oavSpecProducts, function (cpKey, cpVal) {
             products += '<td id="td_product_' + cpVal.sym + '" align="right">';
             products += '<table border="0" width="100%" cellspacing="1" cellpadding="1">';
             products += '<tr class="trec2"><td align="right"><a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?product_id='+ cpVal.i +'#by-offers"><img src="'+ oagProducts[cpVal.i].s +'" width="16" height="16"></a></td></tr>';
@@ -237,7 +237,7 @@ function loadDataAfter(data) {
     $('#xtabletbody').html(output);
 
     if(output !== '') {
-        $.each(oavCategoryProducts, function (cpKey, cpVal) {
+        $.each(oavSpecProducts, function (cpKey, cpVal) {
             const navQ = $('td[id="td_product_' + cpVal.sym + '_q"]').map((k,v) => parseFloat(v.getAttribute('data-value'))).filter((k, v) => v > 0);
             let nvMinQ = 0;
             let nvMaxQ = 0;
