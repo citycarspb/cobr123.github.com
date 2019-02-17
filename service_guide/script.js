@@ -819,7 +819,7 @@ function loadProducts(callback) {
 
     oagProducts = [];
 
-    $.getJSON('/by_trade_at_cities/'+realm+'/products'+suffix+'.json', function (data) {
+    $.getJSON('/industry/'+realm+'/materials'+suffix+'.json', function (data) {
         $.each(data, function (key, val) {
             oagProducts[val.i] = val;
         });
