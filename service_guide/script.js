@@ -617,11 +617,21 @@ function loadProductCategories(callback) {
     });
     return false;
 }
+function updateReferenceLink(){
+    const serviceID = getServiceID();
+    if (serviceID == null || serviceID === '') return;
+    const realm = getRealm();
+    if (realm == null || realm === '') return;
+    const locale = getLocale();
+    const domain = getDomain(locale);
+    //https://virtonomica.ru/olga/main/industry/unit_type/info/359926
+    $('#reference_link').attr('href','https://'+domain+'/'+realm+'/main/industry/unit_type/info/'+serviceID);
+}
 function changeService(newVal) {
     $('#id_service').val(newVal);
     setVal('id_service', newVal);
     loadServices(loadData);
-    //updateReferenceLink();
+    updateReferenceLink();
 }
 function changeServiceSpec() {
     setVal('id_service_spec', $('#id_service_spec').val());
