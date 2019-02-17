@@ -169,15 +169,15 @@ function loadDataAfter(data) {
             suitable = suitable && val.ti === id_town;
         }
 
-        if(suitable && val.tgp != null && val.tgp.length > 0){
+        if(suitable && val.sgp != null && val.sgp.length > 0){
             output += '<tr class="trec hoverable">';
             output += '<td id="td_city" city_id="'+val.ti+'" title="'+sagCountryCaption[val.ci]+' - '+sagRegionCaption[val.ri]+'" data-value="'+ sagTownCaption[val.ti] +'">';
-            output += '<a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?geo='+val.ci+'/'+val.ri+'/'+val.ti+'&product_id='+val.tgp[0].pi+'#by-trade-at-cities">'+sagTownCaption[val.ti]+'</a>';
+            output += '<a target="_blank" href="https://'+domain+'/'+realm+'/main/globalreport/marketing?geo='+val.ci+'/'+val.ri+'/'+val.ti+'&product_id='+val.sgp[0].pi+'#by-trade-at-cities">'+sagTownCaption[val.ti]+'</a>';
             output += '</td>';
             let profit = 0;
             let products = '';
             $.each(oavSpecProducts, function (cpKey, cpVal) {
-                const tgpVal = val.tgp.filter(function(o) { return o.pi === cpVal.i;})[0];
+                const tgpVal = val.sgp.filter(function(o) { return o.pi === cpVal.i;})[0];
                 if(tgpVal != null && parseFloat(tgpVal.iat) > 0) {
                     profit += parseFloat(tgpVal.iat);
                     products += '<td id="td_product_'+ cpVal.sym +'" align="right">';
