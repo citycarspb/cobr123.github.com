@@ -652,7 +652,7 @@ function loadServices(callback) {
             if(selected != null && selected === val.i){
                 services += ' border="1"';
                 for (var k in val.s) {
-                    oagRawMaterials[val.s[k].i] = val.s[k];
+                    oagRawMaterials[val.s[k].i] = val.s[k].rm;
                     serviceSpecs += '<option value="'+val.s[k].i+'">'+val.s[k].c+'</option>';
                 }
             }
