@@ -1012,7 +1012,7 @@ $(document).ready(function () {
         }
 
         var tableHeaderId = tableHeader.getAttribute('id').substr(3);
-        if (tableHeaderId === 'city' || tableHeaderId === 'profit') {
+        if (tableHeaderId === 'city' || tableHeaderId === 'profit' || tableHeaderId === 'sell_price' || tableHeaderId === 'sell_cnt') {
             //console.log(tableHeaderId);
             var ascDesc = tableHeader.getAttribute('data-order');
             isAscending = ascDesc=='asc';
