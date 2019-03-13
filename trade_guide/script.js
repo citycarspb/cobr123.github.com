@@ -361,12 +361,13 @@ function loadSavedFlt(urlParams){
     let id_country = getVal('id_country');
     let id_region  = getVal('id_region');
     let id_town    = getVal('id_town');
-    let id_category  = getVal('id_category');
+    let id_category  = null;
     let id_product   = null;
     try {
         id_product = getVal('id_product');
     } catch (err) {
         id_product = null;
+        id_category  = getVal('id_category');
         console.error(err);
     }
 
