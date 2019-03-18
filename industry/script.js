@@ -254,7 +254,7 @@ function updateTableFromCache(splicedTableCache){
 		output += '<td align="center"><table cellspacing="0" cellpadding="0"><tr class="trec">'+svMaterialsImg+'</tr><tr class="trec">'+svMaterialsQty+'</tr><tr class="trec">'+svMaterialsQual+'</tr><tr class="trec">'+svMaterialsPrice+'</tr></table></td>';
 		output += '<td align="center" id="td_quality" data-value="'+val.quality+'"><a target="_blank" href="'+href+'">'+commaSeparateNumber(val.quality)+'</a></td>';
 		output += '<td align="center" id="td_quantity" data-value="'+val.quantity+'">'+commaSeparateNumber(val.quantity)+'</td>';
-		output += '<td align="center" id="td_cost" data-value="'+val.cost+'">$'+commaSeparateNumber(val.cost)+'</td>';
+		output += '<td align="center" id="td_cost" data-value="'+val.cost+'"><a target="_blank" href="/by_trade_at_cities/#id_product='+val.productID+'&realm='+realm+'&localPriceFrom='+val.cost+'&localQualityTo='+val.quality+'&id_country=&id_region=&id_town=&sort_col_id=local_price&sort_dir=desc">$'+commaSeparateNumber(val.cost)+'</a></td>';
 		output += '<td align="center" id="td_costperqua" data-value="'+(val.cost / val.quality).toFixed(2)+'">$'+commaSeparateNumber((val.cost / val.quality).toFixed(2))+'</td>';
 		output += '<td align="center" id="td_profit" data-value="'+val.profit+'">$'+commaSeparateNumber(val.profit)+'</td>';
 		output += '</tr>';

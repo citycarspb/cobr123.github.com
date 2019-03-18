@@ -581,6 +581,14 @@ function addImgSubProdHoverHandlers() {
     });
 }
 function fillFormFromUrl(urlParams){
+    const localPriceFrom  = urlParams['localPriceFrom'];
+    if (localPriceFrom != null || localPriceFrom !== '') {
+        $('#localPriceFrom').val(localPriceFrom);
+    }
+    const localQualityTo  = urlParams['localQualityTo'];
+    if (localQualityTo != null || localQualityTo !== '') {
+        $('#localQualityTo').val(localQualityTo);
+    }
 }
 function updateUrl() {
     var productID = getProductID();
