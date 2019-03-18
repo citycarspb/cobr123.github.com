@@ -209,29 +209,14 @@ function updateTable(unZippedData){
     var nvTechTo = parseFloatFromFilter('#tech_to', 20);
     var productID = getProductID();
     setVal('tech_to', nvTechTo);
-    var filterOptimalForTop1 = $('#isOptimalForTop1').is(':checked');
-    var isOptimalForTop1 = true;
     var playerQualityForTech = parseFloat(parseFloat(calcPlayerQualityForTech(nvTechTo)).toFixed(0));
-    var playerQuality = parseFloatFromFilter('#player_quality', playerQualityForTech);
     $('#player_quality').attr('placeholder', playerQualityForTech);
-    var workersQuality = 0;
-    var optimalTop1 = 0;
     var filterCheaperThenMarket = $('#isCheaperThenMarket').is(':checked');
     setVal('isCheaperThenMarket', filterCheaperThenMarket);
 
     unZippedData.forEach(function(val){
-        isOptimalForTop1 = true;
         suitable = true;
-        if (val.tl <= nvTechTo) {
-            if (filterOptimalForTop1) {
-              workersQuality = calcWorkersQualityForTech(val.tl);
-              optimalTop1 = calcMaxTop1(playerQuality, workersQuality) * 0.75;
-              if (val['mwc'] < optimalTop1) {
-                isOptimalForTop1 = false;
-                suitable = false;
-              }
-            } 
-        } else {
+        if (val.tl > nvTechTo) {
             suitable = false;
         }
         if (filterCheaperThenMarket) {
@@ -243,7 +228,6 @@ function updateTable(unZippedData){
         suitable = true;
         if (suitable && (val.tl <= nvTechTo)) {suitable = true;} else {suitable = false;}
         if (suitable && (val.pi == productID)) {suitable = true;} else {suitable = false;}
-        if (suitable && isOptimalForTop1) {suitable = true;} else {suitable = false;}
         if (filterCheaperThenMarket) {
             if (suitable && val.ctm) {suitable = true;} else {suitable = false;}
         }
