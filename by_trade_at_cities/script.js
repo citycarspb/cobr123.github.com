@@ -370,7 +370,7 @@ function loadSavedFlt(urlParams){
     var id_category = getVal('id_category');
     var id_product  = getVal('id_product');
 
-    if (Object.keys(urlParams).length > 1 && urlParams['realm'] != '' && urlParams['id_product'] != '') {
+    if (Object.keys(urlParams).length > 1 && urlParams['realm'] !== '' && urlParams['id_product'] !== '') {
         realm       = urlParams['realm'];
         id_country  = urlParams['id_country'];
         id_region   = urlParams['id_region'];
@@ -581,12 +581,12 @@ function addImgSubProdHoverHandlers() {
     });
 }
 function fillFormFromUrl(urlParams){
-    const localPriceFrom  = urlParams['localPriceFrom'];
-    if (localPriceFrom != null || localPriceFrom !== '') {
+    const localPriceFrom  = urlParams['local_price_from'];
+    if (localPriceFrom != null && localPriceFrom !== '') {
         $('#localPriceFrom').val(localPriceFrom);
     }
-    const localQualityTo  = urlParams['localQualityTo'];
-    if (localQualityTo != null || localQualityTo !== '') {
+    const localQualityTo  = urlParams['local_quality_to'];
+    if (localQualityTo != null && localQualityTo !== '') {
         $('#localQualityTo').val(localQualityTo);
     }
 }
