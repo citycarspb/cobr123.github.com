@@ -515,6 +515,7 @@ function showTrendGraph(data) {
 
     series: [
          {
+	     turboThreshold: 0,
 	     showInLegend : false,
         type: 'spline',
              name: 'RemainsMeanPrice',
