@@ -2,6 +2,8 @@
 
 [Назад](./structural_recursion.md) | [Оглавление](./index.md) | [Дальше](./cata.md)
 
+#Обобщённая структурная рекурсия
+
 We've seen that structural recursion involved a few common components. Our goal, for the moment, is to abstract these components away and provide a general structural recursion function.
 
 ## Generalising `mkString`

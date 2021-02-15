@@ -2,6 +2,8 @@
 
 [Назад](./cata.md) | [Оглавление](./index.md) | [Дальше](./fix.md)
 
+#Это можно применить к другим типам?
+
 We've seen that structural recursion could be generalised to catamorphisms, and that these are, in theory, capable of working with any type that can be projected into a pattern functor.
 
 So far however, we've only seen `List`. We're going to take a look at another recursive data type, with two goals in mind:
