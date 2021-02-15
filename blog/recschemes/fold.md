@@ -31,9 +31,7 @@ def recurse(
 
 `recurse` can be represented using the following diagram:
 
-<span class="figure">
 ![Recurse](./img/fold-init.svg)
-</span>
 
 We start from a `List`, follow its structure to turn into into a head and a tail (`Cons`) or nothing (`Nil`), apply `recurse` to the tail, then some hard-coded magic to get our final result.
 
@@ -44,9 +42,7 @@ The hard-coded magic is what we want to get rid of.
 
 The easiest thing to tackle is providing a solution to the smallest possible problem - known as the base case. This is currently hard-coded to `"nil"`:
 
-<span class="figure">
 ![Base case](./img/fold-base.svg)
-</span>
 
 Instead of using a hard-coded string, let's extract this into a constant:
 
@@ -69,17 +65,13 @@ def recurse(
 
 This is an improvement; at least some of the hard-coded magic is gone now:
 
-<span class="figure">
 ![Generalised base case](./img/fold-base-after-hl-1.svg)
-</span>
 
 ## Generalising the step
 
 We still have a little bit left, though:
 
-<span class="figure">
 ![Step](./img/fold-step.svg)
-</span>
 
 This takes the `head`, the solution to the `tail`, and returns the complete solution to our problem. It can be represented as a simple function, traditionally known as `step`:
 
@@ -104,17 +96,13 @@ def recurse(
 
 And with that, we appear to have gotten rid of all the hard-coded values:
 
-<span class="figure">
 ![Generalised step](./img/fold-step-after-hl-1.svg )
-</span>
 
 ## Generalising the return type
 
 There is, however, still a little bit of hard-coding going on, just not at the value level: the return type of `recurse`.
 
-<span class="figure">
 ![Return type](./img/fold-return.svg )
-</span>
 
 It's currently `String`, but we know we'll need more than that: `product` returns an `Int`, for example.
 
@@ -134,9 +122,7 @@ def recurse[A](
 
 And now, we've gotten rid of everything that was specific to `mkString`:
 
-<span class="figure">
 ![Generalised return type](./img/fold-return-after-hl-1.svg )
-</span>
 
 
 ## Simplifying the step
@@ -171,9 +157,7 @@ This is admittedly more code than we had, but the structural recursion component
 
 This gives us an updated diagram for `recurse`:
 
-<span class="figure">
 ![Fold](./img/fold-loop.svg )
-</span>
 
 ## Dropping parameters
 

@@ -11,15 +11,11 @@ So far however, we've only seen `List`. We're going to take a look at another re
 
 Having done the simplest recursive data type I could think of, the monomorphic list, we're going to look at the second simplest: the monomorphic binary tree.
 
-<span class="figure">
 ![Tree](./img/tree.svg)
-</span>
 
 The simplest possible tree is the empty one, which we call a `leaf`:
 
-<span class="figure">
 ![Tree leaf](./img/tree-leaf.svg)
-</span>
 
 
 A non empty tree is called a `node`, and composed of:
@@ -27,9 +23,7 @@ A non empty tree is called a `node`, and composed of:
 - a `left` branch, referencing the node's left subtree.
 - a `right` branch, referencing the node's right subtree.
 
-<span class="figure">
 ![Tree node](./img/tree-node.svg)
-</span>
 
 We can encode this almost directly to Scala code:
 
@@ -68,31 +62,23 @@ The problem we're going to solve is the height of a tree, which is defined as:
 
 Graphically, we see that our sample tree has a height of 3:
 
-<span class="figure">
 ![Tree height](./img/tree-height.svg)
-</span>
 
 Our goal is to compute this using a catamorphism. In order to do that, we'll do the exact opposite of what we did before: go from the generic definition of a catamorphism, and make everything concrete.
 
 Our first step is to nail down the input type:
 
-<span class="figure">
 ![Catamorphism](./img/cata-tree-1.svg)
-</span>
 
 This is straightforward: we know that the input type of a function that computes a tree's height must be of type `Tree`.
 
-<span class="figure">
 ![Tree Catamorphism](./img/cata-tree-2.svg)
-</span>
 
 ## Pattern functor
 
 Once we have the input type, we need its pattern functor:
 
-<span class="figure">
 ![Tree pattern functor](./img/cata-tree-4.svg)
-</span>
 
 We could use the same trick we did, almost by mistake, for `List`, and use an optional left branch, right branch and value, but I would rather avoid that. Tuples quickly confuse me, parenthesis everywhere, confusing field names...
 
@@ -133,17 +119,13 @@ And that's our pattern functor! In the case of the height of a tree, for example
 - `TreeF[A]`, representing larger problems and the solution to the smaller ones that compose them.
 
 
-<span class="figure">
 ![TreeF](./img/cata-tree-7.svg)
-</span>
 
 ## Projection
 
 Having our input type, `Tree`, and its pattern functor, `TreeF`, we need to be able to project the former into the later:
 
-<span class="figure">
 ![Projection](./img/cata-tree-11.svg)
-</span>
 
 This is a straightforward mapping of `Node` to `NodeF` and `Leaf` to `LeafF`:
 
@@ -156,17 +138,13 @@ def projectTree: Tree => TreeF[Tree] = {
 
 Which gives us the following updated diagram:
 
-<span class="figure">
 ![Tree projection](./img/cata-tree-12.svg)
-</span>
 
 ## Functor instance
 
 Of course, `TreeF`, being a pattern functor, needs to have a functor instance - otherwise we can't call `map`.
 
-<span class="figure">
 ![Tree projection](./img/cata-tree-14.svg)
-</span>
 
 We can provide this instance by applying the exact same logic we used for `ListF`: apply the mapped-over function to each recursive parts of a tree.
 
@@ -187,9 +165,7 @@ This is such a mechanical implementation that it's most likely possible to deriv
 
 Finally, we get to the one piece that's of any actual interest: the F-Algebra. The part where we actually compute the height of our tree.
 
-<span class="figure">
 ![Tree projection](./img/cata-tree-15.svg)
-</span>
 
 The base case is obvious: the height of an empty tree is 0.
 
@@ -205,9 +181,7 @@ val heightAlgebra: TreeF[Int] => Int = {
 
 This gives us the last missing piece of our problem:
 
-<span class="figure">
 ![Height algebra](./img/cata-tree-16.svg)
-</span>
 
 
 ## Tree height

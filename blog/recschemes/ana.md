@@ -32,15 +32,11 @@ We'll be using a shortcut, though: now that we know about pattern functors and t
 
 The first place where we can see the shape of `ListF`, the pattern functor for list, is in `predicate` and `update`:
 
-<span class="figure">
 ![Recurse](./img/ana-op-before.svg)
-</span>
 
 If you squint, they're really a single function from state to optional head and next state:
 
-<span class="figure">
 ![Recurse](./img/ana-op-before-hl-1.svg)
-</span>
 
 Let's call this single function `op` because I'm not above a little foreshadowing.
 
@@ -73,17 +69,13 @@ def unfold[A](
 
 `unfold` now looks like this suddenly much more familiar diagram:
 
-<span class="figure">
 ![Recurse](./img/ana-op-hl-1.svg)
-</span>
 
 ## Abstracting over structure
 
 While we're trying to force `ListF` into `unfold`, let's take a look at the other side of the diagram:
 
-<span class="figure">
 ![Recurse](./img/ana-embed-before.svg)
-</span>
 
 That's really a function that, given an optional head and tail (a `ListF`), turns it into a list.
 
@@ -136,17 +128,13 @@ def unfold[A](
 
 This results in a slightly more complex but, again, suspiciously familiar diagram:
 
-<span class="figure">
 ![Recurse](./img/ana-embed-hl-1.svg)
-</span>
 
 ## Using Functor
 
 Now that we've shoehorned a pattern functor in `unfold`, everything sort of falls together. Take a look at the central part of our diagram.
 
-<span class="figure">
 ![Recurse](./img/ana-functor-before.svg)
-</span>
 
 We're turning a `ListF[A]` into a `ListF[List]` by applying an `A => List` function to the `A`. This is functors all over again!
 
@@ -167,17 +155,13 @@ def unfold[A](
 
 This simplifies our diagram quite nicely:
 
-<span class="figure">
 ![Recurse](./img/ana-functor-hl-1.svg)
-</span>
 
 ## Abstracting over `ListF`
 
 We still have a few lose ends to tie up though. First, `ListF`:
 
-<span class="figure">
 ![Recurse](./img/ana-listf-before.svg)
-</span>
 
 This is very `List` specific, and we want it out. Luckily for us, the only thing we actually need to know about `ListF` is that we can call `map` on it - that it has a functor instance. We can replace it with a type parameter with the same constraints:
 
@@ -196,17 +180,13 @@ def unfold[F[_]: Functor, A](
 
 And this gets rid of `ListF` completely.
 
-<span class="figure">
 ![Recurse](./img/ana-listf-hl-1.svg)
-</span>
 
 ## Abstracting over `List`
 
 Finally, our `unfold` is still hard-coded to `List` as its output type.
 
-<span class="figure">
 ![Recurse](./img/ana-list-before.svg)
-</span>
 
 It really doesn't need to be though, since we never use the fact that we're working with a list - just a type that `op` and `embed` know how to work with.
 
@@ -227,9 +207,7 @@ def unfold[F[_]: Functor, A, B](
 
 And, finally, we don't have anything `List`-specific left in our `unfold`.
 
-<span class="figure">
 ![Recurse](./img/ana-list-hl-1.svg)
-</span>
 
 ## Naming things
 
@@ -277,9 +255,7 @@ mkString(ana(op, embed).apply("cata"))
 
 And now that we've named everything properly, we get the complete diagram for `ana`:
 
-<span class="figure">
 ![Recurse](./img/ana-coalgebra.svg)
-</span>
 
 ## `range` as an ana
 

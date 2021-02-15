@@ -9,9 +9,7 @@ In this last part of the series, we'll explore that similarity.
 
 If you look at `cata` and `ana` as diagrams, it's kind of hard to tell which is which:
 
-<span class="figure">
 ![Recurse](./img/cata-ana.svg)
-</span>
 
 We know that `cata` uses algebras and `ana` co-algebras, so the top part of the diagram is `cata` and the bottom one `ana`. But they do look very similar.
 
@@ -21,9 +19,7 @@ They are, in fact, similar in two distinct ways.
 
 The first way is more visible if you sort of flip the diagram for `ana` around - not changing its meaning, just the layout of the nodes:
 
-<span class="figure">
 ![Recurse](./img/cata-ana-dual.svg)
-</span>
 
 And if you look at it in that light, you can see that `ana` is just `cata`, but with the arrows "flipped": the same nodes, but arrows going in opposite directions.
 
@@ -35,9 +31,7 @@ This is the first way in `cata` and `ana` are similar - they're opposite of each
 
 But if `cata` and `ana` are duals of each other, it means that one starts where the other ends, doesn't it? It means we can compose them, such as by applying a `cata` to the result of an `ana`:
 
-<span class="figure">
 ![Recurse](./img/cata-ana-composition.svg)
-</span>
 
 For example, we can compose `range` and `product`.
 
@@ -68,17 +62,13 @@ showRange(3)
 
 Let's look at `showRange` in more details. Here's the corresponding diagram, with all concrete types and functions filled in:
 
-<span class="figure">
 ![Recurse](./img/show-range.svg)
-</span>
 
 If you look at the leftmost part of this diagram, you can see that there seems to be some unnecessary segments: we go from a `ListF[List]` to a `List` and back to a `ListF[List]`.
 
 Let's see if this intuition holds by looking at actual values. We're going to detail the steps of `showRange(3)`. According to our diagram, we'll start with `rangeCoAlgebra`:
 
-<span class="figure">
 ![Recurse](./img/show-range-step-by-step-2.svg)
-</span>
 
 Here's the code for that function:
 
@@ -98,9 +88,7 @@ Some((3, Some((2, Some((1, None))))) // rangeCoAlgebra
 
 According to our diagram, after doing some recursion magic via `map`, we need to apply `embed`:
 
-<span class="figure">
 ![Recurse](./img/show-range-step-by-step-3.svg)
-</span>
 
 Here's the code for `embed`, which tells us to map `Some` to `Cons`, `None` to `Nil` and leave the `head` alone:
 
@@ -120,9 +108,7 @@ Cons( 3, Cons( 2, Cons( 1, Nil )))   // embed
 
 Our next step is going to be `project`:
 
-<span class="figure">
 ![Recurse](./img/show-range-step-by-step-4.svg)
-</span>
 
 This essentially undoes what `embed` did: it maps `Cons` to `Some`, `Nil` to `None` and leaves the `head` alone:
 
@@ -144,9 +130,7 @@ Some((3, Some((2, Some((1, None))))) // project
 
 Finally, after running through some more recursive `map` magic, we need to apply `mkStringAlgebra`:
 
-<span class="figure">
 ![Recurse](./img/show-range-step-by-step-5.svg)
-</span>
 
 This tells us to map `Some` to `step`, `None` to `base` and leave the `head` alone:
 
@@ -177,21 +161,15 @@ step( 3, step( 2, step( 1, base)))   // mkStringAlgebra
 
 Which would be the following diagram:
 
-<span class="figure">
 ![Recurse](./img/show-range-shortcut.svg)
-</span>
 
 Let's make that diagram generic - replacing hard-coded things with parameters:
 
-<span class="figure">
 ![Recurse](./img/show-range-shortcut-step-11.svg)
-</span>
 
 You'd be forgiven for assuming I made a mistake and copied the diagram for `ana` here, but they are slightly different:
 
-<span class="figure">
 ![Recurse](./img/ana-coalgebra.svg)
-</span>
 
 Do you see the difference? It's just in the name of the last arrow. Our desired function has `algebra` where `ana` has `embed`.
 

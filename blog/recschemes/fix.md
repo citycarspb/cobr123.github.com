@@ -65,15 +65,11 @@ val ints2: List2 =
 
 And here's a potential visualisation of it, where `List2` itself is represented as a diamond:
 
-<span class="figure">
 ![List2](./img/list2.svg)
-</span>
 
 You can still view our original list in there:
 
-<span class="figure">
 ![List2 (hidden wrapper)](./img/list2-no-wrapper.svg)
-</span>
 
 `List2` is really just structure that we needed to appease the compiler and have him accept a recursive type definition. The entire structure of a list is in `ListF`: an optional `head` and `tail`.
 
@@ -180,9 +176,7 @@ def cataFix[F[_]: Functor, A, B](
 
 The first thing we'll do is change the input type, since we know it's not a `B` anymore:
 
-<span class="figure">
 ![cata without Fix](./img/catafix-init-hl-1.svg)
-</span>
 
 `cataFix` works specifically for data types expressed as `Fix[F]`, which means that `B` becomes `Fix[F]` everywhere:
 
@@ -200,17 +194,13 @@ def cataFix[F[_]: Functor, A](
 On the other hand, while it does remove elements from the diagram, things get a little bit mystical there:
 
 
-<span class="figure">
 ![cata with Fix](./img/catafix-no-b-hl-1.svg)
-</span>
 
 ## Projecting `Fix`
 
 The next step is to project our input type into its pattern functor:
 
-<span class="figure">
 ![cata with Fix](./img/catafix-no-b-hl-2.svg)
-</span>
 
 There are two ways to go about that.
 
@@ -268,17 +258,13 @@ def cataFix[F[_]: Functor, A](
 
 Which gives us the following diagram:
 
-<span class="figure">
 ![cata with Fix projection](./img/catafix-project-hl-1.svg)
-</span>
 
 ## Functor instance
 
 At this point, everything becomes a lot easier. We need to be able to run `map` on our pattern functor.
 
-<span class="figure">
 ![cata with Fix Functor](./img/catafix-project-hl-2.svg)
-</span>
 
 There's no additional work required here though: our pattern functor, by definition, already has a `Functor` instance. We already defined the functor instances of `ListF` and `TreeF`, we don't have to do it again.
 
@@ -286,9 +272,7 @@ There's no additional work required here though: our pattern functor, by definit
 
 Similarly, we don't need to redefine F-Algebras: they work on the pattern functor directly, which is what we have at this stage.
 
-<span class="figure">
 ![cata with Fix F-Algebra](./img/catafix-project-hl-3.svg)
-</span>
 
 We can reuse all the F-Algebras that we have defined earlier without any additional change.
 

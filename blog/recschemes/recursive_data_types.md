@@ -7,15 +7,11 @@ You probably already know about recursive functions - function that call themsel
 
 The simplest one I can think of is the humble linked list - which proper functional programmers call the _cons_ list because why not.
 
-<span class="figure">
 ![List](./img/list.svg)
-</span>
 
 The simplest possible list is the empty one, which we call `Nil`:
 
-<span class="figure">
 ![Nil](./img/list-nil.svg)
-</span>
 
 
 A non-empty list is a `Cons`, which is composed of:
@@ -23,9 +19,7 @@ A non-empty list is a `Cons`, which is composed of:
 - the first value in the list, which we call the `head`.
 - a reference to the rest of the list, which we call the `tail`.
 
-<span class="figure">
 ![Cons](./img/list-1.svg)
-</span>
 
 `tail` is the recursive part: a non-empty list contains a smaller list, which might be empty or non empty.
 

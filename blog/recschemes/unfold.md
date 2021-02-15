@@ -31,9 +31,7 @@ def recurse(
 
 Here's a diagram that represents how `charCodes` behaves:
 
-<span class="figure">
 ![Recurse](./img/unfold-init.svg)
-</span>
 
 We first check whether the input string is empty. If it's not, we extract its head (as an int) and tail, then recurse on the later to get the tail of our new list.
 
@@ -44,9 +42,7 @@ Finally, we create a new list from that optional head and tail.
 
 Our first step is going to be to generalise that `nonEmpty` predicate:
 
-<span class="figure">
 ![Recurse](./img/unfold-predicate-before.svg)
-</span>
 
 As we did before for `fold`, this is relatively straightforward. We'll start by creating a `predicate` function that does the same thing:
 
@@ -70,17 +66,13 @@ def recurse(
 
 This is already a significant improvement: we have removed some hard-coded magic.
 
-<span class="figure">
 ![Recurse](./img/unfold-predicate-before-2.svg)
-</span>
 
 ## Generalising the update
 
 The next step is to take care of the hard-coded bit that turns a string into its head and tail.
 
-<span class="figure">
 ![Recurse](./img/unfold-update-before.svg)
-</span>
 
 We can do so by extracting the logic into a function that takes a `String` and splits it into a tuple:
 
@@ -107,17 +99,13 @@ def recurse(
 
 And we've now gotten rid of all the hard-coded value-level bits:
 
-<span class="figure">
 ![Recurse](./img/unfold-update-before-2.svg)
-</span>
 
 ## Generalising the input type
 
 We're still limited to taking strings as input, though.
 
-<span class="figure">
 ![Recurse](./img/unfold-input-before.svg)
-</span>
 
 Luckily, this can easily be worked around: we never actually use the fact that our state is a string. Our only requirement is that it's the same type that's manipulated by `predicate` and `update`, which we can express through a type parameter:
 
@@ -137,9 +125,7 @@ def recurse[A](
 
 We now have a new `recurse` function that abstracts over its input type, predicate and update functions.
 
-<span class="figure">
 ![Recurse](./img/unfold-input-before-2.svg)
-</span>
 
 ## Simplifying the step
 
@@ -165,9 +151,7 @@ def recurse[A](
 
 This yields the final diagram for our `recurse` function:
 
-<span class="figure">
 ![Recurse](./img/unfold-loop.svg)
-</span>
 
 ## Dropping parameters
 

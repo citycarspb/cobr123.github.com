@@ -29,9 +29,7 @@ Our task, then, is to try and remove everything that's directly linked to `List`
 
 Let's first look at the part that works specifically on the structure of a list:
 
-<span class="figure">
 ![Hard-coded structure](./img/cata-1-hl-1.svg)
-</span>
 
 This takes a `List` and follows its structure to get a `Cons` or `Nil`, but an alternative way of looking at that is: we're either getting a `head` and a `tail`... or we're not. And Scala has a type meant to represent this potential absence of data: `Option`.
 
@@ -67,9 +65,7 @@ def fold[A](
 
 This does, however, make our graphical view of `fold`'s behaviour a bit more complicated:
 
-<span class="figure">
 ![Projection](./img/cata-2-hl-1.svg)
-</span>
 
 A word of warning: things are going to get quite a bit worse before they get better. This diagram is going to keep growing for a bit, but if you bear with me, it *will* get a lot better.
 
@@ -83,9 +79,7 @@ When you introduce a new type, it's always a good idea to check whether it appea
 And, in our case, option of `head` and `tail` does appear again, albeit in a slightly less obvious way:
 
 
-<span class="figure">
 ![Projection](./img/cata-2-hl-2.svg)
-</span>
 
 `step` takes a `head` and a `tail`, and `base` takes nothing - we could sort of merge them together to get a function that takes an optional `head` and `tail`.
 
@@ -137,9 +131,7 @@ fold(op, project)(ints)
 
 But the resulting diagram is slightly disappointing:
 
-<span class="figure">
 ![Op, step 1](./img/cata-3-hl-1.svg)
-</span>
 
 The fact that `op` appears twice is a little bit unpleasant.
 
@@ -163,17 +155,13 @@ def fold[A](
 
 This yields the following diagram, which is a bit busier but makes the presence of our optional `head` and `tail` explicit:
 
-<span class="figure">
 ![Op, step 2](./img/cata-4-hl-1.svg)
-</span>
 
 ## Intermediate representation
 
 Let's take a little time to think about that optional `head` and `tail`. I've been saying `tail` in a bit of a hand-wavy fashion, but that's not quite correct, is it?
 
-<span class="figure">
 ![Option of head, tail](./img/cata-4-hl-2.svg)
-</span>
 
 On the left-hand side, we do have the tail of a list. But on the right-hand side, we have an `A`. This is not the tail of a list anymore, so what does it represent?
 
@@ -241,17 +229,13 @@ def fold[A](
 
 Which is a first step towards making our diagram slightly less noisy:
 
-<span class="figure">
 ![ListF of tail](./img/cata-5-hl-1.svg)
-</span>
 
 ## Generalising recursion
 
 Now that we've done all that, I'd like you to take a look at the following part of the diagram:
 
-<span class="figure">
 ![Does this look familiar?](./img/cata-5-hl-2.svg)
-</span>
 
 Does it look in any way familiar? You go from a `ListF[List]` to a `ListF[A]` by applying a mess of code that essentially boils down to `loop` - a function from `List` to `A`.
 
@@ -368,9 +352,7 @@ def fold[A](
 
 Which simplifies our diagram quite a bit:
 
-<span class="figure">
 ![Functor included](./img/cata-6-hl-1.svg)
-</span>
 
 Now, people that are already familiar with functors are probably also aware that the polymorphic list, `List[A]`, has a functor instance: given a `List[A]` and an `A => B`, you can get a `List[B]`.
 
@@ -385,9 +367,7 @@ In `ListF[A]`, `A` is the type of the value we use to represent the tail of a li
 
 We're not quite done yet: `fold` still relies on `ListF`, which is strongly tied to the structure of a list.
 
-<span class="figure">
 ![ListF](./img/cata-6-hl-2.svg)
-</span>
 
 If we look at the code though, the only thing we actually need to know about `ListF` is that we can call `map` on it - that it has a `Functor` instance. This allows us to rewrite `fold` in a way that works for any type constructor `F` that has a `Functor` instance:
 
@@ -406,17 +386,13 @@ def fold[F[_]: Functor, A](
 
 This gives us `ListF`-free implementation:
 
-<span class="figure">
 ![Generalised ListF](./img/cata-7-hl-1.svg)
-</span>
 
 ## Abstracting over `List`
 
 Finally, the last step is abstracting over `List`, which is still the input type of our generic `fold`:
 
-<span class="figure">
 ![List](./img/cata-7-hl-2.svg)
-</span>
 
 That turns out to be much simpler than we might have though: we never actually use the fact that we're working with a `List`. All we need to know about that type is that we can provide a valid `project` for it. This allows us to turn `List` into a type parameter:
 
@@ -435,9 +411,7 @@ def fold[F[_]: Functor, A, B](
 
 Which gives us a `List`-free implementation:
 
-<span class="figure">
 ![Generalised List](./img/cata-8-hl-1.svg)
-</span>
 
 ## Naming things
 
@@ -479,9 +453,7 @@ We've seen that the pattern functor could be thought of as a representation of i
 
 Having named everything, we get this final representation of a catamorphism:
 
-<span class="figure">
 ![Catamorphism](./img/cata-9.svg)
-</span>
 
 ## `product` as a cata
 
