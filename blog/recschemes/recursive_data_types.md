@@ -4,29 +4,29 @@
 
 #Рекурсивные типы данных
 
-Before we can talk about recursion schemes, we need to start at the beginning. The very first step is to understand what recursive data types are.
+Прежде чем мы сможем говорить о схемах рекурсии, нам нужно начать с самого начала. Самый первый шаг - понять, что такое рекурсивные типы данных.
 
-You probably already know about recursive functions - function that call themselves. Recursive data types are the same: types that contain themselves.
+Вы, наверное, уже знаете о рекурсивных функциях - функциях, которые вызывают сами себя. Рекурсивные типы данных такие же: типы, которые содержат сами себя.
 
-The simplest one I can think of is the humble linked list - which proper functional programmers call the _cons_ list because why not.
+Самый простой, который я могу придумать, - это скромный связанный список, который правильные функциональные программисты называют _cons_, потому что почему бы и нет.
 
 ![List](./img/list.svg)
 
-The simplest possible list is the empty one, which we call `Nil`:
+Самый простой список из возможных - пустой, который мы называем `Nil`:
 
 ![Nil](./img/list-nil.svg)
 
 
-A non-empty list is a `Cons`, which is composed of:
+Непустой список - это `Cons`, который состоит из:
 
-- the first value in the list, which we call the `head`.
-- a reference to the rest of the list, which we call the `tail`.
+- первое значение в списке, которое мы называем `head`
+- ссылка на остальную часть списка, которую мы называем `tail`
 
 ![Cons](./img/list-1.svg)
 
-`tail` is the recursive part: a non-empty list contains a smaller list, which might be empty or non empty.
+`tail` является рекурсивной частью: непустой список содержит меньший список, который может быть пустым или непустым.
 
-This list can be easily encoded in Scala - we'll make it monorphic to make things even simpler:
+Этот список можно легко закодировать в Scala - мы сделаем его мономорфным, чтобы все было еще проще:
 
 ```scala
 sealed trait List
@@ -39,16 +39,16 @@ case class Cons(
 case object Nil extends List
 ```
 
-And here's how you create values of that type:
+И вот как вы создаете значения этого типа:
 
 ```scala
 val ints: List =
   Cons(3, Cons(2, Cons(1, Nil)))
 ```
 
-It's not great - you have to squint a little bit to see where your data is. Value creation is always a little bit cumbersome when working with recursive data types, but there are solutions for this that we'll discuss a little bit later.
+Это не здорово - нужно немного прищуриться, чтобы увидеть, где находятся ваши данные. Создание значения всегда немного обременительно при работе с рекурсивными типами данных, но для этого есть решения, которые мы обсудим немного позже.
 
-Now that we know what recursive data types are, our next step is to do interesting things with them.
+Теперь, когда мы знаем, что такое рекурсивные типы данных, наш следующий шаг - заняться с ними чем-нибудь интересным.
 
 [Назад](./introduction.md) | [Оглавление](./index.md) | [Дальше](./structural_recursion.md)
 
