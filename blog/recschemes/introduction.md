@@ -2,25 +2,25 @@
 
 [Оглавление](./index.md) | [Дальше](./recursive_data_types.md)
 
-The purpose of this article is not for you to learn about recursion schemes - although that'd be a nice side effect. This is really more of a revenge story.
+Цель этой статьи не в том, чтобы вы узнали о схемах рекурсии - хотя это был бы хороший побочный эффект. В действительности это больше история мести.
 
-See, a few years ago, I was learning about functional programming. It takes a while, there's a lot of new concept to learn and old ones to unlearn, but I finally got to a place where I felt I knew - not everything I needed, certainly, but at least enough to start writing code I didn't have to be ashamed of.
+Понимаете, несколько лет назад я изучал функциональное программирование. Это занимает время, нужно изучить много новых концепций и отучиться от старых, но я наконец добрался до того места, где, как мне казалось, я знал - не все, что мне было нужно, конечно, но, по крайней мере, достаточно, чтобы начать писать код, за который мне не должно было быть стыдно.
 
-But then about 5 minutes later, a friend of mine came to me and asked _Do you know about recursion schemes?_, to which I had to confess that I didn't even understand all the words in that question. And so I started studying again, and after a while, I came to the conclusion that... well, recursion schemes are a bit rubbish, really.
+Но затем, примерно через 5 минут, ко мне подошел мой друг и спросил: _«Ты знаешь о схемах рекурсии?»_, На что мне пришлось признаться, что я даже не все слова понял в этом вопросе. Итак, я снова начал учиться и через некоторое время пришел к выводу, что ... ну, схемы рекурсии на самом деле немного вздор.
 
-They sound incredibly pretentious, are surprisingly hard to put together, and all for a payoff that is somewhat undewhelming. The standard pitch goes something like:
+Они звучат невероятно претенциозно, их на удивление сложно собрать воедино, и все это приносит не очень впечатляющую отдачу. Стандартная презентация выглядит примерно так:
 
-> If you want to write an interpreter for a simple mathematical expression language, then using recursion schemes is almost as good as not using them.
+> Если вы хотите написать интерпретатор для простого языка математических выражений, то использование схем рекурсии почти так же хорошо, как и не использовать их.
 
-I didn't find that compelling.
+Я не нашел это убедительным.
 
-So I went to my friend and told him all that, but he answered _no but you don't understand - you can't be a proper functional programmer if you don't understand recursion schemes_. Which I felt was a bit of a low blow, because I dearly want to be a proper functional programmer!
+Поэтому я пошел к своему другу и рассказал ему об этом, но он ответил: _«Нет, ты не понимаешь - ты не можешь быть полноценным функциональным программистом, если не понимаешь схемы рекурсии»_. Что, по моему мнению, было для меня ударом ниже пояса, потому что я очень хочу быть полноценным функциональным программистом!
 
-So I went back to studying, and after a while, came to a new conclusion: the problem, in my case, was not recursion schemes, but the way they are taught. They're a beautiful theorical construct, and are almost always approached that way - but that's not how I work. I need to understand why something is useful before I can devote that much brain power to the underlying theory.
+Итак, я вернулся к учебе и через некоторое время пришел к новому выводу: в моем случае проблема заключалась не в схемах рекурсии, а в том, как их преподают. Это красивая теоретическая конструкция, и к ней почти всегда подходят именно так, но я работаю не так. Мне нужно понять, почему что-то полезно, прежде чем я смогу посвятить столько умственных усилий лежащей в основе теории.
 
-This article is the result of that conclusion - the introduction material I wish I'd found when I started out. And my promise to you is: once you're done reading, you will, through the prism of two simple recursion schemes, understand the purpose of all the others, and how to study and create them by yourselves.
+Эта статья является результатом этого вывода - вводного материала, который я хотел бы найти, когда начинал. И я обещаю вам: как только вы закончите читать, вы через призму двух простых схем рекурсии поймете цель всех остальных, а также то, как изучать и создавать их самостоятельно.
 
-Oh, and of course, you, too, will be a proper functional programmer.
+Да, и конечно же, вы будете полноценными функциональными программистами.
 
 [Оглавление](./index.md) | [Дальше](./recursive_data_types.md)
 
