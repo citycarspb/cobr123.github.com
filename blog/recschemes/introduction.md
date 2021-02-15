@@ -1,9 +1,3 @@
----
-title: Introduction
-layout: article
-sequence: 0
----
-
 The purpose of this article is not for you to learn about recursion schemes - although that'd be a nice side effect. This is really more of a revenge story.
 
 See, a few years ago, I was learning about functional programming. It takes a while, there's a lot of new concept to learn and old ones to unlearn, but I finally got to a place where I felt I knew - not everything I needed, certainly, but at least enough to start writing code I didn't have to be ashamed of.
@@ -23,3 +17,6 @@ So I went back to studying, and after a while, came to a new conclusion: the pro
 This article is the result of that conclusion - the introduction material I wish I'd found when I started out. And my promise to you is: once you're done reading, you will, through the prism of two simple recursion schemes, understand the purpose of all the others, and how to study and create them by yourselves.
 
 Oh, and of course, you, too, will be a proper functional programmer.
+
+
+This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

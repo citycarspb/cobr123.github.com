@@ -1,9 +1,3 @@
----
-title: Strutural recursion
-layout: article
-sequence: 2
----
-
 Now that we have our recursive data type - the monomorphic list - we can start working with it. Intuitively, you can see that if we're working with recursive types, we're probably going to look at recursive algorithms.
 
 There are different common strategies to manipulate recursive types, each meant to solve a specific kind of problem. The one we're going to concern ourselves with first, by far the most common, is structural recursion: a form of recursion where you let the structure of your type drive you.
@@ -70,3 +64,6 @@ These are the important parts of structural recursion:
 If these make you think of proof by induction, this is of course not at all a coincidence.
 
 Since structural recursion is composed of a set of well-defined moving parts, our next task is going to be to abstract the common code away and allow coders to only worry about the interesting bits.
+
+
+This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

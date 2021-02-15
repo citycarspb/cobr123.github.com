@@ -1,9 +1,3 @@
----
-title: Generalised cata and ana
-layout: article
-sequence: 10
----
-
 We've seen that generalised folds (`cata`) and generalised unfolds (`ana`) seemed eerily similar.
 
 In this last part of the series, we'll explore that similarity.
@@ -315,3 +309,6 @@ This is the crucial distinction between `ana`, `cata` and `hylo`:
 * `cata` is a specialised kind of `hylo` used to collapse a recursive data type onto itself.
 * `ana` is a specialised kind of `hylo` used to blow a value into a recursive data type.
 * `hylo` is both of these things, generalised arguably further than is strictly sane.
+
+
+This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

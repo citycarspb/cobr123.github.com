@@ -1,9 +1,3 @@
----
-title: Generalised unfolds
-layout: article
-sequence: 9
----
-
 We have implemented a generalised generative recursion function for lists, `unfold`. Our task it to now turn it into a proper recursion scheme: generative recursion that works for *any* recursive data type.
 
 ## Generalised unfolds
@@ -312,3 +306,6 @@ mkString(range(3))
 We've seen that anamorphisms were generalised unfolds for types that could be embedded from a pattern functor, and that inventing them was mostly a matter of forcing a pattern functor in a non-general `unfold`.
 
 Something that's a bit surprising is how similar to catamorphisms they end up looking, though. There's clearly some interesting thread to pull there.
+
+
+This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

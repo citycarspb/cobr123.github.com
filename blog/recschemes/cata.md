@@ -1,9 +1,3 @@
----
-title: Generalised folds
-layout: article
-sequence: 4
----
-
 We've generalised structural recursion, but for `List` only. Let's now tackle the task of generalising `fold` - generalising generalised structural recursion, as it were.
 
 ## Generalised folds
@@ -512,3 +506,6 @@ product(ints)
 We've seen that catamorphisms are far less complicated than their names make them out to be: a relatively straightforward refactoring away from familiar folds. And they would, in theory, allow us to write structural recursion algorithms on any type that can be projected into a pattern functor.
 
 It's a bit of a shame that the only type we've seen that work on is `List`, then, isn't it?
+
+
+This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

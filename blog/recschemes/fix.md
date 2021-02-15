@@ -1,9 +1,3 @@
----
-title: Reducing the boilerplate
-layout: article
-sequence: 6
----
-
 We've seen that making a data type "catamorphism-ready" was a lot of busywork:
 - write the data type.
 - write its pattern functor, which involves a lot of copy / pasting.
@@ -399,3 +393,6 @@ Here's my (admittedly snarky) take on `Fix`. Using it makes:
 - little sense.
 
 It's unfortunate that virtually every blog post or article explaining recursion schemes will do so through `Fix`, because on top of not being a requirement, it's not even a good idea!
+
+
+This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

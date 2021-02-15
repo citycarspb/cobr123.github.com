@@ -1,9 +1,3 @@
----
-title: Generalised generative recursion
-layout: article
-sequence: 8
----
-
 Now that we understand what generative recursion is, we're going to generalise an existing generative recursion function so that it can be used to express all others.
 
 ## Generalising `charCodes`
@@ -253,3 +247,6 @@ mkString(range(3))
 We've seen that generative recursion was straightforward to generalise: turn its predicate and update function into parameters.
 
 This allows us to have a general generative recursion function, `unfold`. General, that is, provided you're working with `List` as output...
+
+
+This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

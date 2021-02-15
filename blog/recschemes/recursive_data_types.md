@@ -1,9 +1,3 @@
----
-title: Recursive data types
-layout: article
-sequence: 1
----
-
 Before we can talk about recursion schemes, we need to start at the beginning. The very first step is to understand what recursive data types are.
 
 You probably already know about recursive functions - function that call themselves. Recursive data types are the same: types that contain themselves.
@@ -55,3 +49,6 @@ val ints: List =
 It's not great - you have to squint a little bit to see where your data is. Value creation is always a little bit cumbersome when working with recursive data types, but there are solutions for this that we'll discuss a little bit later.
 
 Now that we know what recursive data types are, our next step is to do interesting things with them.
+
+
+This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

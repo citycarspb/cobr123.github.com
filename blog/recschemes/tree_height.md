@@ -1,9 +1,3 @@
----
-title: Can this be applied to other types?
-layout: article
-sequence: 5
----
-
 We've seen that structural recursion could be generalised to catamorphisms, and that these are, in theory, capable of working with any type that can be projected into a pattern functor.
 
 So far however, we've only seen `List`. We're going to take a look at another recursive data type, with two goals in mind:
@@ -234,3 +228,6 @@ height(intTree)
 It does seem that catamorphisms work for more types than just the monomorphic list. But... it certainly involves a lot of busywork, doesn't it?
 
 Next, we'll be looking at an unfortunately popular technique for addressing this issue.
+
+
+This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

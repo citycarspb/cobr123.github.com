@@ -1,9 +1,3 @@
----
-title: Generative recursion
-layout: article
-sequence: 7
----
-
 So far, we have taken a common recursive pattern, structural recursion, and generalised it into a recursion scheme known as a catamorphism. We achieved this through a little bit of creative refactoring and relying heavily on the notion of pattern functor.
 
 I would like to show you that this is basically all you need to know to come up with other recursion schemes.
@@ -84,3 +78,6 @@ It's composed of two main parts:
   - the updated state from which to keep recursing.
 
 Knowing these common parts, it'd be nice to generalise generative recursion to parameterize them.
+
+
+This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

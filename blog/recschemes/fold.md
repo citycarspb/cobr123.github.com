@@ -1,9 +1,3 @@
----
-title: Generalised structural recursion
-layout: article
-sequence: 3
----
-
 We've seen that structural recursion involved a few common components. Our goal, for the moment, is to abstract these components away and provide a general structural recursion function.
 
 ## Generalising `mkString`
@@ -258,3 +252,6 @@ val product: List => Int =
 We've seen that generalising structural recursion was a relatively straightforward task: simply make all key components parameters, and everything just sort of works out.
 
 Well. Provided you don't mind hard-coding your implementation to the structure of a specific type, that is. Our `fold` works for lists, but that's it. We should try to do something about that.
+
+
+This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
