@@ -203,7 +203,7 @@ height(intTree)
 // res20: Int = 3
 ```
 
-## Key takeaways
+## Ключевые выводы
 
 It does seem that catamorphisms work for more types than just the monomorphic list. But... it certainly involves a lot of busywork, doesn't it?
 

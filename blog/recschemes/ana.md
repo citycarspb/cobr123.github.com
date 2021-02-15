@@ -283,7 +283,7 @@ mkString(range(3))
 // res39: String = 3 :: 2 :: 1 :: nil
 ```
 
-## Key takeaways
+## Ключевые выводы
 
 We've seen that anamorphisms were generalised unfolds for types that could be embedded from a pattern functor, and that inventing them was mostly a matter of forcing a pattern functor in a non-general `unfold`.
 

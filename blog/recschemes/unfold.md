@@ -232,7 +232,7 @@ mkString(range(3))
 // res32: String = 3 :: 2 :: 1 :: nil
 ```
 
-## Key takeaways
+## Ключевые выводы
 
 We've seen that generative recursion was straightforward to generalise: turn its predicate and update function into parameters.
 

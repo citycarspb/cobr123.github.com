@@ -277,7 +277,7 @@ Surprising, isn't it? `hylo` and `cata` are *also* the same thing.
 
 This is the second way in which `cata` and `ana` are similar: they're *the same thing*.
 
-## Key takeaways
+## Ключевые выводы
 
 We've seen that `cata` an `ana` were similar in two distinct way:
 * they are duals of each other - they're doing opposite things.

@@ -4,13 +4,13 @@
 
 #Структурная рекурсия
 
-Now that we have our recursive data type - the monomorphic list - we can start working with it. Intuitively, you can see that if we're working with recursive types, we're probably going to look at recursive algorithms.
+Теперь, когда у нас есть рекурсивный тип данных - мономорфный список - мы можем начать с ним работать. Интуитивно вы можете видеть, что если мы работаем с рекурсивными типами, мы, вероятно, обратимся к рекурсивным алгоритмам.
 
-There are different common strategies to manipulate recursive types, each meant to solve a specific kind of problem. The one we're going to concern ourselves with first, by far the most common, is structural recursion: a form of recursion where you let the structure of your type drive you.
+Существуют различные общие стратегии управления рекурсивными типами, каждая из которых предназначена для решения определенного типа задач. В первую очередь мы рассмотрим структурную рекурсию, которая является наиболее распространенной: это форма рекурсии, в которой вы позволяете структуре вашего типа направлять вас.
 
-## Product
+## Произведение
 
-We could, for example, compute the product of our list. Here's a naive implementation:
+Мы могли бы, например, вычислить произведение нашего списка. Вот наивная реализация:
 
 ```scala
 def product(
@@ -22,13 +22,13 @@ def product(
   }
 ```
 
-Purist will complain that, for large enough lists, this will cause runtime exceptions: this implementation is what we call stack unsafe, because each step in the recursion consumes a stack frame, and we'll eventually consume more than are available. There are solutions to this problem, but they can make the code a bit awkward, so for the sake of clarity, we'll pretend that problems of stack do not exist.
+Пуристы будут жаловаться, что для достаточно больших списков это вызовет исключение во время выполнения: эту реализацию мы называем небезопасной для стека, потому что каждый шаг в рекурсии потребляет фрейм стека, и в конечном итоге мы потребляем больше, чем доступно. У этой проблемы есть решения, но они могут сделать код немного неудобным, поэтому для ясности мы сделаем вид, что проблем со стеком не существует.
 
-This function follows the structure of its input list:
-- if we have a `Cons`, multiply the `head` by the product of the `tail`.
-- if we have `Nil`, use the neutral element for product: `1`.
+Эта функция следует структуре своего входного списка:
+- если встретили `Cons`, умножаем `head` на произведение `tail`.
+- если встретили `Nil`, используем нейтральный элемент для умножения: `1`.
 
-This eventually turns our list into `3 * 2 * 1 * 1`, which is exactly the result we were looking for:
+Это в конечном итоге превращает наш список в `3 * 2 * 1 * 1`, это именно тот результат, который мы искали:
 
 ```scala
 product(ints)
@@ -36,13 +36,13 @@ product(ints)
 ```
 
 
-And if you look at this from a higher perspective, what we're doing is:
-- providing a solution to the smallest possible problem, the empty list.
-- splitting larger problems into smaller chunks: a smaller list (the `tail`), and additional data (the `head`).
+И если вы посмотрите на это с более высокой точки зрения, мы делаем следующее:
+- предоставляем решение малейшей возможной задачи, пустой список
+- остальное разбиваем на более мелкие части: меньший список (`tail`), и дополнительные данные (`head`).
 
-## String representation
+## Строковое представление
 
-This pattern comes up all the time. Imagine, for example, that you wanted to compute the string representation of a list.
+Этот шаблон возникает постоянно. Представьте, например, что вы хотите вычислить строковое представление списка.
 
 ```scala
 def mkString(
@@ -54,22 +54,22 @@ def mkString(
   }
 ```
 
-We're doing exactly the same thing:
-- the solution for `Nil` is `"nil"`.
-- larger lists are split into their `head` and `tail`, and we concatenate their respective string representations, separated by `" :: "`.
+Мы делаем то же самое:
+- решение для `Nil` это `"nil"`
+- остальное разбивается на `head` и `tail`, и мы объединяем их соответствующие строковые представления, разделенные`" :: "`
 
 
-## Key takeaways
+## Ключевые выводы
 
-These are the important parts of structural recursion:
-- the smallest possible problem, which we must provide a solution to.
-- larger problems, themselves composed of:
-  - a smaller problem, which we assume we have a solution to.
-  - additional information, which we use to update the solution to the smaller problem.
+Важные части структурной рекурсии:
+- наименьшая возможная задача, которую мы должны решить
+- остальные задачи состоят из:
+  - меньшая задача, которую мы предполагаем, что у нас есть решение
+  - дополнительная информация, которую мы используем для обновления решения меньшей задачи
 
-If these make you think of proof by induction, this is of course not at all a coincidence.
+Если это заставляет вас думать о доказательстве по индукции, это, конечно, вовсе не совпадение.
 
-Since structural recursion is composed of a set of well-defined moving parts, our next task is going to be to abstract the common code away and allow coders to only worry about the interesting bits.
+Поскольку структурная рекурсия состоит из набора четко определенных частей, наша следующая задача будет заключаться в том, чтобы абстрагироваться от общего кода и позволить себе сконцентрироваться только на интересном.
 
 [Назад](./recursive_data_types.md) | [Оглавление](./index.md) | [Дальше](./fold.md)
 

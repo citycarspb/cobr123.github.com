@@ -73,7 +73,7 @@ mkString(charCodes("cata"))
 // res25: String = 99 :: 97 :: 116 :: 97 :: nil
 ```
 
-## Key takeaways
+## Ключевые выводы
 
 Generative recursion is a recursive pattern used to create values of recursive data types.
 

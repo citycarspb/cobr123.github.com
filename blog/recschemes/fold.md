@@ -237,7 +237,7 @@ val product: List => Int =
   )
 ```
 
-## Key takeaways
+## Ключевые выводы
 
 We've seen that generalising structural recursion was a relatively straightforward task: simply make all key components parameters, and everything just sort of works out.
 

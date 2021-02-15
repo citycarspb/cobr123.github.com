@@ -367,7 +367,7 @@ val list:      List =
 
 That is unarguably worse - and we already thought that the original way of creating values was too noisy!
 
-## Key takeaways
+## Ключевые выводы
 
 We've seen that we could use `Fix` to simplify a few things - for data type authors. As a data type author, I do not have to write my type *and* its pattern functor, nor the projection of the former into the later. Using `Fix` made my life better.
 

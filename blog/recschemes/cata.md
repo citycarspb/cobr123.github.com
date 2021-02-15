@@ -479,7 +479,7 @@ product(ints)
 // res19: Int = 6
 ```
 
-## Key takeaways
+## Ключевые выводы
 
 We've seen that catamorphisms are far less complicated than their names make them out to be: a relatively straightforward refactoring away from familiar folds. And they would, in theory, allow us to write structural recursion algorithms on any type that can be projected into a pattern functor.
 
