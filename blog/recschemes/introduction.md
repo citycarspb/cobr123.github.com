@@ -1,5 +1,6 @@
 [English version (origin)](https://nrinaudo.github.io/recschemes/introduction.html)
 
+[Оглавление](./index.md) | [Дальше](./recursive_data_types.md)
 
 The purpose of this article is not for you to learn about recursion schemes - although that'd be a nice side effect. This is really more of a revenge story.
 

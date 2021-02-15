@@ -1,5 +1,6 @@
 [English version (origin)](https://nrinaudo.github.io/recschemes/recursive_data_types.html)
 
+[Назад](./introduction.md) | [Оглавление](./index.md) | [Дальше](./structural_recursion.md)
 
 Before we can talk about recursion schemes, we need to start at the beginning. The very first step is to understand what recursive data types are.
 

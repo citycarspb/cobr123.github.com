@@ -1,5 +1,6 @@
 [English version (origin)](https://nrinaudo.github.io/recschemes/conclusion.html)
 
+[Назад](./hylo.md) | [Оглавление](./index.md)
 
 To conclude this series of articles, I'd like to point out that I delivered on the promise I made in the [introduction](./introduction).
 

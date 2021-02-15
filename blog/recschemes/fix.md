@@ -1,5 +1,6 @@
 [English version (origin)](https://nrinaudo.github.io/recschemes/fix.html)
 
+[Назад](./tree_height.md) | [Оглавление](./index.md) | [Дальше](./generative_recursion.md)
 
 We've seen that making a data type "catamorphism-ready" was a lot of busywork:
 - write the data type.

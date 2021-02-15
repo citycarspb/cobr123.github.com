@@ -1,5 +1,6 @@
 [English version (origin)](https://nrinaudo.github.io/recschemes/tree_height.html)
 
+[Назад](./cata.md) | [Оглавление](./index.md) | [Дальше](./fix.md)
 
 We've seen that structural recursion could be generalised to catamorphisms, and that these are, in theory, capable of working with any type that can be projected into a pattern functor.
 

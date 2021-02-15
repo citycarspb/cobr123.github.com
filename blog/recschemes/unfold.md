@@ -1,5 +1,6 @@
 [English version (origin)](https://nrinaudo.github.io/recschemes/unfold.html)
 
+[Назад](./generative_recursion.md) | [Оглавление](./index.md) | [Дальше](./ana.md)
 
 Now that we understand what generative recursion is, we're going to generalise an existing generative recursion function so that it can be used to express all others.
 

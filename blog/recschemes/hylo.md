@@ -1,5 +1,6 @@
 [English version (origin)](https://nrinaudo.github.io/recschemes/hylo.html)
 
+[Назад](./ana.md) | [Оглавление](./index.md) | [Дальше](./conclusion.md)
 
 We've seen that generalised folds (`cata`) and generalised unfolds (`ana`) seemed eerily similar.
 
