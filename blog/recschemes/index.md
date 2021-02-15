@@ -7,10 +7,10 @@
 - [Обобщённая свёртка](./cata.md)
 - [Это можно применить к другим типам?](./tree_height.md)
 - [Уменьшение шаблонного кода](./fix.md)
-- [Generative recursion](./generative_recursion.md)
-- [Generalised generative recursion](./unfold.md)
-- [Generalised unfolds](./ana.md)
-- [Generalised cata and ana](./hylo.md)
+- [Генеративная рекурсия](./generative_recursion.md)
+- [Обобщённая генеративная рекурсия](./unfold.md)
+- [Обобщённая развёртка](./ana.md)
+- [Обобщённая свёртка и развёртка](./hylo.md)
 - [Заключение](./conclusion.md)
 
 
