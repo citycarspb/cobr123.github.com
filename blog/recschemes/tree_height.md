@@ -206,5 +206,6 @@ It does seem that catamorphisms work for more types than just the monomorphic li
 
 Next, we'll be looking at an unfortunately popular technique for addressing this issue.
 
+[Назад](./cata.md) | [Оглавление](./index.md) | [Дальше](./fix.md)
 
 This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

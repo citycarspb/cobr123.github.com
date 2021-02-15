@@ -286,5 +286,6 @@ We've seen that anamorphisms were generalised unfolds for types that could be em
 
 Something that's a bit surprising is how similar to catamorphisms they end up looking, though. There's clearly some interesting thread to pull there.
 
+[Назад](./unfold.md) | [Оглавление](./index.md) | [Дальше](./hylo.md)
 
 This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

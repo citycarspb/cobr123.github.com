@@ -240,5 +240,6 @@ We've seen that generalising structural recursion was a relatively straightforwa
 
 Well. Provided you don't mind hard-coding your implementation to the structure of a specific type, that is. Our `fold` works for lists, but that's it. We should try to do something about that.
 
+[Назад](./structural_recursion.md) | [Оглавление](./index.md) | [Дальше](./cata.md)
 
 This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

@@ -11,5 +11,6 @@ And of course, I've given you one further, very important tool: `Fix` - in that,
 
 At this point, I believe my work here is done. I dub thee all _proper functional programmers_, and bid you a good day.
 
+[Назад](./hylo.md) | [Оглавление](./index.md)
 
 This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

@@ -47,5 +47,6 @@ It's not great - you have to squint a little bit to see where your data is. Valu
 
 Now that we know what recursive data types are, our next step is to do interesting things with them.
 
+[Назад](./introduction.md) | [Оглавление](./index.md) | [Дальше](./structural_recursion.md)
 
 This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.

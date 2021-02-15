@@ -291,5 +291,6 @@ This is the crucial distinction between `ana`, `cata` and `hylo`:
 * `ana` is a specialised kind of `hylo` used to blow a value into a recursive data type.
 * `hylo` is both of these things, generalised arguably further than is strictly sane.
 
+[Назад](./ana.md) | [Оглавление](./index.md) | [Дальше](./conclusion.md)
 
 This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
