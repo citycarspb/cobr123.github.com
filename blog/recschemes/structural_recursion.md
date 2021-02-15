@@ -1,3 +1,6 @@
+[English version (origin)](https://nrinaudo.github.io/recschemes/structural_recursion.html)
+
+
 Now that we have our recursive data type - the monomorphic list - we can start working with it. Intuitively, you can see that if we're working with recursive types, we're probably going to look at recursive algorithms.
 
 There are different common strategies to manipulate recursive types, each meant to solve a specific kind of problem. The one we're going to concern ourselves with first, by far the most common, is structural recursion: a form of recursion where you let the structure of your type drive you.

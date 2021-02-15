@@ -1,3 +1,6 @@
+[English version (origin)](https://nrinaudo.github.io/recschemes/recursive_data_types.html)
+
+
 Before we can talk about recursion schemes, we need to start at the beginning. The very first step is to understand what recursive data types are.
 
 You probably already know about recursive functions - function that call themselves. Recursive data types are the same: types that contain themselves.

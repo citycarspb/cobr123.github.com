@@ -1,3 +1,6 @@
+[English version (origin)](https://nrinaudo.github.io/recschemes/introduction.html)
+
+
 The purpose of this article is not for you to learn about recursion schemes - although that'd be a nice side effect. This is really more of a revenge story.
 
 See, a few years ago, I was learning about functional programming. It takes a while, there's a lot of new concept to learn and old ones to unlearn, but I finally got to a place where I felt I knew - not everything I needed, certainly, but at least enough to start writing code I didn't have to be ashamed of.

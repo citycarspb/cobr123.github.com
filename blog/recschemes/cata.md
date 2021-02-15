@@ -1,3 +1,6 @@
+[English version (origin)](https://nrinaudo.github.io/recschemes/cata.html)
+
+
 We've generalised structural recursion, but for `List` only. Let's now tackle the task of generalising `fold` - generalising generalised structural recursion, as it were.
 
 ## Generalised folds

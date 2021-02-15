@@ -1,3 +1,6 @@
+[English version (origin)](https://nrinaudo.github.io/recschemes/fix.html)
+
+
 We've seen that making a data type "catamorphism-ready" was a lot of busywork:
 - write the data type.
 - write its pattern functor, which involves a lot of copy / pasting.
