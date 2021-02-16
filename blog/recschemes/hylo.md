@@ -2,7 +2,7 @@
 
 [Назад](./ana.md) | [Оглавление](./index.md) | [Дальше](./conclusion.md)
 
-#Обобщённая свёртка и развёртка
+# Обобщённая свёртка и развёртка
 
 We've seen that generalised folds (`cata`) and generalised unfolds (`ana`) seemed eerily similar.
 

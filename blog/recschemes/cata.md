@@ -2,7 +2,7 @@
 
 [Назад](./fold.md) | [Оглавление](./index.md) | [Дальше](./tree_height.md)
 
-#Обобщённая свёртка
+# Обобщённая свёртка
 
 We've generalised structural recursion, but for `List` only. Let's now tackle the task of generalising `fold` - generalising generalised structural recursion, as it were.
 

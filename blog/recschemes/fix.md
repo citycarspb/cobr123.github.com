@@ -2,7 +2,7 @@
 
 [Назад](./tree_height.md) | [Оглавление](./index.md) | [Дальше](./generative_recursion.md)
 
-#Уменьшение шаблонного кода
+# Уменьшение шаблонного кода
 
 We've seen that making a data type "catamorphism-ready" was a lot of busywork:
 - write the data type.

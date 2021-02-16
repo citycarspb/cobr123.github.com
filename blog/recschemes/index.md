@@ -1,4 +1,4 @@
-Это перевод [статьи-компаньона](https://nrinaudo.github.io/recschemes/) доклада Nicolas Rinaudo _Введение в рекурсивные схемы_, слайды доступны по [ссылке](https://nrinaudo.github.io/recursion-schemes-from-the-ground-up/#1).
+Это перевод [статьи-компаньона](https://nrinaudo.github.io/recschemes/) доклада Nicolas Rinaudo _"Введение в рекурсивные схемы"_, слайды доступны по [ссылке](https://nrinaudo.github.io/recursion-schemes-from-the-ground-up/#1).
 
 - [Введение](./introduction.md)
 - [Рекурсивные типы данных](./recursive_data_types.md)
