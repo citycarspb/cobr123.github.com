@@ -4,11 +4,11 @@
 
 # Обобщённая структурная рекурсия
 
-We've seen that structural recursion involved a few common components. Our goal, for the moment, is to abstract these components away and provide a general structural recursion function.
+Мы видели, что структурная рекурсия включает несколько общих компонентов. Наша цель на данный момент состоит в том, чтобы абстрагироваться от этих компонентов и предоставить общую функцию структурной рекурсии.
 
-## Generalising `mkString`
+## Обобщение `mkString`
 
-We'll start from `mkString`, and refactor it step-by-step until we reach the desired result:
+Мы начнем с `mkString`, и будем его менять, шаг за шагом, пока не добьемся желаемого результата:
 
 ```scala
 def mkString(
@@ -20,7 +20,7 @@ def mkString(
   }
 ```
 
-Our first step is going to be to rename `mkString`. Let's call it `recurse` - it's a pretty bad name, but now is the worst possible time to try and find a good one: we do not yet know what we'll end up with and how it will be used. I find it useful to not worry overmuch about names until after I have a much better understanding of what it is I'm trying to name.
+Нашим первым шагом будет переименование `mkString`. Назовем его `recurse` - это довольно плохое имя, но сейчас не самое подходящее время, чтобы пытаться найти хорошее: мы еще не знаем, что у нас получится и как оно будет использоваться. Я считаю полезным не слишком беспокоиться об именах до тех пор, пока не пойму лучше, что именно я пытаюсь назвать.
 
 ```scala
 def recurse(
@@ -32,28 +32,28 @@ def recurse(
   }
 ```
 
-`recurse` can be represented using the following diagram:
+`recurse` можно представить с помощью следующей диаграммы:
 
 ![Recurse](./img/fold-init.svg)
 
-We start from a `List`, follow its structure to turn into into a head and a tail (`Cons`) or nothing (`Nil`), apply `recurse` to the tail, then some hard-coded magic to get our final result.
+Мы начинаем из `List`, следуя структуре превращаем их в голову и хвост (`Cons`) или ничего (`Nil`), применяем `recurse` к хвосту, затем какая-то захардкоженая магия, чтобы получить окончательный результат.
 
-The hard-coded magic is what we want to get rid of.
+Захардкоженая магия - это то от чего мы хотим избавиться.
 
 
-## Generalising the base case
+## Обобщаем базовый вариант
 
-The easiest thing to tackle is providing a solution to the smallest possible problem - known as the base case. This is currently hard-coded to `"nil"`:
+Самое простое решение - найти решение минимальной задачи, известной как базовый вариант. В настоящее время это жестко запрограммировано на `"nil"`:
 
 ![Base case](./img/fold-base.svg)
 
-Instead of using a hard-coded string, let's extract this into a constant:
+Вместо использования жестко запрограммированной строки давайте вынесем её в константу:
 
 ```scala
-​val base = "nil"
+val base = "nil"
 ```
 
-And we can now rework `recurse` to take `base` as a parameter:
+И теперь мы можем переделать`recurse` с использованием `base` как параметра:
 
 ```scala
 def recurse(
@@ -66,24 +66,24 @@ def recurse(
   }
 ```
 
-This is an improvement; at least some of the hard-coded magic is gone now:
+Это улучшение; по крайней мере, часть жестко закодированной магии ушла:
 
 ![Generalised base case](./img/fold-base-after-hl-1.svg)
 
-## Generalising the step
+## Обобщаем шаг
 
-We still have a little bit left, though:
+Но у нас еще немного осталось:
 
 ![Step](./img/fold-step.svg)
 
-This takes the `head`, the solution to the `tail`, and returns the complete solution to our problem. It can be represented as a simple function, traditionally known as `step`:
+Берётся `head`, результат от `tail`, и возвращается решение нашей задачи. Это можно представить как простую функцию, традиционно известную как `step`:
 
 ```scala
 def step(head: Int, tailResult: String) =
   head + " :: " + tailResult
 ```
 
-As before, now that we have a `step` implementation for `mkString`, we can remove the hard-coded one from `recurse` and take it as a parameter:
+Как и раньше, теперь, когда у нас есть `step` реализованный для `mkString`, мы можем убрать хардкод из `recurse` и передать его как параметр:
 
 ```scala
 def recurse(
@@ -97,19 +97,19 @@ def recurse(
   }
 ```
 
-And with that, we appear to have gotten rid of all the hard-coded values:
+И теперь, похоже, мы избавились от всех жестко запрограммированных значений:
 
 ![Generalised step](./img/fold-step-after-hl-1.svg )
 
-## Generalising the return type
+## Обобщаем возвращаемый тип
 
-There is, however, still a little bit of hard-coding going on, just not at the value level: the return type of `recurse`.
+Однако есть еще немного хардкода, но не на уровне значений: возвращаемый тип `recurse`.
 
 ![Return type](./img/fold-return.svg )
 
-It's currently `String`, but we know we'll need more than that: `product` returns an `Int`, for example.
+Сейчас это `String`, но мы знаем, что нам нужно больше, чем это: `product` возвращает `Int`, например.
 
-This is fortunately straightforward to generalise: we never actually use the fact that this return type is `String` - just that `base` and `step` take matching types. This allows us to turn it into a type parameter:
+К счастью, это легко обобщить: мы никогда не использовали тот факт, что этот возвращаемый тип `String` - просто чтобы `base` и `step`  использовали тот же тип. Это позволяет нам превратить его в параметр типа:
 
 ```scala
 def recurse[A](
@@ -123,18 +123,18 @@ def recurse[A](
   }
 ```
 
-And now, we've gotten rid of everything that was specific to `mkString`:
+И теперь мы избавились от всего, что было характерно для `mkString`:
 
 ![Generalised return type](./img/fold-return-after-hl-1.svg )
 
 
-## Simplifying the step
+## Упрощаем шаг
 
-We can touch up the code a little bit before going further though. Short as it is, I find `recurse` slightly unpleasant to read.
+Мы можем немного подправить код, прежде чем идти дальше. Каким бы кратким он ни был, мне немного неприятно читать слово `recurse`.
 
-Specifically, I don't like the recursive call to `recurse` and the fact that it takes so many parameters. It makes it harder than necessary to understand what's going on, where I really wish it could just say _get the solution to the `tail`_, without added noise.
+В частности, мне не нравится рекурсивный вызов `recurse` и тот факт, что он принимает так много параметров. Это затрудняет понимание того, что происходит, где я действительно хотел бы, чтобы можно было просто сказать _получить результат от `хвоста`_ без лишнего шума.
 
-One thing I like to do in these circumstances is create internal helper functions. Here, we can take the entire pattern match and extract it into a helper that's traditionally called `loop` or `go`:
+В таких обстоятельствах мне нравится создавать внутренние вспомогательные функции. Здесь мы можем взять всю ветку выражения и извлечь ее в помощник, который традиционно называется `loop` или `go`:
 
 ```scala
 def recurse[A](
@@ -152,21 +152,21 @@ def recurse[A](
 }
 ```
 
-This is admittedly more code than we had, but the structural recursion components are now more clearly visible in `loop`. We can see:
-- the smallest possible problem (`Nil`), with a solution of `base`.
-- larger problems (`Cons`), composed of a smaller problem (`tail`) and additional data (`head`).
-  - the solution to the smaller problem is assumed known (by calling `loop`).
-  - the solution to the larger problem is obtained by gluing everything together with `step`.
+Признаться, это больше кода, чем у нас было, но компоненты структурной рекурсии теперь более четко видны в `loop`. Мы можем видеть:
+- наименьшую возможную задачу (`Nil`), и ее решение `base`.
+- остальные (`Cons`), состоящие из меньших задач (`tail`) и дополнительных данных (`head`).
+  - меньшую задачу, для которой мы предполагаем, что у нас есть решение (вызывая `loop`).
+  - решение более крупной задачи получается путем объединения с помощью `step`.
 
-This gives us an updated diagram for `recurse`:
+Это дает нам обновленную диаграмму для `recurse`:
 
 ![Fold](./img/fold-loop.svg )
 
-## Dropping parameters
+## Отбрасываем параметры
 
-Finally, we can see that the `values` parameter of `recurse` is just passed to `loop` - the former is really just a proxy for the later.
+Наконец, мы можем видеть, что параметр `values` из` recurse` просто передается в `loop` - который на самом деле просто прокси.
 
-Let's make that more concrete by having `recurse` return `loop` instead:
+Давайте сделаем его более конкретным, `recurse` будет возвращать `loop` (частично примененную функцию) вместо `loop(values)` (результата выполнения функции):
 
 ```scala
 def recurse[A](
@@ -183,32 +183,32 @@ def recurse[A](
 }
 ```
 
-One might argue that this isn't much of an improvement - the only real change for callers is that `recurse` now has two parameter lists, which, while not horrible, is certainly less straightforward than a single one.
+Кто-то может возразить, что это небольшое улучшение - единственное реальное изменение для вызывающих состоит в том, что у `recurse` теперь есть два списка параметров, которые хоть и не ужасны, но, безусловно, менее просты, чем один.
 
-But it *is* an improvement when you consider the most common use case: declaring combinators that rely on `recurse`. Take the by now familiar `mkString`:
+Но это *улучшение*, если учесть наиболее распространенный вариант использования: объявление комбинаторов, которые полагаются на `recurse`. Возьмем уже знакомый `mkString`:
 
 ```scala
 def mkString(ints: List): String =
   recurse(base, step)(ints)
 ```
 
-We can conveniently refactor it to:
+Мы можем легко преобразовать его в:
 
 ```scala
 val mkString: List => String =
   recurse(base, step)
 ```
 
-Which I'd argue is more explicit: `mkString` is just a specific application of `recurse`.
+Что я бы сказал более ясно: `mkString` это просто конкретное приложение `recurse`.
 
 
-## Naming things
+## Именование
 
-Now that we're all but done with `recurse` and we have a better understanding of what it does, it's time to give it a proper, functional programming name.
+Теперь, когда мы почти закончили с `recurse` и лучше понимаем, что он делает, пришло время дать ему правильное название для функционального программирования.
 
-You might have already encountered it, it's a very common combinator: `fold`.
+Возможно, вы уже сталкивались с этим, это очень распространенный комбинатор: `fold`.
 
-The name is a little bit poetic: it describes the way you fold the list onto itself to get your result.
+Название немного поэтично: оно описывает, как вы складываете лист на себя, чтобы получить результат.
 
 ```scala
 def fold[A](
@@ -225,9 +225,9 @@ def fold[A](
 }
 ```
 
-## product as a fold
+## Умножение как свёртка
 
-We've done all this work of generalising `mkString` to be able to use it to write other combinators, it'd be a shame not to end this section by showing that `product` can easily be written as a specific `fold`:
+Мы проделали всю эту работу по обобщению `mkString`, чтобы иметь возможность использовать его для написания других комбинаторов, и было бы стыдно закончить этот раздел, не показав, что` product` может быть легко записан как конкретный `fold` :
 
 ```scala
 val product: List => Int =
@@ -239,9 +239,9 @@ val product: List => Int =
 
 ## Ключевые выводы
 
-We've seen that generalising structural recursion was a relatively straightforward task: simply make all key components parameters, and everything just sort of works out.
+Мы видели, что обобщение структурной рекурсии было относительно простой задачей: просто сделать все ключевые компоненты параметрами, и все вроде как работает.
 
-Well. Provided you don't mind hard-coding your implementation to the structure of a specific type, that is. Our `fold` works for lists, but that's it. We should try to do something about that.
+Что ж. При условии, что вы не против жестко привязать свою реализацию к структуре определенного типа. Наш `fold` работает только для списков. Мы должны попытаться что-то с этим сделать.
 
 [Назад](./structural_recursion.md) | [Оглавление](./index.md) | [Дальше](./cata.md)
 
